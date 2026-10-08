@@ -1,0 +1,81 @@
+name: scan
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Load previous results
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git clone --quiet --depth 1 --branch data "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" prev 2>/dev/null; then
+            cp prev/predbot.db predbot.db && echo "Loaded previous results"
+          else
+            echo "No previous results yet - starting fresh with \$1,000 paper money"
+          fi
+
+      - name: Load recent price history
+        uses: actions/cache/restore@v4
+        with:
+          path: snapshots.db
+          key: snapshots-${{ github.run_id }}
+          restore-keys: snapshots-
+
+      - name: Scan markets
+        run: python -m predbot.bot --loops 1 --db predbot.db --snapshots snapshots.db
+
+      - name: Save results
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p out && cp predbot.db out/
+          cd out
+          git init --quiet -b data
+          git config user.name "predbot"
+          git config user.email "predbot@users.noreply.github.com"
+          git add -A
+          git commit --quiet -m "results $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push --quiet --force "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" data
+
+      - name: Save recent price history
+        if: always() && hashFiles('snapshots.db') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: snapshots.db
+          key: snapshots-${{ github.run_id }}
+
+      - name: Build dashboard
+        run: python -m predbot.export_site --db predbot.db --out site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Publish dashboard
+        id: deploy
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
