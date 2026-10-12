@@ -61,6 +61,7 @@ def to_market(m) -> Market:
         status=m.get("status", ""),
         result=(m.get("result") or "").lower(),
         expected_time=_parse_time(m.get("expected_expiration_time")),
+        raw={k: m.get(k) for k in ("strike_type", "floor_strike", "cap_strike", "rules_primary", "series_ticker")},
     )
 
 
@@ -130,6 +131,14 @@ class KalshiData:
             if not cursor:
                 break
         return out
+
+    def list_series_markets(self, series_ticker):
+        """All open markets in one series (e.g. a city's daily high temperature)."""
+        data = self._get("/markets", {"series_ticker": series_ticker, "status": "open", "limit": 200})
+        return [to_market(m) for m in data.get("markets", [])]
+
+    def list_series(self, category):
+        return self._get("/series", {"category": category}).get("series", [])
 
     def get_market(self, ticker):
         return to_market(self._get(f"/markets/{urllib.parse.quote(ticker)}")["market"])

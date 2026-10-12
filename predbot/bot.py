@@ -23,13 +23,23 @@ def make_source(name):
 def step(source, broker, verbose=True):
     now = source.now()
     markets = source.list_open_markets()
+    weather_markets = []
+    if config.WEATHER["enabled"] and hasattr(source, "list_series_markets"):
+        from . import weather
+        try:
+            weather_markets = weather.fetch_markets(source)
+        except Exception as e:
+            print(f"  ! weather markets: {e}")
     by_ticker = {m.ticker: m for m in markets}
+    for m in weather_markets:
+        by_ticker[m.ticker] = m
 
     for t, status, payout in broker.settle(set(by_ticker)):
         pnl = payout - t["cost"] - t["fee"]
         print(f"  {'WIN ' if status == 'won' else status.upper():5} {pnl:+8.2f}  {t['strategy']:14} {t['side'].upper()} {t['title'][:60]}")
 
-    tradable = [m for m in markets if risk.market_ok(m)]
+    weather_tickers = {m.ticker for m in weather_markets}
+    tradable = [m for m in markets if risk.market_ok(m) and m.ticker not in weather_tickers]
     broker.record_snapshots(tradable, now)
     broker.update_marks(by_ticker)
 
@@ -39,6 +49,9 @@ def step(source, broker, verbose=True):
             s = strat(m, now, broker)
             if s:
                 signals.append(s)
+    if weather_markets:
+        from . import weather
+        signals += weather.signals([m for m in weather_markets if risk.market_ok(m)], now, broker)
     signals.sort(key=lambda s: s.edge, reverse=True)
 
     open_rows = broker.open_trades()

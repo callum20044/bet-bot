@@ -17,6 +17,7 @@ class Market:
     status: str
     result: str                # "yes", "no" or "" while unresolved
     expected_time: Optional[datetime] = None   # when the event is actually expected to finish
+    raw: Optional[dict] = None                 # the exchange's original record (strikes, rules...)
 
     @property
     def resolve_time(self) -> Optional[datetime]:

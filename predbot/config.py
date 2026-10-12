@@ -11,10 +11,10 @@ KALSHI_API = "https://api.elections.kalshi.com/trade-api/v2"   # public, no logi
 MAX_MARKET_PAGES = 10           # 1 page = up to 1000 markets
 
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
-STAKE_PER_TRADE = 5.00         # dollars risked per bet
+STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets fit in the $1,000)
 MAX_CONTRACTS = 200             # cap on contracts per bet
-MAX_OPEN_POSITIONS = 150        # same cap as the bot in the video
-MAX_OPEN_PER_STRATEGY = 120     # so one strategy can't hog every slot
+MAX_OPEN_POSITIONS = 150        # lots of bets at once = faster results
+MAX_OPEN_PER_STRATEGY = 120    # so one strategy can't hog every slot
 MAX_PER_EVENT = 1               # don't stack bets on the same event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
 MIN_VOLUME_24H = 200            # ignore markets nobody is trading
@@ -44,4 +44,23 @@ MOMENTUM = dict(
     price_min=0.15, price_max=0.85, # avoid the extremes
     max_hours_to_close=48,
     min_edge=0.02,
+)
+
+# 3. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
+#    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
+#    typically are (°F). Same-day bets also use what the station has already recorded.
+WEATHER = dict(
+    enabled=True,
+    max_days_ahead=1,               # today and tomorrow only
+    sigma_today=1.2,                # baseline error of a same-day forecast high (°F)...
+    sigma_tomorrow=1.6,             # ...and next-day
+    sigma_later=2.5,
+    spread_weight=1.0,              # ...plus however much the 7 forecast models disagree
+    default_spread=1.5,             # used if the model data can't be fetched
+    sigma_done=0.8,                 # late afternoon: the high has basically happened
+    day_done_hour=17,               # local hour after which we trust today's recorded high
+    obs_slack_f=1.0,                # recorded readings are rounded, so allow 1°F of slack
+    bias_f=0.0,                     # shift if forecasts turn out to run hot/cold
+    price_min=0.03, price_max=0.97,
+    min_edge=0.05,                  # need 5c expected profit per contract - the model is simple
 )
