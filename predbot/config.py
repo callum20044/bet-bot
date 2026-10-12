@@ -11,10 +11,10 @@ KALSHI_API = "https://api.elections.kalshi.com/trade-api/v2"   # public, no logi
 MAX_MARKET_PAGES = 10           # 1 page = up to 1000 markets
 
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
-STAKE_PER_TRADE = 10.00         # dollars risked per bet
+STAKE_PER_TRADE = 5.00         # dollars risked per bet
 MAX_CONTRACTS = 200             # cap on contracts per bet
-MAX_OPEN_POSITIONS = 25         # same cap as the bot in the video
-MAX_OPEN_PER_STRATEGY = 15     # so one strategy can't hog every slot
+MAX_OPEN_POSITIONS = 150        # same cap as the bot in the video
+MAX_OPEN_PER_STRATEGY = 120     # so one strategy can't hog every slot
 MAX_PER_EVENT = 1               # don't stack bets on the same event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
 MIN_VOLUME_24H = 200            # ignore markets nobody is trading
