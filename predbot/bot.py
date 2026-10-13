@@ -87,7 +87,8 @@ def step(source, broker, verbose=True):
     open_tickers = {r["ticker"] for r in open_rows}
     open_events, by_strat = {}, {}
     for r in open_rows:
-        open_events[r["event_ticker"]] = open_events.get(r["event_ticker"], 0) + 1
+        ek = (r["strategy"], r["event_ticker"])
+        open_events[ek] = open_events.get(ek, 0) + 1
         by_strat[r["strategy"]] = by_strat.get(r["strategy"], 0) + 1
 
     placed = 0
@@ -106,7 +107,7 @@ def step(source, broker, verbose=True):
                 sig = Signal(m, side, p, p + per_leg_edge, per_leg_edge, "arb", b.note)
                 if broker.buy(sig, n):
                     open_tickers.add(m.ticker)
-                    open_events[m.event_ticker] = open_events.get(m.event_ticker, 0) + 1
+                    open_events[("arb", m.event_ticker)] = open_events.get(("arb", m.event_ticker), 0) + 1
                     by_strat["arb"] = by_strat.get("arb", 0) + 1
             placed += len(b.legs)
             print(f"  ARB  {n:4d} sets, locked profit ~${b.profit(n):.2f}  [{b.kind}] {b.legs[0][0].title[:50]}  ({b.note})")
@@ -119,7 +120,8 @@ def step(source, broker, verbose=True):
         if broker.buy(s, n):
             placed += 1
             open_tickers.add(s.market.ticker)
-            open_events[s.market.event_ticker] = open_events.get(s.market.event_ticker, 0) + 1
+            ek = (s.strategy, s.market.event_ticker)
+            open_events[ek] = open_events.get(ek, 0) + 1
             by_strat[s.strategy] = by_strat.get(s.strategy, 0) + 1
             print(f"  BUY  {n:4d} x {s.side.upper():3} @ {s.price*100:4.1f}c  edge {s.edge*100:4.1f}c  "
                   f"[{s.strategy}] {s.market.title[:50]}  ({s.reason})")

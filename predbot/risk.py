@@ -18,7 +18,7 @@ def size_and_check(sig, broker, now, open_tickers, open_events, n_open, open_by_
         return 0, "strategy cap"
     if sig.market.ticker in open_tickers:
         return 0, "already holding"
-    if open_events.get(sig.market.event_ticker, 0) >= config.MAX_PER_EVENT:
+    if open_events.get((sig.strategy, sig.market.event_ticker), 0) >= config.MAX_PER_EVENT:
         return 0, "event cap"
     if not (config.MIN_PRICE <= sig.price <= config.MAX_PRICE):
         return 0, "price out of range"

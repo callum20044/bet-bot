@@ -17,7 +17,7 @@ STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets
 MAX_CONTRACTS = 200             # cap on contracts per bet
 MAX_OPEN_POSITIONS = 400        # lots of bets at once = faster results
 MAX_OPEN_PER_STRATEGY = 60     # each strategy gets its own share of room
-MAX_PER_EVENT = 1               # don't stack bets on the same event
+MAX_PER_EVENT = 1               # each strategy bets at most once per event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
 MIN_VOLUME_24H = 200            # ignore markets nobody is trading
 MAX_SPREAD = 0.05               # ignore markets where bid/ask gap is wider than 5c
