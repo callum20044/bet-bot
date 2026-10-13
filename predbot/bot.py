@@ -144,6 +144,14 @@ def main():
     source = make_source(args.source)
     db = connect(db_path, args.snapshots)
     broker = PaperBroker(db, source)
+    # one-off clean-up (13 Oct): the first maths-hunter run mistook unrelated rain markets for
+    # price ladders. Those weren't real arbitrage, so remove them from the record.
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_rain_arb'").fetchone():
+        n = db.execute("DELETE FROM trades WHERE strategy='arb' AND ticker LIKE 'KXRAIN-%'").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_rain_arb', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (removed {n} bogus rain 'arbitrage' bets)")
     print(f"Paper trading on {source.name} | db {db_path} | start ${broker.start:,.2f} | Ctrl+C to stop")
 
     if args.dashboard:

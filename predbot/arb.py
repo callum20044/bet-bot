@@ -65,6 +65,12 @@ def _bracket_set(ms):
     return math.isclose(edges[-1], edges[-2], abs_tol=1e-6)        # 'greater than X' where X = last cap
 
 
+def same_question(a, b):
+    """True if two markets ask the same thing apart from the number."""
+    strip = lambda m: re.sub(r"[\d.,$%]+", "#", m.title)
+    return strip(a) == strip(b)
+
+
 def find(markets):
     c = config.ARB
     by_event = {}
@@ -90,6 +96,10 @@ def find(markets):
                         key=lambda m: m.raw["floor_strike"])
         for i, lo in enumerate(ladder):
             for hi in ladder[i + 1:]:
+                # only true ladders: same question, higher line (e.g. 'above 54.5' vs 'above 59.5'),
+                # never different cities/teams that happen to share an event and a strike of 0
+                if not (hi.raw["floor_strike"] > lo.raw["floor_strike"] and same_question(lo, hi)):
+                    continue
                 if hi.yes_bid is not None and lo.yes_ask is not None and hi.no_ask is not None \
                         and hi.yes_bid > lo.yes_ask:
                     out.append(Basket([(lo, "yes", lo.yes_ask), (hi, "no", hi.no_ask)], 1.0, "ladder",
