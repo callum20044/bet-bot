@@ -46,6 +46,8 @@ jobs:
           restore-keys: snapshots-
 
       - name: Scan markets
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # optional - only the sharp-bookie strategy uses it
         run: python -m predbot.bot --loops 1 --db predbot.db --snapshots snapshots.db
 
       - name: Save results

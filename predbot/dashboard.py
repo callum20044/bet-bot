@@ -10,7 +10,8 @@ PORT = 8050
 
 
 def state(db):
-    start = float((db.execute("SELECT v FROM meta WHERE k='start'").fetchone() or [config.STARTING_BANKROLL])[0])
+    start = float((db.execute("SELECT v FROM meta WHERE k='start'").fetchone() or [config.STARTING_BANKROLL])[0]) \
+        + config.EXTRA_PAPER_FUNDS
     src = (db.execute("SELECT v FROM meta WHERE k='source'").fetchone() or ["?"])[0]
     trades = [dict(r) for r in db.execute("SELECT * FROM trades ORDER BY id DESC")]
     spent = sum(t["cost"] + t["fee"] for t in trades)

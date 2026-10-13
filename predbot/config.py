@@ -2,6 +2,7 @@
 
 # --- Account (paper money) ---
 STARTING_BANKROLL = 1000.00     # pretend dollars you start with
+EXTRA_PAPER_FUNDS = 1000.00     # top-ups added later (13 Oct: +$1,000 to speed up results)
 DB_PATH = "predbot.db"          # where every trade and price snapshot is stored
 SNAPSHOT_KEEP_HOURS = 6         # price history kept for the momentum strategy
 
@@ -73,7 +74,53 @@ WHALE = dict(
     min_edge=0.005,
 )
 
-# 5. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
+# 5. Draw backer: buy YES on 'Tie' (football draws, hockey ties in regulation) priced 18-40c.
+#    Assumption: draws are ~12% more likely than the price says, because casual bettors back teams.
+DRAW = dict(
+    enabled=True,
+    yes_min=0.18, yes_max=0.40,
+    max_hours_to_close=48,
+    uplift=1.12,
+    min_edge=0.0,                   # bet every draw in range - the scoreboard tests the idea
+)
+
+# 6. Broken-maths hunter: price groups that can't all be right (see arb.py). Near risk-free.
+ARB = dict(
+    enabled=True,
+    stake=20.00,                    # dollars per basket (all legs together)
+    min_profit_per_set=0.01,        # at least 1c locked-in profit per set after fees
+)
+
+# 7. Crypto clock: hourly BTC/ETH markets vs the live Coinbase price and recent volatility.
+CRYPTO = dict(
+    enabled=True,
+    min_minutes=5, max_minutes=180, # markets finishing in 5 min to 3 hours
+    vol_minutes=120,                # measure volatility over the last 2 hours
+    vol_scale=1.0,                  # >1 if the model turns out over-confident
+    price_min=0.05, price_max=0.95,
+    min_edge=0.05,                  # big margin: weather taught us these markets can be sharp
+)
+
+# 8. Inflation nowcast: Kalshi CPI markets vs the Cleveland Fed's daily estimate.
+NOWCAST = dict(
+    enabled=True,
+    max_hours_to_release=48,
+    sd={"month": 0.10, "year": 0.10},   # typical miss of the nowcast (percentage points)
+    price_min=0.05, price_max=0.95,
+    min_edge=0.05,
+)
+
+# 9. Sharp bookie: Kalshi game prices vs Pinnacle (needs a free key from the-odds-api.com,
+#    saved as the GitHub secret ODDS_API_KEY - sleeps until then).
+SHARP = dict(
+    enabled=True,
+    sports=["soccer_epl", "soccer_uefa_champs_league", "americanfootball_nfl", "basketball_nba"],
+    refresh_hours=6,                # 4 sports x 4 refreshes a day = ~480 of the 500 free calls/month
+    price_min=0.05, price_max=0.95,
+    min_edge=0.03,
+)
+
+# 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
 WEATHER = dict(

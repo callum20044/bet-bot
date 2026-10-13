@@ -51,6 +51,7 @@ class PaperBroker:
             self.start = start
         else:
             self.start = float(row["v"])
+        self.start += config.EXTRA_PAPER_FUNDS
 
     # ---- accounting ----
     def cash(self):

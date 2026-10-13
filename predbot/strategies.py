@@ -82,4 +82,24 @@ def favourite_finish(m, now, broker):
                   f"YES at {mid*100:.0f}c, {hrs:.0f}h to close; est YES {est_yes*100:.1f}%")
 
 
-ALL = [longshot_fade, momentum, favourite_finish]
+def draw_backer(m, now, broker):
+    """Casual bettors back teams, not draws - so 'Tie' tends to be a bit too cheap."""
+    c = config.DRAW
+    if not c["enabled"] or m.yes_mid is None or not m.ticker.endswith("-TIE"):
+        return None
+    hrs = m.hours_to_close(now)
+    if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] <= mid <= c["yes_max"]):
+        return None
+    price = m.yes_ask
+    est = min(mid * c["uplift"], 0.95)
+    edge = _edge(est, price)
+    if edge < c["min_edge"]:
+        return None
+    return Signal(m, "yes", price, est, edge, "draw",
+                  f"Tie at {mid*100:.0f}c, {hrs:.0f}h to go; est {est*100:.1f}%")
+
+
+ALL = [longshot_fade, momentum, favourite_finish, draw_backer]

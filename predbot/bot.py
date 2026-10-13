@@ -1,10 +1,27 @@
 """Main loop: scan markets -> settle finished bets -> look for signals -> apply risk limits -> paper-buy."""
 import argparse
+import contextlib
+import io
+import sys
 import threading
 import time
 
 from . import config, risk, strategies
 from .broker import PaperBroker, connect
+from .models import Signal
+
+
+class Tee:
+    def __init__(self, *streams):
+        self.streams = streams
+
+    def write(self, s):
+        for st in self.streams:
+            st.write(s)
+
+    def flush(self):
+        for st in self.streams:
+            st.flush()
 
 
 def make_source(name):
@@ -52,6 +69,15 @@ def step(source, broker, verbose=True):
     if weather_markets:
         from . import weather
         signals += weather.signals([m for m in weather_markets if risk.market_ok(m)], now, broker)
+    if config.CRYPTO["enabled"]:
+        from . import crypto
+        signals += crypto.signals(tradable, now, broker)
+    if config.NOWCAST["enabled"]:
+        from . import nowcast
+        signals += nowcast.signals(source, now, broker, ok=risk.market_ok)
+    if config.SHARP["enabled"]:
+        from . import sharp
+        signals += sharp.signals(tradable, now, broker)
     if config.WHALE["enabled"]:
         from . import whales
         signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)
@@ -65,6 +91,25 @@ def step(source, broker, verbose=True):
         by_strat[r["strategy"]] = by_strat.get(r["strategy"], 0) + 1
 
     placed = 0
+    if config.ARB["enabled"]:
+        from . import arb
+        for b in arb.find(tradable):
+            if any(m.ticker in open_tickers for m, _, _ in b.legs):
+                continue
+            if len(open_tickers) + len(b.legs) > config.MAX_OPEN_POSITIONS:
+                break
+            n, ok_all = b.n, True
+            if sum(n * p + source.fee(n, p) for _, _, p in b.legs) > broker.cash():
+                continue
+            per_leg_edge = b.profit(n) / n / len(b.legs)
+            for m, side, p in b.legs:
+                sig = Signal(m, side, p, p + per_leg_edge, per_leg_edge, "arb", b.note)
+                if broker.buy(sig, n):
+                    open_tickers.add(m.ticker)
+                    open_events[m.event_ticker] = open_events.get(m.event_ticker, 0) + 1
+                    by_strat["arb"] = by_strat.get("arb", 0) + 1
+            placed += len(b.legs)
+            print(f"  ARB  {n:4d} sets, locked profit ~${b.profit(n):.2f}  [{b.kind}] {b.legs[0][0].title[:50]}  ({b.note})")
     for s in signals:
         n, why = risk.size_and_check(s, broker, now, open_tickers, open_events, len(open_tickers), by_strat)
         if not n:
@@ -109,10 +154,18 @@ def main():
     try:
         while True:
             i += 1
+            buf = io.StringIO()
             try:
-                step(source, broker)
+                with contextlib.redirect_stdout(Tee(sys.stdout, buf)):
+                    step(source, broker)
             except Exception as e:      # keep running through network errors etc.
                 print(f"  ! scan failed: {e}")
+                buf.write(f"  ! scan failed: {e}\n")
+            try:   # keep the last scan's log in the database so it can be read without GitHub access
+                db.execute("INSERT OR REPLACE INTO meta VALUES ('last_scan_log', ?)", (buf.getvalue()[-20000:],))
+                db.commit()
+            except Exception:
+                pass
             if args.loops and i >= args.loops:
                 break
             if args.source != "sim":
