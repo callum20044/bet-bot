@@ -61,4 +61,25 @@ def momentum(m, now, broker):
                   f"moved {move*100:+.0f}c in {c['lookback_minutes']}m ({before*100:.0f}c -> {m.yes_mid*100:.0f}c)")
 
 
-ALL = [longshot_fade, momentum]
+def favourite_finish(m, now, broker):
+    c = config.FAVOURITE
+    if not c["enabled"] or m.yes_mid is None:
+        return None
+    hrs = m.hours_to_close(now)
+    if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] <= mid <= c["yes_max"]):
+        return None
+    price = m.yes_ask
+    if price is None:
+        return None
+    est_yes = 1 - (1 - mid) * c["shrink"]
+    edge = _edge(est_yes, price)
+    if edge < c["min_edge"]:
+        return None
+    return Signal(m, "yes", price, est_yes, edge, "favourite",
+                  f"YES at {mid*100:.0f}c, {hrs:.0f}h to close; est YES {est_yes*100:.1f}%")
+
+
+ALL = [longshot_fade, momentum, favourite_finish]

@@ -46,11 +46,22 @@ MOMENTUM = dict(
     min_edge=0.02,
 )
 
-# 3. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
+# 3. Favourites near the finish: the flip side of the longshot fade. If people overpay for
+#    unlikely outcomes, near-certain ones are slightly too cheap. Buy YES on outcomes priced
+#    85-97c that resolve within a day. Small profit per bet, occasional full loss.
+FAVOURITE = dict(
+    enabled=True,
+    yes_min=0.85, yes_max=0.97,
+    max_hours_to_close=24,
+    shrink=0.75,                    # same assumption as longshot: true NO chance = price x 0.75
+    min_edge=0.005,                 # edges are thin at these prices, so accept 0.5c+
+)
+
+# 4. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
 WEATHER = dict(
-    enabled=True,
+    enabled=False,                  # switched off 13 Oct: lost 4-19 - the market knows the weather better
     max_days_ahead=1,               # today and tomorrow only
     sigma_today=1.2,                # baseline error of a same-day forecast high (°F)...
     sigma_tomorrow=1.6,             # ...and next-day
