@@ -99,38 +99,51 @@ class KalshiData:
         raise RuntimeError(f"Kalshi request failed: {url}: {last}")
 
     def list_open_markets(self):
-        out, cursor = [], None
-        for _ in range(config.MAX_MARKET_PAGES):
-            params = {"status": "open", "limit": 1000}
-            if self._mve_param:
-                params["mve_filter"] = "exclude"     # skip auto-generated multi-leg parlay markets
-            if self._close_param:
-                # Only markets closing within the next week - the strategies never bet further out,
-                # and Kalshi lists tens of thousands of long-dated markets that would eat the page limit.
-                now = time.time()
-                params["min_close_ts"] = int(now)
-                params["max_close_ts"] = int(now + 10 * 24 * 3600)   # close_time runs ~3 days past the event
-            if cursor:
-                params["cursor"] = cursor
-            try:
-                data = self._get("/markets", params)
-            except urllib.error.HTTPError as e:
-                if e.code == 400 and self._close_param:
-                    self._close_param = False
-                    print("  (Kalshi rejected the close-time filter - scanning without it)")
-                    continue
-                if e.code == 400 and self._mve_param:
-                    self._mve_param = False
-                    continue
-                raise
-            for m in data.get("markets", []):
-                if m.get("ticker", "").startswith("KXMVE"):
-                    continue
-                out.append(to_market(m))
-            cursor = data.get("cursor")
-            if not cursor:
+        """Open markets closing soonest first.
+        Kalshi lists markets furthest-in-the-future first and a single page of 1000 only spans
+        ~18 hours of closing times, so we walk forward through the next few days in 12-hour
+        slices. That way the page budget is spent on the markets our strategies can bet on."""
+        out, pages = [], 0
+        now = int(time.time())
+        step = 12 * 3600
+        for start in range(now, now + int(config.SCAN_DAYS * 86400), step):
+            cursor = None
+            while pages < config.MAX_MARKET_PAGES:
+                params = {"status": "open", "limit": 1000}
+                if self._mve_param:
+                    params["mve_filter"] = "exclude"     # skip auto-generated multi-leg parlay markets
+                if self._close_param:
+                    params["min_close_ts"] = start
+                    params["max_close_ts"] = start + step
+                if cursor:
+                    params["cursor"] = cursor
+                try:
+                    data = self._get("/markets", params)
+                except urllib.error.HTTPError as e:
+                    if e.code == 400 and self._close_param:
+                        self._close_param = False
+                        print("  (Kalshi rejected the close-time filter - scanning without it)")
+                        continue
+                    if e.code == 400 and self._mve_param:
+                        self._mve_param = False
+                        continue
+                    raise
+                pages += 1
+                for m in data.get("markets", []):
+                    if m.get("ticker", "").startswith("KXMVE"):
+                        continue
+                    out.append(to_market(m))
+                cursor = data.get("cursor")
+                if not cursor:
+                    break
+            if pages >= config.MAX_MARKET_PAGES or not self._close_param:
                 break
-        return out
+        seen, uniq = set(), []
+        for m in out:
+            if m.ticker not in seen:
+                seen.add(m.ticker)
+                uniq.append(m)
+        return uniq
 
     def list_series_markets(self, series_ticker):
         """All open markets in one series (e.g. a city's daily high temperature)."""

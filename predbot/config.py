@@ -8,7 +8,8 @@ SNAPSHOT_KEEP_HOURS = 6         # price history kept for the momentum strategy
 # --- Loop ---
 LOOP_SECONDS = 60               # how often to scan markets (live mode)
 KALSHI_API = "https://api.elections.kalshi.com/trade-api/v2"   # public, no login needed for prices
-MAX_MARKET_PAGES = 10           # 1 page = up to 1000 markets
+MAX_MARKET_PAGES = 40           # 1 page = up to 1000 markets
+SCAN_DAYS = 6                   # scan markets closing in the next N days, soonest first
 
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
 STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets fit in the $1,000)
