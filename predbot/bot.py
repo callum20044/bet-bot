@@ -93,7 +93,7 @@ def step(source, broker, verbose=True):
     placed = 0
     if config.ARB["enabled"]:
         from . import arb
-        for b in arb.find(tradable):
+        for b in arb.find(tradable, markets):
             if any(m.ticker in open_tickers for m, _, _ in b.legs):
                 continue
             if len(open_tickers) + len(b.legs) > config.MAX_OPEN_POSITIONS:
@@ -146,6 +146,13 @@ def main():
     broker = PaperBroker(db, source)
     # one-off clean-up (13 Oct): the first maths-hunter run mistook unrelated rain markets for
     # price ladders. Those weren't real arbitrage, so remove them from the record.
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_arb_sets'").fetchone():
+        # second clean-up: 'complete sets' that were missing a quiet Tie market
+        n = db.execute("DELETE FROM trades WHERE strategy='arb' AND reason LIKE 'all %'").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_arb_sets', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (removed {n} bogus 'complete set' bets)")
     if not db.execute("SELECT 1 FROM meta WHERE k='fix_rain_arb'").fetchone():
         n = db.execute("DELETE FROM trades WHERE strategy='arb' AND ticker LIKE 'KXRAIN-%'").rowcount
         db.execute("INSERT INTO meta VALUES ('fix_rain_arb', ?)", (str(n),))

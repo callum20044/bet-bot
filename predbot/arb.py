@@ -71,16 +71,21 @@ def same_question(a, b):
     return strip(a) == strip(b)
 
 
-def find(markets):
+def find(markets, all_markets=None):
+    """`markets` are the liquid ones we may trade; `all_markets` is everything scanned, used to
+    check an event really has no other outcomes (a quiet 'Tie' market still counts)."""
     c = config.ARB
-    by_event = {}
+    by_event, full = {}, {}
     for m in markets:
         by_event.setdefault(m.event_ticker, []).append(m)
+    for m in (all_markets if all_markets is not None else markets):
+        full.setdefault(m.event_ticker, set()).add(m.ticker)
     out = []
     for ev, ms in by_event.items():
         if any(m.yes_ask is None or m.yes_bid is None for m in ms):
             continue
-        complete = _game_event(ms) or _bracket_set(ms)
+        whole = {m.ticker for m in ms} == full.get(ev, set())
+        complete = whole and (_game_event(ms) or _bracket_set(ms))
         if complete and len(ms) >= 2:
             asks = sum(m.yes_ask for m in ms)
             if asks < 1:
