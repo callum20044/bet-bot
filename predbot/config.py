@@ -14,8 +14,8 @@ SCAN_DAYS = 6                   # scan markets closing in the next N days, soone
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
 STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets fit in the $1,000)
 MAX_CONTRACTS = 200             # cap on contracts per bet
-MAX_OPEN_POSITIONS = 150        # lots of bets at once = faster results
-MAX_OPEN_PER_STRATEGY = 120    # so one strategy can't hog every slot
+MAX_OPEN_POSITIONS = 200        # lots of bets at once = faster results
+MAX_OPEN_PER_STRATEGY = 60     # each strategy gets its own share of room
 MAX_PER_EVENT = 1               # don't stack bets on the same event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
 MIN_VOLUME_24H = 200            # ignore markets nobody is trading
