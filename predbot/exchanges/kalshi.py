@@ -145,6 +145,20 @@ class KalshiData:
                 uniq.append(m)
         return uniq
 
+    def recent_trades(self, pages):
+        """The most recent trades across all of Kalshi (newest first, up to 1000 per page)."""
+        out, cursor = [], None
+        for _ in range(pages):
+            params = {"limit": 1000}
+            if cursor:
+                params["cursor"] = cursor
+            data = self._get("/markets/trades", params)
+            out += data.get("trades", [])
+            cursor = data.get("cursor")
+            if not cursor:
+                break
+        return out
+
     def list_series_markets(self, series_ticker):
         """All open markets in one series (e.g. a city's daily high temperature)."""
         data = self._get("/markets", {"series_ticker": series_ticker, "status": "open", "limit": 200})

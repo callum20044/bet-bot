@@ -58,7 +58,22 @@ FAVOURITE = dict(
     min_edge=0.005,                 # edges are thin at these prices, so accept 0.5c+
 )
 
-# 4. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
+# 4. Whale follower: copy big bets. Each scan reads Kalshi's latest trades and follows anyone
+#    who just put serious money on one side, unless the price has already moved away.
+WHALE = dict(
+    enabled=True,
+    pages=5,                        # 5 x 1000 most recent trades (~30 seconds of Kalshi)
+    min_trade_usd=500,              # ignore small trades when adding up a whale's bets
+    min_usd=2000,                   # total on one side of one market to count as a whale
+    price_min=0.10, price_max=0.90, # skip whales on near-certainties / lottery tickets
+    max_chase=0.02,                 # don't pay more than 2c above what the whale paid
+    nudge=0.03,                     # assumption: whales are right ~3c more often than price says
+    max_hours_to_close=168,         # only markets finishing within a week
+    max_lookups=25,                 # extra market lookups per scan
+    min_edge=0.005,
+)
+
+# 5. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
 WEATHER = dict(

@@ -52,6 +52,9 @@ def step(source, broker, verbose=True):
     if weather_markets:
         from . import weather
         signals += weather.signals([m for m in weather_markets if risk.market_ok(m)], now, broker)
+    if config.WHALE["enabled"]:
+        from . import whales
+        signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)
     signals.sort(key=lambda s: s.edge, reverse=True)
 
     open_rows = broker.open_trades()
