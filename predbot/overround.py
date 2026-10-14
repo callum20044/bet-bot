@@ -39,12 +39,14 @@ def signals(source, markets, now, broker, ok=lambda m: True):
         by_event.setdefault(m.event_ticker, []).append(m)
     budget, out = [c["max_lookups"]], []
     for ev, ms in by_event.items():
-        if len(ms) < c["min_outcomes"] or any(m.yes_mid is None for m in ms):
+        if len(ms) < c["min_outcomes"]:
             continue
-        total = sum(m.yes_mid for m in ms)
+        # quiet candidates with no two-sided price count at their bid (or 0): keeps the total,
+        # and so our edge, on the cautious side
+        total = sum(m.yes_mid if m.yes_mid is not None else (m.yes_bid or 0) for m in ms)
         if not (c["min_overround"] <= total <= c["max_overround"]):
             continue
-        if not any(ok(m) and c["yes_min"] <= m.yes_mid <= c["yes_max"] for m in ms):
+        if not any(ok(m) and m.yes_mid is not None and c["yes_min"] <= m.yes_mid <= c["yes_max"] for m in ms):
             continue
         if not is_exclusive(source, broker, ev, budget):
             continue
@@ -55,7 +57,7 @@ def signals(source, markets, now, broker, ok=lambda m: True):
             if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
                 continue
             mid = m.yes_mid
-            if not (c["yes_min"] <= mid <= c["yes_max"]) or m.no_ask is None:
+            if mid is None or not (c["yes_min"] <= mid <= c["yes_max"]) or m.no_ask is None:
                 continue
             est_no = 1 - mid / total
             edge = est_no - m.no_ask - fee_per_contract(m.no_ask)
