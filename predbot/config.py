@@ -94,6 +94,19 @@ UNDERDOG = dict(
     min_edge=0.005,
 )
 
+# 13. Overround fade: 'who will win?' events (only one outcome can happen) whose YES prices add
+#     up to well over 100%. Bet NO on mid-priced candidates, valued at price / total.
+OVERROUND = dict(
+    enabled=True,
+    min_outcomes=3,
+    min_overround=1.08,             # prices must add up to at least 108%...
+    max_overround=1.80,             # ...but not absurdly more (probably not one-winner-only)
+    yes_min=0.05, yes_max=0.40,
+    max_hours_to_close=72,
+    max_lookups=30,                 # Kalshi event lookups per scan (results are cached)
+    min_edge=0.01,
+)
+
 # 5. Draw backer: buy YES on 'Tie' (football draws, hockey ties in regulation) priced 18-40c.
 #    Assumption: draws are ~12% more likely than the price says, because casual bettors back teams.
 DRAW = dict(
@@ -123,7 +136,7 @@ CRYPTO = dict(
 
 # 8. Inflation nowcast: Kalshi CPI markets vs the Cleveland Fed's daily estimate.
 NOWCAST = dict(
-    enabled=True,
+    enabled=False,                  # switched off 14 Oct: 0-4 on its first CPI release (hotter than the Fed's estimate)
     max_hours_to_release=48,
     sd={"month": 0.10, "year": 0.10},   # typical miss of the nowcast (percentage points)
     price_min=0.05, price_max=0.95,
@@ -165,7 +178,7 @@ WEATHER = dict(
 STRATEGY_CONFIG = {
     "longshot_fade": "LONGSHOT", "momentum": "MOMENTUM", "favourite": "FAVOURITE", "whale": "WHALE",
     "draw": "DRAW", "arb": "ARB", "crypto": "CRYPTO", "nowcast": "NOWCAST", "sharp": "SHARP",
-    "weather": "WEATHER", "spike_fade": "SPIKE_FADE", "underdog": "UNDERDOG",
+    "weather": "WEATHER", "spike_fade": "SPIKE_FADE", "underdog": "UNDERDOG", "overround": "OVERROUND",
 }
 
 

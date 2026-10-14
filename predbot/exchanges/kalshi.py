@@ -164,6 +164,9 @@ class KalshiData:
         data = self._get("/markets", {"series_ticker": series_ticker, "status": "open", "limit": 200})
         return [to_market(m) for m in data.get("markets", [])]
 
+    def get_event(self, event_ticker):
+        return self._get(f"/events/{urllib.parse.quote(event_ticker)}").get("event", {})
+
     def list_series(self, category):
         return self._get("/series", {"category": category}).get("series", [])
 

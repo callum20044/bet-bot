@@ -78,6 +78,9 @@ def step(source, broker, verbose=True):
     if config.SHARP["enabled"]:
         from . import sharp
         signals += sharp.signals(tradable, now, broker)
+    if config.OVERROUND["enabled"]:
+        from . import overround
+        signals += overround.signals(source, markets, now, broker, ok=risk.market_ok)
     if config.WHALE["enabled"]:
         from . import whales
         signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)
