@@ -39,7 +39,7 @@ LONGSHOT = dict(
 # 2. Momentum: if a market's price jumped sharply recently, assume news is still being priced in
 #    and ride it. Experimental - the per-strategy scoreboard will tell you if it earns its keep.
 MOMENTUM = dict(
-    enabled=True,
+    enabled=False,                  # switched off 14 Oct: won 67% but lost $56 - it bought after the market had already overshot
     lookback_minutes=30,
     min_move=0.08,                  # price must have moved at least 8c in the lookback window
     follow_through=0.35,            # assume a further 35% of the move is still to come
@@ -62,7 +62,7 @@ FAVOURITE = dict(
 # 4. Whale follower: copy big bets. Each scan reads Kalshi's latest trades and follows anyone
 #    who just put serious money on one side, unless the price has already moved away.
 WHALE = dict(
-    enabled=True,
+    enabled=False,                  # switched off 14 Oct: lost $44 on 41 bets - big bettors weren't better informed
     pages=5,                        # 5 x 1000 most recent trades (~30 seconds of Kalshi)
     min_trade_usd=500,              # ignore small trades when adding up a whale's bets
     min_usd=2000,                   # total on one side of one market to count as a whale
@@ -71,6 +71,26 @@ WHALE = dict(
     nudge=0.03,                     # assumption: whales are right ~3c more often than price says
     max_hours_to_close=168,         # only markets finishing within a week
     max_lookups=25,                 # extra market lookups per scan
+    min_edge=0.005,
+)
+
+# 11. Spike fade: the mirror of momentum (which lost). After a sharp jump, bet it drifts back.
+SPIKE_FADE = dict(
+    enabled=True,
+    lookback_minutes=30,
+    min_move=0.08,
+    revert=0.35,                    # assume 35% of the jump gets given back
+    price_min=0.15, price_max=0.85,
+    max_hours_to_close=48,
+    min_edge=0.02,
+)
+
+# 12. Underdog fade: like longshot fade but for YES priced 15-30c (a smaller assumed bias).
+UNDERDOG = dict(
+    enabled=True,
+    yes_min=0.15, yes_max=0.30,
+    max_hours_to_close=72,
+    shrink=0.85,                    # true YES chance = price x 0.85
     min_edge=0.005,
 )
 
@@ -93,7 +113,7 @@ ARB = dict(
 
 # 7. Crypto clock: hourly BTC/ETH markets vs the live Coinbase price and recent volatility.
 CRYPTO = dict(
-    enabled=True,
+    enabled=False,                  # switched off 14 Oct: lost $45 where it expected +$114 - the market is sharper than the model
     min_minutes=5, max_minutes=180, # markets finishing in 5 min to 3 hours
     vol_minutes=120,                # measure volatility over the last 2 hours
     vol_scale=1.0,                  # >1 if the model turns out over-confident

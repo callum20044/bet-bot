@@ -102,4 +102,57 @@ def draw_backer(m, now, broker):
                   f"Tie at {mid*100:.0f}c, {hrs:.0f}h to go; est {est*100:.1f}%")
 
 
-ALL = [longshot_fade, momentum, favourite_finish, draw_backer]
+def spike_fade(m, now, broker):
+    """The opposite of momentum: after a sharp jump, bet it overshot and drifts back.
+    Momentum won 67% of bets but paid ~70c each time - the market had already moved too far."""
+    c = config.SPIKE_FADE
+    if not c["enabled"] or m.yes_mid is None:
+        return None
+    hrs = m.hours_to_close(now)
+    if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
+        return None
+    if not (c["price_min"] <= round(m.yes_mid, 4) <= c["price_max"]):
+        return None
+    before = broker.price_ago(m.ticker, now, c["lookback_minutes"])
+    if before is None:
+        return None
+    move = m.yes_mid - before
+    if abs(move) < c["min_move"]:
+        return None
+    side = "no" if move > 0 else "yes"             # bet against the jump
+    p_yes = min(max(m.yes_mid - c["revert"] * move, 0.01), 0.99)
+    est = p_yes if side == "yes" else 1 - p_yes
+    price = m.ask(side)
+    if price is None:
+        return None
+    edge = _edge(est, price)
+    if edge < c["min_edge"]:
+        return None
+    return Signal(m, side, price, est, edge, "spike_fade",
+                  f"jumped {move*100:+.0f}c in {c['lookback_minutes']}m ({before*100:.0f}c -> {m.yes_mid*100:.0f}c), fading it")
+
+
+def underdog_fade(m, now, broker):
+    """Longshot fade's bigger brother: bet against underdogs priced 15-30c.
+    Tests whether the 'people overpay for long shots' edge carries on past 15c."""
+    c = config.UNDERDOG
+    if not c["enabled"] or m.yes_mid is None:
+        return None
+    hrs = m.hours_to_close(now)
+    if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] < mid <= c["yes_max"]):
+        return None
+    price = m.no_ask
+    if price is None:
+        return None
+    est_no = 1 - mid * c["shrink"]
+    edge = _edge(est_no, price)
+    if edge < c["min_edge"]:
+        return None
+    return Signal(m, "no", price, est_no, edge, "underdog",
+                  f"YES at {mid*100:.0f}c, {hrs:.0f}h to close; est NO {est_no*100:.1f}%")
+
+
+ALL = [longshot_fade, momentum, favourite_finish, draw_backer, spike_fade, underdog_fade]
