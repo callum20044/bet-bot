@@ -45,13 +45,14 @@ def signals(source, markets, now, broker, ok=lambda m: True):
     by_event = {}
     for m in markets:
         by_event.setdefault(m.event_ticker, []).append(m)
-    budget, out = [c["max_lookups"]], []
+    budget, out, seen = [c["max_lookups"]], [], []
     for ev, ms in by_event.items():
         if len(ms) < c["min_outcomes"]:
             continue
         # quiet candidates with no two-sided price count at their bid (or 0): keeps the total,
         # and so our edge, on the cautious side
         total = sum(price_for_total(m) for m in ms)
+        seen.append((total, ev, len(ms)))
         if not (c["min_overround"] <= total <= c["max_overround"]):
             continue
         if not any(ok(m) and m.yes_mid is not None and c["yes_min"] <= m.yes_mid <= c["yes_max"] for m in ms):
@@ -72,4 +73,7 @@ def signals(source, markets, now, broker, ok=lambda m: True):
             if edge >= c["min_edge"]:
                 out.append(Signal(m, "no", m.no_ask, est_no, edge, "overround",
                                   f"{len(ms)} outcomes priced at {total*100:.0f}% in total; YES {mid*100:.0f}c -> fair {mid/total*100:.0f}%"))
+    band = sorted(x for x in seen if 1.0 <= x[0] <= 2.0)[::-1]
+    print(f"  overround: {len(seen)} multi-outcome events, {len(band)} priced 100-200%: "
+          + ", ".join(f"{e}({n})={t*100:.0f}%" for t, e, n in band[:12]))
     return out
