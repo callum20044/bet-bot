@@ -158,3 +158,17 @@ WEATHER = dict(
     price_min=0.03, price_max=0.97,
     min_edge=0.05,                  # need 5c expected profit per contract - the model is simple
 )
+
+
+# Which settings block belongs to which strategy name (used e.g. by the daily loss limit, which
+# only counts strategies that are still switched on).
+STRATEGY_CONFIG = {
+    "longshot_fade": "LONGSHOT", "momentum": "MOMENTUM", "favourite": "FAVOURITE", "whale": "WHALE",
+    "draw": "DRAW", "arb": "ARB", "crypto": "CRYPTO", "nowcast": "NOWCAST", "sharp": "SHARP",
+    "weather": "WEATHER", "spike_fade": "SPIKE_FADE", "underdog": "UNDERDOG",
+}
+
+
+def enabled_strategies():
+    g = globals()
+    return {name for name, block in STRATEGY_CONFIG.items() if g.get(block, {}).get("enabled")}

@@ -70,10 +70,14 @@ class PaperBroker:
         return self.cash() + self.open_value()
 
     def realized_today(self, now):
+        """Today's settled profit/loss from strategies that are still switched on
+        (bets left over from switched-off experiments don't trip the daily loss limit)."""
         day = now.date().isoformat()
+        live = sorted(config.enabled_strategies())
+        marks = ",".join("?" * len(live)) or "''"
         r = self.db.execute(
-            "SELECT COALESCE(SUM(payout - cost - fee), 0) FROM trades WHERE status!='open' AND substr(settled_at,1,10)=?",
-            (day,)).fetchone()[0]
+            f"SELECT COALESCE(SUM(payout - cost - fee), 0) FROM trades WHERE status!='open' "
+            f"AND substr(settled_at,1,10)=? AND strategy IN ({marks})", (day, *live)).fetchone()[0]
         return r
 
     # ---- trading ----
