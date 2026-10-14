@@ -55,6 +55,8 @@ def signals(source, markets, now, broker, ok=lambda m: True):
         seen.append((total, ev, len(ms)))
         if not (c["min_overround"] <= total <= c["max_overround"]):
             continue
+        if all((m.raw or {}).get("strike_type") in ("greater", "less") for m in ms):
+            continue          # 'over X' ladders: several can all come true
         if not any(ok(m) and m.yes_mid is not None and c["yes_min"] <= m.yes_mid <= c["yes_max"] for m in ms):
             continue
         if not is_exclusive(source, broker, ev, budget):

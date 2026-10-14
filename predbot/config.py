@@ -103,7 +103,7 @@ OVERROUND = dict(
     max_overround=1.80,             # ...but not absurdly more (probably not one-winner-only)
     yes_min=0.05, yes_max=0.40,
     max_hours_to_close=72,
-    max_lookups=30,                 # Kalshi event lookups per scan (results are cached)
+    max_lookups=80,                 # Kalshi event lookups per scan (results are cached)
     min_edge=0.01,
 )
 
