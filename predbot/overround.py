@@ -30,6 +30,14 @@ def is_exclusive(source, broker, event_ticker, budget):
     return flag
 
 
+def price_for_total(m):
+    """Mid if the market has a real two-sided price; otherwise its bid (an empty book shows as
+    bid 0 / ask $1, which is not a 50c chance)."""
+    if m.yes_mid is not None and m.yes_ask - m.yes_bid <= 0.10:
+        return m.yes_mid
+    return m.yes_bid or 0
+
+
 def signals(source, markets, now, broker, ok=lambda m: True):
     c = config.OVERROUND
     if not c["enabled"] or not hasattr(source, "get_event"):
@@ -43,7 +51,7 @@ def signals(source, markets, now, broker, ok=lambda m: True):
             continue
         # quiet candidates with no two-sided price count at their bid (or 0): keeps the total,
         # and so our edge, on the cautious side
-        total = sum(m.yes_mid if m.yes_mid is not None else (m.yes_bid or 0) for m in ms)
+        total = sum(price_for_total(m) for m in ms)
         if not (c["min_overround"] <= total <= c["max_overround"]):
             continue
         if not any(ok(m) and m.yes_mid is not None and c["yes_min"] <= m.yes_mid <= c["yes_max"] for m in ms):
