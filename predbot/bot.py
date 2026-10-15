@@ -85,6 +85,8 @@ def step(source, broker, verbose=True):
         signals += overround.signals(source, markets, now, broker, ok=risk.market_ok)
     signals += extra.group_signals(tradable, markets, now, source, broker, risk.market_ok)
     signals += extra2.group_signals(tradable, markets, now)
+    from . import extra3
+    signals += extra3.group_signals(tradable, markets, now, source, broker, risk.market_ok)
     if config.WHALE["enabled"]:
         from . import whales
         signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)

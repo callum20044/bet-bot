@@ -15,7 +15,7 @@ SCAN_DAYS = 6                   # scan markets closing in the next N days, soone
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
 STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets fit in the $1,000)
 MAX_CONTRACTS = 200             # cap on contracts per bet
-MAX_OPEN_POSITIONS = 500        # lots of bets at once = faster results
+MAX_OPEN_POSITIONS = 650        # lots of bets at once = faster results
 MAX_OPEN_PER_STRATEGY = 60     # each strategy gets its own share of room
 MAX_PER_EVENT = 1               # each strategy bets at most once per event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
@@ -206,6 +206,22 @@ CRYPTO_IV = dict(enabled=True, max_open=20, min_minutes=30, max_minutes=24 * 60,
 MENTION = dict(enabled=True, max_open=20, yes_min=0.10, yes_max=0.60, max_hours_to_close=48,
                shrink=0.85, min_edge=0.01)
 
+# ----- 27-32: outside-data bots, added 15 Oct late (20 open bets each) -----
+# 27. Result sniper: ESPN says the game is over, Kalshi still trades below $1 - buy the result.
+SNIPER = dict(enabled=True, max_open=20, certainty=0.995, price_min=0.50, price_max=0.98, min_edge=0.005)
+# 28. Petrol prices: tomorrow's AAA average ~ today + recent trend.
+GAS = dict(enabled=True, max_open=20, base_sd=0.004, price_min=0.05, price_max=0.95, min_edge=0.04)
+# 29. Football ratings (ClubElo) -> win / draw / loss chances.
+FOOTBALL_ELO = dict(enabled=True, max_open=20, home_adv=60, draw_base=0.29, draw_slope=0.31,
+                    min_hours_to_close=4.5, max_hours_to_close=72, max_disagree=0.20, min_edge=0.04)
+# 30. Tennis ratings (Tennis Abstract Elo, blend of overall and hard court).
+TENNIS_ELO = dict(enabled=True, max_open=20, min_hours_to_close=4, max_hours_to_close=48,
+                  max_disagree=0.25, min_edge=0.05)
+# 31. Polymarket vs Kalshi: same game, different price.
+POLY = dict(enabled=True, max_open=20, min_hours_to_close=3.5, max_hours_to_close=96, max_disagree=0.15, min_edge=0.04)
+# 32. Rotten Tomatoes score markets vs the film's current score (only once it has plenty of reviews).
+ROTTEN = dict(enabled=True, max_open=20, min_reviews=60, max_series=25, min_edge=0.05)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -237,6 +253,8 @@ STRATEGY_CONFIG = {
     "spread_moneyline": "SPREAD_ML", "field_power": "FIELD", "draw_model": "DRAW_MODEL",
     "half_draw": "HALF_DRAW", "goals_poisson": "GOALS", "lowscore_spread": "LOWSCORE",
     "crypto_iv": "CRYPTO_IV", "mention_fade": "MENTION",
+    "result_sniper": "SNIPER", "gas_price": "GAS", "football_elo": "FOOTBALL_ELO", "tennis_elo": "TENNIS_ELO",
+    "polymarket": "POLY", "rotten": "ROTTEN",
 }
 
 
