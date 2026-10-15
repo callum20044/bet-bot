@@ -12,6 +12,7 @@ import json
 import os
 import re
 import time
+import unicodedata
 import urllib.request
 from datetime import datetime
 
@@ -20,12 +21,28 @@ from .fees import fee_per_contract
 from .models import Signal
 
 API = "https://api.the-odds-api.com/v4/sports/{}/odds?regions=eu&markets=h2h&bookmakers=pinnacle&oddsFormat=decimal&apiKey={}"
+# Kalshi series -> The Odds API sport, so a Seattle hockey game never matches the Seahawks
+SPORT = {"KXEPLGAME": "soccer_epl", "KXUCLGAME": "soccer_uefa_champs_league",
+         "KXNFLGAME": "americanfootball_nfl", "KXNBAGAME": "basketball_nba"}
 STOP = {"fc", "cf", "sc", "afc", "club", "the", "de", "city", "united", "real", "st", "state"}
 
 
 def words(name):
     return {w for w in re.findall(r"[a-z]+", (name or "").lower()) if len(w) > 2 and w not in STOP} or \
            set(re.findall(r"[a-z]+", (name or "").lower()))
+
+
+def tokens(name):
+    name = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode().lower()
+    return re.findall(r"[a-z0-9]+", name)
+
+
+def same_team(kalshi_name, book_name):
+    """Every word of Kalshi's (often shortened) name must start a word of the bookie's name:
+    'Los Angeles C' fits 'Los Angeles Chargers' but not 'Los Angeles Rams'; 'Man City' fits
+    'Manchester City'."""
+    k, b = tokens(kalshi_name), tokens(book_name)
+    return bool(k) and all(any(w.startswith(t) for w in b) for t in k)
 
 
 def fair_probs(event):
@@ -61,12 +78,18 @@ def load_odds(broker, c, key):
 
 
 def match(m, events):
-    """(Pinnacle probability, event, outcome name) for this Kalshi team market, or None."""
+    """(Pinnacle probability, event, outcome name) for this Kalshi team market, or None.
+    Same sport, kick-off a few hours before Kalshi expects the result, and exactly one bookie
+    team that fits the name - anything ambiguous is skipped."""
+    sport = SPORT.get(m.event_ticker.split("-")[0])
     sub = m.title.split(" - ")[-1] if " - " in m.title else m.title
     when = m.resolve_time
-    if when is None:
+    if sport is None or when is None:
         return None
+    hits = []
     for ev in events:
+        if ev.get("sport_key") != sport:
+            continue
         try:
             start = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00"))
         except (KeyError, ValueError):
@@ -74,9 +97,9 @@ def match(m, events):
         if not (0 <= (when - start).total_seconds() / 3600 <= 8):
             continue          # Kalshi expects the result a few hours after the start
         for name, p in fair_probs(ev).items():
-            if name != "Draw" and words(name) & words(sub):
-                return p, ev, name
-    return None
+            if name != "Draw" and same_team(sub, name):
+                hits.append((p, ev, name))
+    return hits[0] if len(hits) == 1 else None
 
 
 def signals(markets, now, broker, ok=lambda m: True):

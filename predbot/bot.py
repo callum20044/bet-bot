@@ -164,6 +164,12 @@ def main():
         db.commit()
         if n:
             print(f"  (removed {n} bogus rain 'arbitrage' bets)")
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_sharp_match'").fetchone():
+        n = db.execute("DELETE FROM trades WHERE strategy='sharp' AND opened_at < '2026-10-15T10:40'").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_sharp_match', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (removed {n} mis-matched Pinnacle bets)")
     print(f"Paper trading on {source.name} | db {db_path} | start ${broker.start:,.2f} | Ctrl+C to stop")
 
     if args.dashboard:
