@@ -41,42 +41,41 @@ def candles(product, gran, start_ts, end_ts):
 # ------------------------------------------------------------------ grid bot
 
 def grid(prices, spacing, levels, recenter, capital=1000.0):
+    """Buy one step each time the price falls a full level below the last trade; sell one step
+    each time it rises a full level above it. Each round trip earns one level's spacing (minus fees)."""
     p0 = prices[0][1]
     unit = capital / (2 * levels)
     coin = (capital / 2) / p0 * (1 - FEE)
     cash = capital / 2
-    last = 0
-    outside = 0
-    trades = 0
-    lg = math.log(1 + spacing)
+    last = 0                                  # level of the most recent trade (0 = start price)
+    outside = trades = 0
+    lvl = lambda k: p0 * (1 + spacing) ** k
     for ts, p in prices:
-        idx = math.floor(math.log(p / p0) / lg)
-        if abs(idx) > levels:
+        if p < lvl(-levels) or p > lvl(levels):
             outside += 1
-            if recenter and outside >= 72:            # 3 days outside the grid: rebuild it around today's price
+            if recenter and outside >= 72:    # 3 days outside the grid: rebuild it around today's price
                 value = cash + coin * p
-                target_coin = (value / 2) / p
+                target = (value / 2) / p
+                cash = value / 2 - abs(target - coin) * p * FEE
+                coin, p0, last, outside = target, p, 0, 0
                 trades += 1
-                cash, coin = value / 2 - abs(target_coin - coin) * p * FEE, target_coin
-                p0, last, outside = p, 0, 0
-            idx = max(-levels, min(levels, idx))
+                continue
         else:
             outside = 0
-        while idx < last:                              # price fell through a level: buy one step
+        while last > -levels and p <= lvl(last - 1):      # fell a full level: buy one step
             if cash >= unit:
                 coin += unit / p * (1 - FEE)
                 cash -= unit
                 trades += 1
             last -= 1
-        while idx > last:                              # price rose through a level: sell one step
+        while last < levels and p >= lvl(last + 1):       # rose a full level: sell one step
             q = unit / p
             if coin >= q:
                 coin -= q
                 cash += unit * (1 - FEE)
                 trades += 1
             last += 1
-    end = prices[-1][1]
-    return cash + coin * end, trades
+    return cash + coin * prices[-1][1], trades
 
 
 # ------------------------------------------------------------------ buy the dip
