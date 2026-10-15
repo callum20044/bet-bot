@@ -1,0 +1,22 @@
+name: crypto-check
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python research/crypto_check.py
+      - name: Save to crypto-results branch
+        run: |
+          mkdir /tmp/out && cp crypto_results.md /tmp/out/ && cd /tmp/out
+          git init -q -b crypto-results
+          git config user.name "crypto-check" && git config user.email "crypto-check@users.noreply.github.com"
+          git add . && git commit -qm results
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" crypto-results
