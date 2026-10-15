@@ -25,6 +25,7 @@ from .models import Signal
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
       "Accept": "text/html,application/json;q=0.9,*/*;q=0.8", "Accept-Language": "en-GB,en;q=0.9"}
 _cache = {}
+DIAG = {}
 
 
 def get(url, as_json=False):
@@ -140,8 +141,13 @@ def result_sniper(tradable, all_markets, now):
         for d in (day - timedelta(days=1), day, day + timedelta(days=1)):
             games += espn_games(path, d)
         hit = _match_game(names, games)
-        if not hit or not hit[0]["done"]:
+        DIAG["sniper_checked"] = DIAG.get("sniper_checked", 0) + 1
+        if not hit:
             continue
+        DIAG["sniper_matched"] = DIAG.get("sniper_matched", 0) + 1
+        if not hit[0]["done"]:
+            continue
+        DIAG["sniper_final"] = DIAG.get("sniper_final", 0) + 1
         score = hit[1]
         if any(math.isnan(v) for v in score.values()):
             continue
@@ -343,8 +349,10 @@ def tennis_elo(tradable, all_markets, now):
             continue
         ratings = tennis_ratings(tour)
         e = [player_elo(team_of(m), ratings) for m in ms]
+        DIAG["tennis_checked"] = DIAG.get("tennis_checked", 0) + 1
         if None in e:
             continue
+        DIAG["tennis_matched"] = DIAG.get("tennis_matched", 0) + 1
         p0 = 1 / (1 + 10 ** ((e[1] - e[0]) / 400))
         for m, p in ((ms[0], p0), (ms[1], 1 - p0)):
             if m.ticker not in liquid or abs(p - m.yes_mid) > c["max_disagree"]:
@@ -411,12 +419,15 @@ def polymarket(tradable, now):
             continue
         if tag not in books:
             books[tag] = poly_prices(tag)
+            DIAG[f"poly_book_{tag}"] = len(books[tag])
         name = team_of(m)
         hits = [p for (t, d), p in books[tag].items()
                 if not t.startswith("Draw:") and same_team(name, t)
                 and abs((datetime.strptime(d, "%Y-%m-%d").date() - day).days) <= 1]
+        DIAG["poly_checked"] = DIAG.get("poly_checked", 0) + 1
         if len(hits) != 1 or not (0.05 < hits[0] < 0.95):
             continue
+        DIAG["poly_matched"] = DIAG.get("poly_matched", 0) + 1
         p = hits[0]
         if abs(p - m.yes_mid) > c["max_disagree"]:
             continue
@@ -498,5 +509,7 @@ def group_signals(tradable, all_markets, now, source, broker, ok):
     counts = {}
     for s in out:
         counts[s.strategy] = counts.get(s.strategy, 0) + 1
-    print("  outside-data signals: " + (", ".join(f"{k} {v}" for k, v in counts.items()) or "none"))
+    print("  outside-data signals: " + (", ".join(f"{k} {v}" for k, v in counts.items()) or "none")
+          + " | " + ", ".join(f"{k}={v}" for k, v in DIAG.items()))
+    DIAG.clear()
     return out
