@@ -136,6 +136,12 @@ def step(source, broker, verbose=True):
                   f"[{s.strategy}] {s.market.title[:50]}  ({s.reason})")
 
     broker.record_equity(now)
+    if source.name == "kalshi":
+        try:
+            from . import cryptobots
+            cryptobots.run(broker.db, now)
+        except Exception as e:
+            print(f"  ! crypto bots: {e}")
     if verbose:
         print(f"[{now:%Y-%m-%d %H:%M}] markets {len(markets)}, tradable {len(tradable)}, signals {len(signals)}, "
               f"new bets {placed}, open {len(open_tickers)} | cash ${broker.cash():,.2f}  equity ${broker.equity():,.2f}")
