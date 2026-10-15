@@ -2,7 +2,7 @@
 
 # --- Account (paper money) ---
 STARTING_BANKROLL = 1000.00     # pretend dollars you start with
-EXTRA_PAPER_FUNDS = 1000.00     # top-ups added later (13 Oct: +$1,000 to speed up results)
+EXTRA_PAPER_FUNDS = 2000.00     # top-ups: +$1,000 on 13 Oct, +$1,000 on 15 Oct for the six new bots
 DB_PATH = "predbot.db"          # where every trade and price snapshot is stored
 SNAPSHOT_KEEP_HOURS = 6         # price history kept for the momentum strategy
 
@@ -169,6 +169,25 @@ SHARP_SPREAD = dict(
     min_edge=0.05,
 )
 
+# ----- 16-21: six more, added 15 Oct (each capped at 25 open bets so they get a fair test) -----
+# 16. Mid fade: NO on YES priced 30-45c - does the 'YES is overpriced' edge reach the middle?
+MID_FADE = dict(enabled=True, max_open=25, yes_min=0.30, yes_max=0.45, max_hours_to_close=72,
+                shrink=0.92, min_edge=0.005)
+# 17. Strong favourite: YES on 70-85c favourites resolving within a day.
+STRONG_FAV = dict(enabled=True, max_open=25, yes_min=0.70, yes_max=0.85, max_hours_to_close=24,
+                  shrink=0.85, min_edge=0.005)
+# 18. Ladder smoothing: an 'over X' rung priced well off the line between its neighbours.
+LADDER = dict(enabled=True, max_open=25, min_rungs=4, min_gap=0.06, trust_rung=0.3,
+              max_hours_to_close=72, min_edge=0.02)
+# 19. Spread vs moneyline: 'X wins by over N' priced from Kalshi's own 'X wins' price.
+SPREAD_ML = dict(enabled=True, max_open=25, max_hours_to_close=96, min_edge=0.04,
+                 sd={"KXNFLSPREAD": 13.5, "KXNBASPREAD": 12.0, "KXNCAAFSPREAD": 16.0, "KXNCAAMBSPREAD": 11.0})
+# 20. Field power: in one-winner fields, true chance ~ price^1.15 (favourites underbet).
+FIELD = dict(enabled=True, max_open=25, min_outcomes=5, min_total=0.90, max_total=1.50, alpha=1.15,
+             price_min=0.03, price_max=0.85, max_hours_to_close=72, max_lookups=40, min_edge=0.02)
+# 21. Draw model: football draw chance from how even the two teams' prices are.
+DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, max_hours_to_close=48, min_edge=0.03)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -196,6 +215,8 @@ STRATEGY_CONFIG = {
     "draw": "DRAW", "arb": "ARB", "crypto": "CRYPTO", "nowcast": "NOWCAST", "sharp": "SHARP",
     "weather": "WEATHER", "spike_fade": "SPIKE_FADE", "underdog": "UNDERDOG", "overround": "OVERROUND",
     "sharp_draw": "SHARP_DRAW", "sharp_spread": "SHARP_SPREAD",
+    "mid_fade": "MID_FADE", "strong_favourite": "STRONG_FAV", "ladder_smooth": "LADDER",
+    "spread_moneyline": "SPREAD_ML", "field_power": "FIELD", "draw_model": "DRAW_MODEL",
 }
 
 

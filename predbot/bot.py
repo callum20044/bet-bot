@@ -60,9 +60,10 @@ def step(source, broker, verbose=True):
     broker.record_snapshots(tradable, now)
     broker.update_marks(by_ticker)
 
+    from . import extra
     signals = []
     for m in tradable:
-        for strat in strategies.ALL:
+        for strat in strategies.ALL + extra.PER_MARKET:
             s = strat(m, now, broker)
             if s:
                 signals.append(s)
@@ -82,6 +83,7 @@ def step(source, broker, verbose=True):
     if config.OVERROUND["enabled"]:
         from . import overround
         signals += overround.signals(source, markets, now, broker, ok=risk.market_ok)
+    signals += extra.group_signals(tradable, markets, now, source, broker, risk.market_ok)
     if config.WHALE["enabled"]:
         from . import whales
         signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)

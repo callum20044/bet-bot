@@ -14,7 +14,8 @@ def size_and_check(sig, broker, now, open_tickers, open_events, n_open, open_by_
     """Return (contracts, "") to trade, or (0, reason) if blocked."""
     if n_open >= config.MAX_OPEN_POSITIONS:
         return 0, "max open positions"
-    if (open_by_strategy or {}).get(sig.strategy, 0) >= config.MAX_OPEN_PER_STRATEGY:
+    block = getattr(config, config.STRATEGY_CONFIG.get(sig.strategy, ""), None) or {}
+    if (open_by_strategy or {}).get(sig.strategy, 0) >= block.get("max_open", config.MAX_OPEN_PER_STRATEGY):
         return 0, "strategy cap"
     if sig.market.ticker in open_tickers:
         return 0, "already holding"
