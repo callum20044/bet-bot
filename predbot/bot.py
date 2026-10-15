@@ -173,6 +173,13 @@ def main():
         db.commit()
         if n:
             print(f"  (removed {n} mis-matched Pinnacle bets)")
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_new6'").fetchone():
+        n = db.execute("DELETE FROM trades WHERE strategy IN ('draw_model','ladder_smooth','field_power') "
+                       "AND opened_at < '2026-10-15T17:45'").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_new6', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (removed {n} bets from the first, faulty run of three new bots)")
     print(f"Paper trading on {source.name} | db {db_path} | start ${broker.start:,.2f} | Ctrl+C to stop")
 
     if args.dashboard:

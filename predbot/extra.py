@@ -9,6 +9,7 @@ Group / consistency (Kalshi's own prices checked against each other):
   field_power      - one-winner fields: favourites are underbet, outsiders overbet; re-weight prices.
   draw_model       - football 'Tie' price vs how evenly matched Kalshi says the two teams are.
 """
+import math
 import re
 from statistics import NormalDist
 
@@ -16,6 +17,11 @@ from . import arb, config
 from .fees import fee_per_contract
 from .models import Signal
 from .overround import is_exclusive, price_for_total
+
+
+def _logit(p):
+    p = min(max(p, 0.005), 0.995)
+    return math.log(p / (1 - p))
 
 
 def _edge(est, price):
@@ -103,9 +109,14 @@ def ladder_smooth(tradable, now):
             for i in range(1, len(g) - 1):
                 lo, m, hi = g[i - 1], g[i], g[i + 1]
                 k0, k, k1 = lo.raw["floor_strike"], m.raw["floor_strike"], hi.raw["floor_strike"]
-                if not (k0 < k < k1):
-                    continue
-                line = lo.yes_mid + (hi.yes_mid - lo.yes_mid) * (k - k0) / (k1 - k0)
+                if not (k0 < k < k1) or max(k - k0, k1 - k) > 1.5 * min(k - k0, k1 - k):
+                    continue          # uneven steps (a missing rung) - skip
+                if not (0.05 <= hi.yes_mid and lo.yes_mid <= 0.95):
+                    continue          # too far out in the tails to judge
+                # prices follow an S-curve, so compare on the odds (logit) scale, not a straight line
+                t = (k - k0) / (k1 - k0)
+                z = _logit(lo.yes_mid) + (_logit(hi.yes_mid) - _logit(lo.yes_mid)) * t
+                line = 1 / (1 + math.exp(-z))
                 d = m.yes_mid - line
                 if worst is None or abs(d) > abs(worst[1]):
                     worst = (i, d, line)
@@ -177,8 +188,8 @@ def field_power(tradable, all_markets, now, source, broker, ok):
     for ev, ms in events.items():
         if len(ms) < c["min_outcomes"]:
             continue
-        if all((m.raw or {}).get("strike_type") in ("greater", "less") for m in ms):
-            continue
+        if any((m.raw or {}).get("strike_type") for m in ms):
+            continue          # number ranges (temperatures, prices) aren't a field of competitors
         tradeable_here = [m for m in ms if m.ticker in liquid and _hours_ok(m, now, c["max_hours_to_close"])]
         if not tradeable_here:
             continue
@@ -213,13 +224,19 @@ def draw_model(tradable, all_markets, now):
         events.setdefault(m.event_ticker, []).append(m)
     out = []
     for m in tradable:
-        if not m.ticker.endswith("-TIE") or not _hours_ok(m, now, c["max_hours_to_close"]):
+        series = m.event_ticker.split("-")[0]
+        if not m.ticker.endswith("-TIE") or not series.endswith("GAME") or \
+                any(x in series for x in ("NFL", "NBA", "NHL", "MLB", "NCAA", "WNBA")):
+            continue          # full-time football only: not half-time, innings or US sports
+        if not _hours_ok(m, now, c["max_hours_to_close"]):
             continue
         ms = events.get(m.event_ticker, [])
         teams = [x for x in ms if x is not m and not x.ticker.endswith("-TIE")]
         if len(ms) != 3 or len(teams) != 2 or any(t.yes_mid is None or t.spread is None or t.spread > 0.10 for t in teams):
             continue
         s = teams[0].yes_mid + teams[1].yes_mid + m.yes_mid
+        if not (0.90 <= s <= 1.15):
+            continue
         d = abs(teams[0].yes_mid - teams[1].yes_mid) / s
         p = max(c["base"] - c["slope"] * d * d, 0.05)
         best = _best(m, p, c["min_edge"], 0.08, 0.92)
