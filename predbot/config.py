@@ -15,7 +15,7 @@ SCAN_DAYS = 6                   # scan markets closing in the next N days, soone
 # --- Risk limits (applied to every trade, whatever the strategy says) ---
 STAKE_PER_TRADE = 5.00          # dollars risked per bet (small, so lots of bets fit in the $1,000)
 MAX_CONTRACTS = 200             # cap on contracts per bet
-MAX_OPEN_POSITIONS = 400        # lots of bets at once = faster results
+MAX_OPEN_POSITIONS = 500        # lots of bets at once = faster results
 MAX_OPEN_PER_STRATEGY = 60     # each strategy gets its own share of room
 MAX_PER_EVENT = 1               # each strategy bets at most once per event
 DAILY_LOSS_LIMIT = 100.00       # stop opening new bets for the day after losing this much (realized)
@@ -180,13 +180,30 @@ STRONG_FAV = dict(enabled=True, max_open=25, yes_min=0.70, yes_max=0.85, max_hou
 LADDER = dict(enabled=True, max_open=25, min_rungs=4, min_gap=0.06, trust_rung=0.3,
               max_hours_to_close=72, min_edge=0.02)
 # 19. Spread vs moneyline: 'X wins by over N' priced from Kalshi's own 'X wins' price.
-SPREAD_ML = dict(enabled=True, max_open=25, max_hours_to_close=96, min_edge=0.04,
+SPREAD_ML = dict(enabled=True, max_open=25, min_hours_to_close=3.5, max_hours_to_close=96, min_edge=0.04,
                  sd={"KXNFLSPREAD": 13.5, "KXNBASPREAD": 12.0, "KXNCAAFSPREAD": 16.0, "KXNCAAMBSPREAD": 11.0})
 # 20. Field power: in one-winner fields, true chance ~ price^1.15 (favourites underbet).
 FIELD = dict(enabled=True, max_open=25, min_outcomes=5, min_total=0.90, max_total=1.50, alpha=1.15,
              price_min=0.03, price_max=0.85, max_hours_to_close=72, max_lookups=40, min_edge=0.02)
 # 21. Draw model: football draw chance from how even the two teams' prices are.
-DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, max_hours_to_close=48, min_edge=0.03)
+DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, min_hours_to_close=2.5, max_hours_to_close=48, min_edge=0.03)
+
+# ----- 22-26: five more, added 15 Oct evening (20 open bets each) -----
+# 22. Half-time draws: ~42% of first halves end level (less when one side is much stronger).
+HALF_DRAW = dict(enabled=True, max_open=20, base=0.45, slope=0.25, min_hours_full_time=2.5,
+                 max_hours_to_close=48, min_edge=0.03)
+# 23. Goals ladders: fit one Poisson curve to 'over 0.5 / 1.5 / 2.5... goals', bet the odd rung out.
+GOALS = dict(enabled=True, max_open=20, min_rungs=3, min_gap=0.05, trust_rung=0.3,
+             min_hours_to_close=2.5, max_hours_to_close=48, min_edge=0.02)
+# 24. NHL / MLB 'wins by over 1.5', from Kalshi's own win price with a Poisson scoring model.
+LOWSCORE = dict(enabled=True, max_open=20, total={"KXNHLSPREAD": 6.0, "KXMLBSPREAD": 8.6},
+                min_hours_to_close=3.5, max_hours_to_close=72, min_edge=0.04)
+# 25. Crypto with the options market's volatility (Deribit DVOL) - the old crypto bot used 2h wiggles.
+CRYPTO_IV = dict(enabled=True, max_open=20, min_minutes=30, max_minutes=24 * 60,
+                 price_min=0.05, price_max=0.95, min_edge=0.04)
+# 26. 'Will X say Y?' markets: bet NO on YES 10-60c.
+MENTION = dict(enabled=True, max_open=20, yes_min=0.10, yes_max=0.60, max_hours_to_close=48,
+               shrink=0.85, min_edge=0.01)
 
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
@@ -217,6 +234,8 @@ STRATEGY_CONFIG = {
     "sharp_draw": "SHARP_DRAW", "sharp_spread": "SHARP_SPREAD",
     "mid_fade": "MID_FADE", "strong_favourite": "STRONG_FAV", "ladder_smooth": "LADDER",
     "spread_moneyline": "SPREAD_ML", "field_power": "FIELD", "draw_model": "DRAW_MODEL",
+    "half_draw": "HALF_DRAW", "goals_poisson": "GOALS", "lowscore_spread": "LOWSCORE",
+    "crypto_iv": "CRYPTO_IV", "mention_fade": "MENTION",
 }
 
 

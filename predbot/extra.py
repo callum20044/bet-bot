@@ -148,8 +148,9 @@ def spread_moneyline(tradable, all_markets, now):
     for m in tradable:
         series = m.event_ticker.split("-")[0]
         sd = c["sd"].get(series)
-        if sd is None or not _hours_ok(m, now, c["max_hours_to_close"]):
-            continue
+        h = m.hours_to_close(now)
+        if sd is None or h is None or not (c["min_hours_to_close"] <= h <= c["max_hours_to_close"]):
+            continue          # before kick-off only: in-play prices know the score, the model doesn't
         hit = SPREAD_RE.match(m.title.split(" - ")[-1])
         if not hit:
             continue
@@ -228,8 +229,9 @@ def draw_model(tradable, all_markets, now):
         if not m.ticker.endswith("-TIE") or not series.endswith("GAME") or \
                 any(x in series for x in ("NFL", "NBA", "NHL", "MLB", "NCAA", "WNBA")):
             continue          # full-time football only: not half-time, innings or US sports
-        if not _hours_ok(m, now, c["max_hours_to_close"]):
-            continue
+        h = m.hours_to_close(now)
+        if h is None or not (c["min_hours_to_close"] <= h <= c["max_hours_to_close"]):
+            continue          # before kick-off only
         ms = events.get(m.event_ticker, [])
         teams = [x for x in ms if x is not m and not x.ticker.endswith("-TIE")]
         if len(ms) != 3 or len(teams) != 2 or any(t.yes_mid is None or t.spread is None or t.spread > 0.10 for t in teams):
