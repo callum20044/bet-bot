@@ -74,10 +74,13 @@ def half_draw(tradable, all_markets, now):
 GOALS_RE = re.compile(r"over ([\d.]+) goals", re.I)
 
 
-def goals_poisson(tradable, now):
+def goals_poisson(tradable, now, all_markets=()):
     c = config.GOALS
     if not c["enabled"]:
         return []
+    # a goal already scored shows up as 'over 0.5' at ~100%: that game has started, skip it
+    started = {m.event_ticker for m in all_markets
+               if (m.raw or {}).get("floor_strike") == 0.5 and (m.yes_bid or 0) >= 0.97}
     ladders = {}
     for m in tradable:
         series = m.event_ticker.split("-")[0]
@@ -86,7 +89,7 @@ def goals_poisson(tradable, now):
             continue
         if r.get("strike_type") != "greater" or r.get("floor_strike") is None or not GOALS_RE.search(m.title):
             continue
-        if not _pre_match(m, now, c["min_hours_to_close"], c["max_hours_to_close"]):
+        if m.event_ticker in started or not _pre_match(m, now, c["min_hours_to_close"], c["max_hours_to_close"]):
             continue
         ladders.setdefault(m.event_ticker, []).append(m)
     out = []
@@ -255,7 +258,7 @@ PER_MARKET = [mention_fade]
 
 
 def group_signals(tradable, all_markets, now):
-    out = half_draw(tradable, all_markets, now) + goals_poisson(tradable, now) \
+    out = half_draw(tradable, all_markets, now) + goals_poisson(tradable, now, all_markets) \
         + lowscore_spread(tradable, all_markets, now) + crypto_iv(tradable, now)
     counts = {}
     for s in out:

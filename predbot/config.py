@@ -186,15 +186,15 @@ SPREAD_ML = dict(enabled=True, max_open=25, min_hours_to_close=3.5, max_hours_to
 FIELD = dict(enabled=True, max_open=25, min_outcomes=5, min_total=0.90, max_total=1.50, alpha=1.15,
              price_min=0.03, price_max=0.85, max_hours_to_close=72, max_lookups=40, min_edge=0.02)
 # 21. Draw model: football draw chance from how even the two teams' prices are.
-DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, min_hours_to_close=2.5, max_hours_to_close=48, min_edge=0.03)
+DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, min_hours_to_close=4.5, max_hours_to_close=48, min_edge=0.03)
 
 # ----- 22-26: five more, added 15 Oct evening (20 open bets each) -----
 # 22. Half-time draws: ~42% of first halves end level (less when one side is much stronger).
-HALF_DRAW = dict(enabled=True, max_open=20, base=0.45, slope=0.25, min_hours_full_time=2.5,
+HALF_DRAW = dict(enabled=True, max_open=20, base=0.45, slope=0.25, min_hours_full_time=4.5,
                  max_hours_to_close=48, min_edge=0.03)
 # 23. Goals ladders: fit one Poisson curve to 'over 0.5 / 1.5 / 2.5... goals', bet the odd rung out.
 GOALS = dict(enabled=True, max_open=20, min_rungs=3, min_gap=0.05, trust_rung=0.3,
-             min_hours_to_close=2.5, max_hours_to_close=48, min_edge=0.02)
+             min_hours_to_close=4.5,             # Kalshi expects football results 3-4h after kick-off max_hours_to_close=48, min_edge=0.02)
 # 24. NHL / MLB 'wins by over 1.5', from Kalshi's own win price with a Poisson scoring model.
 LOWSCORE = dict(enabled=True, max_open=20, total={"KXNHLSPREAD": 6.0, "KXMLBSPREAD": 8.6},
                 min_hours_to_close=3.5, max_hours_to_close=72, min_edge=0.04)

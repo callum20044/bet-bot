@@ -181,6 +181,12 @@ def main():
         db.commit()
         if n:
             print(f"  (removed {n} bets from the first, faulty run of three new bots)")
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_inplay'").fetchone():
+        n = db.execute("DELETE FROM trades WHERE strategy='goals_poisson' AND opened_at < '2026-10-15T18:10'").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_inplay', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (removed {n} goals bets placed on games already in play)")
     print(f"Paper trading on {source.name} | db {db_path} | start ${broker.start:,.2f} | Ctrl+C to stop")
 
     if args.dashboard:
