@@ -153,6 +153,22 @@ SHARP = dict(
     min_edge=0.03,
 )
 
+# 14. Pinnacle draws: Kalshi football 'Tie' markets vs Pinnacle's draw price (same odds download).
+SHARP_DRAW = dict(
+    enabled=True,
+    price_min=0.10, price_max=0.60,
+    min_edge=0.03,
+)
+
+# 15. Pinnacle spreads: 'X wins by over N points' (NFL/NBA), priced from Pinnacle's win odds with a
+#     bell curve of final margins. The curve is rougher than the bookie's odds, so a bigger edge is needed.
+SHARP_SPREAD = dict(
+    enabled=True,
+    sd={"KXNFLSPREAD": 13.5, "KXNBASPREAD": 12.0},   # typical spread of the final margin, points
+    price_min=0.10, price_max=0.90,
+    min_edge=0.05,
+)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -179,6 +195,7 @@ STRATEGY_CONFIG = {
     "longshot_fade": "LONGSHOT", "momentum": "MOMENTUM", "favourite": "FAVOURITE", "whale": "WHALE",
     "draw": "DRAW", "arb": "ARB", "crypto": "CRYPTO", "nowcast": "NOWCAST", "sharp": "SHARP",
     "weather": "WEATHER", "spike_fade": "SPIKE_FADE", "underdog": "UNDERDOG", "overround": "OVERROUND",
+    "sharp_draw": "SHARP_DRAW", "sharp_spread": "SHARP_SPREAD",
 }
 
 

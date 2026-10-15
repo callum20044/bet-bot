@@ -13,6 +13,7 @@ import os
 import re
 import time
 import unicodedata
+from statistics import NormalDist
 import urllib.request
 from datetime import datetime
 
@@ -23,7 +24,8 @@ from .models import Signal
 API = "https://api.the-odds-api.com/v4/sports/{}/odds?regions=eu&markets=h2h&bookmakers=pinnacle&oddsFormat=decimal&apiKey={}"
 # Kalshi series -> The Odds API sport, so a Seattle hockey game never matches the Seahawks
 SPORT = {"KXEPLGAME": "soccer_epl", "KXUCLGAME": "soccer_uefa_champs_league",
-         "KXNFLGAME": "americanfootball_nfl", "KXNBAGAME": "basketball_nba"}
+         "KXNFLGAME": "americanfootball_nfl", "KXNBAGAME": "basketball_nba",
+         "KXNFLSPREAD": "americanfootball_nfl", "KXNBASPREAD": "basketball_nba"}
 STOP = {"fc", "cf", "sc", "afc", "club", "the", "de", "city", "united", "real", "st", "state"}
 
 
@@ -77,12 +79,12 @@ def load_odds(broker, c, key):
     return events
 
 
-def match(m, events):
+def match(m, events, team=None):
     """(Pinnacle probability, event, outcome name) for this Kalshi team market, or None.
     Same sport, kick-off a few hours before Kalshi expects the result, and exactly one bookie
     team that fits the name - anything ambiguous is skipped."""
     sport = SPORT.get(m.event_ticker.split("-")[0])
-    sub = m.title.split(" - ")[-1] if " - " in m.title else m.title
+    sub = team or (m.title.split(" - ")[-1] if " - " in m.title else m.title)
     when = m.resolve_time
     if sport is None or when is None:
         return None
@@ -130,3 +132,115 @@ def signals(markets, now, broker, ok=lambda m: True):
             out.append(Signal(m, side, price, pr, edge, "sharp",
                               f"Pinnacle {name} {p*100:.0f}% vs Kalshi {m.yes_ask*100:.0f}c"))
     return out
+
+
+def candidate_events(m, events):
+    """Pinnacle games in the same sport that kick off a few hours before Kalshi expects the result."""
+    sport = SPORT.get(m.event_ticker.split("-")[0])
+    when = m.resolve_time
+    if sport is None or when is None:
+        return []
+    out = []
+    for ev in events:
+        if ev.get("sport_key") != sport:
+            continue
+        try:
+            start = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00"))
+        except (KeyError, ValueError):
+            continue
+        if 0 <= (when - start).total_seconds() / 3600 <= 8:
+            out.append(ev)
+    return out
+
+
+def best_side(p, m, lo, hi, min_edge):
+    best = None
+    for side, pr, price in (("yes", p, m.yes_ask), ("no", 1 - p, m.no_ask)):
+        if price is None or not (lo <= price <= hi):
+            continue
+        edge = pr - price - fee_per_contract(price)
+        if edge >= min_edge and (best is None or edge > best[3]):
+            best = (side, pr, price, edge)
+    return best
+
+
+def draw_signals(markets, all_markets, now, events, ok=lambda m: True):
+    """Kalshi football 'Tie' markets vs Pinnacle's draw price."""
+    c = config.SHARP_DRAW
+    if not c["enabled"]:
+        return []
+    teams = {}
+    for m in all_markets:
+        if not m.ticker.endswith("-TIE"):
+            teams.setdefault(m.event_ticker, []).append(m.title.split(" - ")[-1])
+    out = []
+    for m in markets:
+        if not m.ticker.endswith("-TIE") or not ok(m) or SPORT.get(m.event_ticker.split("-")[0], "")[:6] != "soccer":
+            continue
+        names = teams.get(m.event_ticker, [])
+        if len(names) != 2:
+            continue
+        hits = []
+        for ev in candidate_events(m, events):
+            probs = fair_probs(ev)
+            sides = [n for n in probs if n != "Draw"]
+            if "Draw" in probs and len(sides) == 2 and (
+                    (same_team(names[0], sides[0]) and same_team(names[1], sides[1])) or
+                    (same_team(names[0], sides[1]) and same_team(names[1], sides[0]))):
+                hits.append((probs["Draw"], ev))
+        if len(hits) != 1:
+            continue
+        p, ev = hits[0]
+        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"])
+        if best:
+            side, pr, price, edge = best
+            out.append(Signal(m, side, price, pr, edge, "sharp_draw",
+                              f"Pinnacle draw {p*100:.0f}% ({ev['home_team']} v {ev['away_team']}) vs Kalshi {m.yes_ask*100:.0f}c"))
+    return out
+
+
+SPREAD_RE = re.compile(r"^(.*?) wins by over ([\d.]+) points", re.I)
+
+
+def spread_signals(markets, now, events, ok=lambda m: True):
+    """Kalshi 'X wins by over N points' markets, priced from Pinnacle's win odds: a team that wins
+    p of the time has an expected margin of sd * z(p), and real margins scatter around that
+    with a spread of about sd points."""
+    c = config.SHARP_SPREAD
+    if not c["enabled"]:
+        return []
+    out = []
+    for m in markets:
+        series = m.event_ticker.split("-")[0]
+        if series not in c["sd"] or not ok(m):
+            continue
+        hit = SPREAD_RE.match(m.title.split(" - ")[-1])
+        if not hit:
+            continue
+        team, line = hit.group(1), float(hit.group(2))
+        found = match(m, events, team=team)
+        if not found:
+            continue
+        p_win, ev, name = found
+        if not (0.03 < p_win < 0.97):
+            continue
+        sd = c["sd"][series]
+        mu = sd * NormalDist().inv_cdf(p_win)
+        p = 1 - NormalDist(mu, sd).cdf(line)
+        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"])
+        if best:
+            side, pr, price, edge = best
+            out.append(Signal(m, side, price, pr, edge, "sharp_spread",
+                              f"Pinnacle {name} wins {p_win*100:.0f}% -> by {line}+ {p*100:.0f}% vs Kalshi {m.yes_ask*100:.0f}c"))
+    return out
+
+
+def extra_signals(markets, all_markets, now, broker):
+    """Draw and spread bots: share the Pinnacle odds already downloaded for the sharp bot."""
+    key = os.environ.get("ODDS_API_KEY", "").strip()
+    if not key or not (config.SHARP_DRAW["enabled"] or config.SHARP_SPREAD["enabled"]):
+        return []
+    events = load_odds(broker, config.SHARP, key)
+    if not events:
+        return []
+    return draw_signals(markets, all_markets, now, events) + spread_signals(markets, now, events)
