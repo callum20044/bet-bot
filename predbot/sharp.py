@@ -243,4 +243,10 @@ def extra_signals(markets, all_markets, now, broker):
     events = load_odds(broker, config.SHARP, key)
     if not events:
         return []
-    return draw_signals(markets, all_markets, now, events) + spread_signals(markets, now, events)
+    d, sp = draw_signals(markets, all_markets, now, events), spread_signals(markets, now, events)
+    ties = [m for m in markets if m.ticker.endswith("-TIE") and SPORT.get(m.event_ticker.split("-")[0], "").startswith("soccer")]
+    spreads = [m for m in markets if m.event_ticker.split("-")[0] in config.SHARP_SPREAD["sd"]]
+    matched = sum(1 for m in spreads if (h := SPREAD_RE.match(m.title.split(" - ")[-1])) and match(m, events, team=h.group(1)))
+    print(f"  pinnacle extras: {len(events)} games; ties {len(ties)} -> {len(d)} bets; "
+          f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets")
+    return d + sp
