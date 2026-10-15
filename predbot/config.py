@@ -76,7 +76,7 @@ WHALE = dict(
 
 # 11. Spike fade: the mirror of momentum (which lost). After a sharp jump, bet it drifts back.
 SPIKE_FADE = dict(
-    enabled=True,
+    enabled=False,                  # switched off 15 Oct: lost $69 on 236 bets overnight (92-175 overall)
     lookback_minutes=30,
     min_move=0.08,
     revert=0.35,                    # assume 35% of the jump gets given back
