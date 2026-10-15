@@ -52,7 +52,7 @@ MOMENTUM = dict(
 #    unlikely outcomes, near-certain ones are slightly too cheap. Buy YES on outcomes priced
 #    85-97c that resolve within a day. Small profit per bet, occasional full loss.
 FAVOURITE = dict(
-    enabled=True,
+    enabled=False,                  # switched off 15 Oct: won 460 of 510 but -$12 after fees - wins too small to cover them
     yes_min=0.85, yes_max=0.97,
     max_hours_to_close=24,
     shrink=0.75,                    # same assumption as longshot: true NO chance = price x 0.75
