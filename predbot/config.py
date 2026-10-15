@@ -194,7 +194,8 @@ HALF_DRAW = dict(enabled=True, max_open=20, base=0.45, slope=0.25, min_hours_ful
                  max_hours_to_close=48, min_edge=0.03)
 # 23. Goals ladders: fit one Poisson curve to 'over 0.5 / 1.5 / 2.5... goals', bet the odd rung out.
 GOALS = dict(enabled=True, max_open=20, min_rungs=3, min_gap=0.05, trust_rung=0.3,
-             min_hours_to_close=4.5,             # Kalshi expects football results 3-4h after kick-off max_hours_to_close=48, min_edge=0.02)
+             min_hours_to_close=4.5,             # Kalshi expects football results 3-4h after kick-off
+             max_hours_to_close=48, min_edge=0.02)
 # 24. NHL / MLB 'wins by over 1.5', from Kalshi's own win price with a Poisson scoring model.
 LOWSCORE = dict(enabled=True, max_open=20, total={"KXNHLSPREAD": 6.0, "KXMLBSPREAD": 8.6},
                 min_hours_to_close=3.5, max_hours_to_close=72, min_edge=0.04)
