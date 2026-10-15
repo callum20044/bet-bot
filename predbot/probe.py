@@ -5,24 +5,22 @@ import urllib.request
 
 from .exchanges.kalshi import KalshiData
 
-UA = {"User-Agent": "Mozilla/5.0 (predbot paper trading)", "Accept": "*/*"}
+UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+      "Accept": "text/html,application/json;q=0.9,*/*;q=0.8", "Accept-Language": "en-GB,en;q=0.9"}
 SOURCES = {
-    "espn_nfl": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-    "espn_epl": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
-    "espn_nhl": "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
-    "clubelo_fixtures": "http://api.clubelo.com/Fixtures",
-    "tennis_elo_atp": "https://tennisabstract.com/reports/atp_elo_ratings.html",
-    "tennis_elo_wta": "https://tennisabstract.com/reports/wta_elo_ratings.html",
-    "tsa": "https://www.tsa.gov/travel/security-screening/throughput",
-    "aaa": "https://gasprices.aaa.com/",
-    "eia_gas_csv": "https://www.eia.gov/dnav/pet/hist_xls/EMM_EPMR_PTE_NUS_DPGw.xls",
-    "polymarket": "https://gamma-api.polymarket.com/events?closed=false&limit=3&tag_slug=nfl",
-    "rt_example": "https://www.rottentomatoes.com/m/oppenheimer",
+    "espn_nfl_browser": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    "espn_web": "https://site.web.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+    "sportsdb_day": "https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=2026-10-15&s=Soccer",
+    "sportsdb_past_epl": "https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?id=4328",
+    "tsa_browser": "https://www.tsa.gov/travel/security-screening/throughput",
+    "clubelo_day": "http://api.clubelo.com/2026-10-15",
+    "poly_epl": "https://gamma-api.polymarket.com/events?closed=false&limit=2&tag_slug=epl",
+    "poly_nfl_games": "https://gamma-api.polymarket.com/events?closed=false&limit=2&tag_slug=nfl&order=startDate&ascending=true",
 }
 KEYWORDS = ["gas", "tsa", "rotten", "tennis", "atp", "wta", "passenger", "check"]
 
 
-def fetch(url, n=700):
+def fetch(url, n=1500):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=30) as r:
         body = r.read()
@@ -37,6 +35,30 @@ def main():
             out.append(f"## {name}: HTTP {st}, {size} bytes\n```\n{head}\n```")
         except Exception as e:
             out.append(f"## {name}: FAILED {e}")
+    import re as _re
+    for name, url in {"aaa_home": "https://gasprices.aaa.com/", "aaa_ca": "https://gasprices.aaa.com/?state=CA",
+                      "tennis": "https://tennisabstract.com/reports/atp_elo_ratings.html",
+                      "rt": "https://www.rottentomatoes.com/m/oppenheimer"}.items():
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            body = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
+            if name.startswith("aaa"):
+                i = body.find("Current Avg")
+                out.append(f"## {name} around 'Current Avg':\n```\n{body[i-200:i+1800]}\n```")
+            elif name == "tennis":
+                i = body.find("Sinner")
+                out.append(f"## tennis around Sinner:\n```\n{body[i-800:i+800]}\n```")
+            else:
+                for pat in ["criticsScore", "tomatometer", "ratingValue"]:
+                    i = body.find(pat)
+                    if i >= 0:
+                        out.append(f"## rt '{pat}':\n```\n{body[i-200:i+300]}\n```")
+                        break
+        except Exception as e:
+            out.append(f"## {name} failed {e}")
+    if True:
+        open("probe.md", "w").write("\n".join(out))
+        return
     k = KalshiData()
     try:
         series = k._get("/series", {}).get("series", [])
