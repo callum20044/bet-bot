@@ -79,8 +79,8 @@ PER_MARKET = [mid_fade, strong_favourite]
 
 # ---------- groups ----------
 
-def ladder_smooth(tradable, now):
-    c = config.LADDER
+def ladder_smooth(tradable, now, c=None, name="ladder_smooth", exact_rungs=None):
+    c = c or config.LADDER
     if not c["enabled"]:
         return []
     by_event = {}
@@ -100,7 +100,7 @@ def ladder_smooth(tradable, now):
             else:
                 groups.append([m])
         for g in groups:
-            if len(g) < c["min_rungs"]:
+            if len(g) < c["min_rungs"] or (exact_rungs and len(g) != exact_rungs):
                 continue
             g.sort(key=lambda m: m.raw["floor_strike"])
             # one mispriced rung also throws off its neighbours' comparisons, so only take the
@@ -130,7 +130,7 @@ def ladder_smooth(tradable, now):
             best = _best(m, p, c["min_edge"])
             if best:
                 side, est, price, e = best
-                out.append(Signal(m, side, price, est, e, "ladder_smooth",
+                out.append(Signal(m, side, price, est, e, name,
                                   f"over {m.raw['floor_strike']}: {m.yes_mid*100:.0f}c but neighbours ({lo.raw['floor_strike']}: "
                                   f"{lo.yes_mid*100:.0f}c, {hi.raw['floor_strike']}: {hi.yes_mid*100:.0f}c) imply ~{line*100:.0f}c"))
     return out

@@ -225,6 +225,16 @@ POLY = dict(enabled=True, max_open=20, min_hours_to_close=3.5, max_hours_to_clos
 # 32. Rotten Tomatoes score markets vs the film's current score (only once it has plenty of reviews).
 ROTTEN = dict(enabled=True, max_open=20, min_reviews=60, max_series=25, min_edge=0.05)
 
+# ----- 33-35: replacements, added 16 Oct - stretch the bots that are working -----
+# 33/34. Underdog / longshot fades for markets settling 3-6 days out (originals stop at 3 days).
+UNDERDOG_LONG = dict(enabled=True, max_open=25, yes_min=0.15, yes_max=0.30, min_hours_to_close=72,
+                     max_hours_to_close=144, shrink=0.85, min_edge=0.005)
+LONGSHOT_LONG = dict(enabled=True, max_open=25, yes_min=0.03, yes_max=0.15, min_hours_to_close=72,
+                     max_hours_to_close=144, shrink=0.75, min_edge=0.01)
+# 35. Ladder smoothing for 3-rung ladders (the middle rung vs its two neighbours).
+LADDER3 = dict(enabled=True, max_open=25, min_rungs=3, min_gap=0.06, trust_rung=0.3,
+               max_hours_to_close=72, min_edge=0.02)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -258,6 +268,7 @@ STRATEGY_CONFIG = {
     "crypto_iv": "CRYPTO_IV", "mention_fade": "MENTION",
     "result_sniper": "SNIPER", "gas_price": "GAS", "football_elo": "FOOTBALL_ELO", "tennis_elo": "TENNIS_ELO",
     "polymarket": "POLY", "rotten": "ROTTEN",
+    "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
 }
 
 
