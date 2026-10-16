@@ -197,10 +197,12 @@ GOALS = dict(enabled=True, max_open=20, min_rungs=3, min_gap=0.05, trust_rung=0.
              min_hours_to_close=4.5,             # Kalshi expects football results 3-4h after kick-off
              max_hours_to_close=48, min_edge=0.02)
 # 24. NHL / MLB 'wins by over 1.5', from Kalshi's own win price with a Poisson scoring model.
-LOWSCORE = dict(enabled=True, max_open=20, total={"KXNHLSPREAD": 6.0, "KXMLBSPREAD": 8.6},
+LOWSCORE = dict(enabled=False,  # off 16 Oct: 1-6, -$30 - bet on big wins during games already in play
+                max_open=20, total={"KXNHLSPREAD": 6.0, "KXMLBSPREAD": 8.6},
                 min_hours_to_close=3.5, max_hours_to_close=72, min_edge=0.04)
 # 25. Crypto with the options market's volatility (Deribit DVOL) - the old crypto bot used 2h wiggles.
-CRYPTO_IV = dict(enabled=True, max_open=20, min_minutes=30, max_minutes=24 * 60,
+CRYPTO_IV = dict(enabled=False,  # off 16 Oct: 18-37, -$25 - second crypto model to lose; Kalshi prices crypto well
+                  max_open=20, min_minutes=30, max_minutes=24 * 60,
                  price_min=0.05, price_max=0.95, min_edge=0.04)
 # 26. 'Will X say Y?' markets: bet NO on YES 10-60c.
 MENTION = dict(enabled=True, max_open=20, yes_min=0.10, yes_max=0.60, max_hours_to_close=48,
@@ -210,7 +212,8 @@ MENTION = dict(enabled=True, max_open=20, yes_min=0.10, yes_max=0.60, max_hours_
 # 27. Result sniper: ESPN says the game is over, Kalshi still trades below $1 - buy the result.
 SNIPER = dict(enabled=True, max_open=20, certainty=0.995, price_min=0.50, price_max=0.98, min_edge=0.005)
 # 28. Petrol prices: tomorrow's AAA average ~ today + recent trend.
-GAS = dict(enabled=True, max_open=20, base_sd=0.004, price_min=0.05, price_max=0.95, min_edge=0.04)
+GAS = dict(enabled=False,  # off 16 Oct: 2-18, -$76 - kept buying 5c longshots the market knew were dead
+           max_open=20, base_sd=0.004, price_min=0.05, price_max=0.95, min_edge=0.04)
 # 29. Football ratings (ClubElo) -> win / draw / loss chances.
 FOOTBALL_ELO = dict(enabled=True, max_open=20, home_adv=60, draw_base=0.29, draw_slope=0.31,
                     min_hours_to_close=4.5, max_hours_to_close=72, max_disagree=0.20, min_edge=0.04)
