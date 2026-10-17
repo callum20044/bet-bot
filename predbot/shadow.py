@@ -3,7 +3,7 @@
 Each variant 'places' $5 shadow bets at real prices with real fees, tracked in shadow_trades and
 settled on the real results - but it uses no cash and never blocks the main bots from a market.
 The manager drops variants that clearly lose and promotes ones that prove themselves (300+ bets,
-profitable, t >= 2) to real bets under the name 'v:<variant>'.
+profitable, t >= 2.5) to real bets under the name 'v:<variant>'.
 
 Families (from the three proven bots), split by price band, sport vs non-sport and time to close:
   fade  - bet NO; value = 1 - price x shrink      (longshot / underdog family)
@@ -25,13 +25,35 @@ def is_sport(m):
     return any(w in s for w in SPORT_WORDS)
 
 
+FINANCE_WORDS = ("BTC", "ETH", "SOL", "XRP", "DOGE", "INX", "NASDAQ", "SPX", "GOLD", "SILVER", "WTI", "BRENT", "COPPER",
+                 "NATGAS", "FED", "CPI", "GDP", "JOBS", "PAYROLL", "RATE", "TREAS", "EUR", "USD", "JPY", "OIL")
+WEATHER_WORDS = ("HIGH", "LOW", "RAIN", "SNOW", "TEMP", "HURRICANE", "TORNADO")
+
+
+def topic(m):
+    s = m.event_ticker.split("-")[0]
+    if "MENTION" in s or " say " in m.title.lower():
+        return "say"
+    if any(w in s for w in SPORT_WORDS):
+        return "sport"
+    if any(w in s for w in FINANCE_WORDS):
+        return "finance"
+    if any(w in s for w in WEATHER_WORDS):
+        return "weather"
+    return "other"
+
+
+TOPICS = ("sport", "finance", "weather", "say", "other")
+WINDOWS = ((0, 24), (24, 72), (72, 144))
+
+
 def _grid():
     out = []
     for fam, shrink, bands in (("longshot", 0.75, [(0.02, 0.05), (0.05, 0.10), (0.10, 0.15)]),
                                ("underdog", 0.85, [(0.15, 0.20), (0.20, 0.25), (0.25, 0.30)])):
         for lo, hi in bands:
-            for where in ("sport", "other"):
-                for h0, h1 in ((0, 24), (24, 72)):
+            for where in TOPICS:
+                for h0, h1 in WINDOWS:
                     out.append(dict(name=f"{fam}-{int(lo*100)}to{int(hi*100)}c-{where}-{h0}to{h1}h", kind="fade",
                                     yes_min=lo, yes_max=hi, where=where, min_h=h0, max_h=h1, shrink=shrink, min_edge=0.005))
     for lo, hi in ((0.18, 0.25), (0.25, 0.32), (0.32, 0.40)):
@@ -57,7 +79,7 @@ def signal(v, m, now, name=None):
     mid = round(m.yes_mid, 4)
     if not (v["yes_min"] <= mid <= v["yes_max"]):
         return None
-    if v["where"] == "sport" and not is_sport(m) or v["where"] == "other" and is_sport(m):
+    if v["where"] != "any" and topic(m) != v["where"]:
         return None
     if v["kind"] == "fade":
         if m.no_ask is None:
@@ -111,7 +133,7 @@ def run(db, source, tradable, now, open_tickers=None):
     todo = db.execute("SELECT DISTINCT ticker FROM shadow_trades WHERE status='open'").fetchall()
     checked = settled = 0
     for (tk,) in todo:
-        if tk in live or checked >= 150:
+        if tk in live or checked >= 250:
             continue
         checked += 1
         try:

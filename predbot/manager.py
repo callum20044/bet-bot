@@ -3,9 +3,9 @@ winners more room, and promotes shadow variants that have proven themselves.
 
 Rules are deliberately strict, because with dozens of bots some will look good by luck:
   * judged on return per $1 bet after fees, with a t-score (how many standard errors from zero)
-  * switch OFF: 40+ settled bets and t below -1.5 (clearly losing), or 100+ bets and still in the red
+  * switch OFF: 30+ settled bets and t below -1.5 (clearly losing), or 80+ bets and still in the red
   * PROVEN:     300+ settled bets, in profit, t at least 2  -> 1.5x the open-bet limit (max 120)
-  * shadow variant PROMOTED to real bets: 300+ shadow bets, in profit, t at least 2
+  * shadow variant PROMOTED to real bets: 300+ shadow bets, in profit, t at least 2.5
 Every decision is written to the 'manager_log' (and the scan log) with the numbers behind it.
 """
 import json
@@ -14,9 +14,10 @@ from datetime import datetime
 
 from . import config
 
-KILL_MIN_N, KILL_T = 40, -1.5
-KILL_RED_N = 100
+KILL_MIN_N, KILL_T = 30, -1.5
+KILL_RED_N = 80
 PROVE_N, PROVE_T = 300, 2.0
+VARIANT_PROVE_T = 2.5            # stricter for variants: with ~100 tested, a few will hit t=2 by luck
 NEVER_TOUCH = {"arb"}            # near risk-free baskets: judged by hand
 
 
@@ -90,7 +91,7 @@ def review(db, now):
         if (n >= KILL_MIN_N and t <= KILL_T) or (n >= KILL_RED_N and net < 0):
             st["status"] = "dropped"
             note(f"DROPPED {tag}")
-        elif n >= PROVE_N and net > 0 and t >= PROVE_T:
+        elif n >= PROVE_N and net > 0 and t >= VARIANT_PROVE_T:
             st["status"] = "live"
             note(f"PROMOTED {tag} -> now placing real bets as 'v:{v['name']}'")
 
