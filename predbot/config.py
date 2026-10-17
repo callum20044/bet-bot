@@ -171,10 +171,12 @@ SHARP_SPREAD = dict(
 
 # ----- 16-21: six more, added 15 Oct (each capped at 25 open bets so they get a fair test) -----
 # 16. Mid fade: NO on YES priced 30-45c - does the 'YES is overpriced' edge reach the middle?
-MID_FADE = dict(enabled=True, max_open=25, yes_min=0.30, yes_max=0.45, max_hours_to_close=72,
+MID_FADE = dict(enabled=False,  # off 17 Oct: 25-23, -$22 - the YES-overpricing edge doesn't reach 30-45c
+                max_open=25, yes_min=0.30, yes_max=0.45, max_hours_to_close=72,
                 shrink=0.92, min_edge=0.005)
 # 17. Strong favourite: YES on 70-85c favourites resolving within a day.
-STRONG_FAV = dict(enabled=True, max_open=25, yes_min=0.70, yes_max=0.85, max_hours_to_close=24,
+STRONG_FAV = dict(enabled=False,  # off 17 Oct: 56-27, -$34 - favourites lose too often to pay
+                  max_open=25, yes_min=0.70, yes_max=0.85, max_hours_to_close=24,
                   shrink=0.85, min_edge=0.005)
 # 18. Ladder smoothing: an 'over X' rung priced well off the line between its neighbours.
 LADDER = dict(enabled=True, max_open=25, min_rungs=4, min_gap=0.06, trust_rung=0.3,
