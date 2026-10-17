@@ -39,6 +39,9 @@ def make_source(name):
 
 def step(source, broker, verbose=True):
     now = source.now()
+    from . import manager
+    manager.apply_overrides(broker.db)
+    manager.review(broker.db, now)
     markets = source.list_open_markets()
     weather_markets = []
     if config.WEATHER["enabled"] and hasattr(source, "list_series_markets"):
@@ -91,6 +94,12 @@ def step(source, broker, verbose=True):
     if config.WHALE["enabled"]:
         from . import whales
         signals += whales.signals(source, by_ticker, now, broker, ok=risk.market_ok)
+    from . import shadow
+    try:
+        shadow.run(broker.db, source, tradable, now, set(by_ticker))
+        signals += shadow.live_signals(broker.db, tradable, now)
+    except Exception as e:
+        print(f"  ! shadow variants: {e}")
     signals.sort(key=lambda s: s.edge, reverse=True)
 
     open_rows = broker.open_trades()
