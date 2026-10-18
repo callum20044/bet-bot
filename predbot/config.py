@@ -182,7 +182,8 @@ STRONG_FAV = dict(enabled=False,  # off 17 Oct: 56-27, -$34 - favourites lose to
 LADDER = dict(enabled=True, max_open=25, min_rungs=4, min_gap=0.06, trust_rung=0.3,
               max_hours_to_close=72, min_edge=0.02)
 # 19. Spread vs moneyline: 'X wins by over N' priced from Kalshi's own 'X wins' price.
-SPREAD_ML = dict(enabled=True, max_open=25, min_hours_to_close=3.5, max_hours_to_close=96, min_edge=0.04,
+SPREAD_ML = dict(enabled=False,  # off 18 Oct: 8-23, -$83 (t=-3.4) - kept backing big favourites to cover big college spreads
+                 max_open=25, min_hours_to_close=3.5, max_hours_to_close=96, min_edge=0.04,
                  sd={"KXNFLSPREAD": 13.5, "KXNBASPREAD": 12.0, "KXNCAAFSPREAD": 16.0, "KXNCAAMBSPREAD": 11.0})
 # 20. Field power: in one-winner fields, true chance ~ price^1.15 (favourites underbet).
 FIELD = dict(enabled=True, max_open=25, min_outcomes=5, min_total=0.90, max_total=1.50, alpha=1.15,
@@ -192,7 +193,8 @@ DRAW_MODEL = dict(enabled=True, max_open=25, base=0.29, slope=0.31, min_hours_to
 
 # ----- 22-26: five more, added 15 Oct evening (20 open bets each) -----
 # 22. Half-time draws: ~42% of first halves end level (less when one side is much stronger).
-HALF_DRAW = dict(enabled=True, max_open=20, base=0.45, slope=0.25, min_hours_full_time=4.5,
+HALF_DRAW = dict(enabled=False,  # off 18 Oct: 1-8, -$31 (t=-2.3)
+                  max_open=20, base=0.45, slope=0.25, min_hours_full_time=4.5,
                  max_hours_to_close=48, min_edge=0.03)
 # 23. Goals ladders: fit one Poisson curve to 'over 0.5 / 1.5 / 2.5... goals', bet the odd rung out.
 GOALS = dict(enabled=True, max_open=20, min_rungs=3, min_gap=0.05, trust_rung=0.3,
@@ -234,7 +236,8 @@ UNDERDOG_LONG = dict(enabled=True, max_open=25, yes_min=0.15, yes_max=0.30, min_
 LONGSHOT_LONG = dict(enabled=True, max_open=25, yes_min=0.03, yes_max=0.15, min_hours_to_close=72,
                      max_hours_to_close=144, shrink=0.75, min_edge=0.01)
 # 35. Ladder smoothing for 3-rung ladders (the middle rung vs its two neighbours).
-LADDER3 = dict(enabled=True, max_open=25, min_rungs=3, min_gap=0.06, trust_rung=0.3,
+LADDER3 = dict(enabled=False,  # off 18 Oct: 10-15, -$40 (t=-1.7) - 3 rungs is too few to judge the curve
+                max_open=25, min_rungs=3, min_gap=0.06, trust_rung=0.3,
                max_hours_to_close=72, min_edge=0.02)
 
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
