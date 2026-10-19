@@ -1,0 +1,28 @@
+secrets present: {'key': True, 'user': True, 'password': True}
+runner location: US Arizona
+HTTP 403 from identitysso.betfair.com: '<!DOCTYPE html>\n<html manifest="" lang="en-US">\n  <head>\n    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\n    <title>Betfair</title>\n    <meta name="theme-color" content="#004833" />\n    <style>\n      * {\n        margin: 0;\n        padding: 0;\n      }\n      html,\n      body {\n        height: 100%;\n      }\n      body {\n        background: #000;\n        font-family: Arial, s'
+Traceback (most recent call last):
+  File "/home/runner/work/bet-bot/bet-bot/research/betfair_check.py", line 26, in <module>
+    login = req("https://identitysso.betfair.com/api/login",
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/bet-bot/bet-bot/research/betfair_check.py", line 13, in req
+    with urllib.request.urlopen(r, timeout=30) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
