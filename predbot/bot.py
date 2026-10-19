@@ -205,6 +205,16 @@ def main():
         db.commit()
         if n:
             print(f"  (removed {n} goals bets placed on games already in play)")
+    if not db.execute("SELECT 1 FROM meta WHERE k='fix_sharp_inplay'").fetchone():
+        # 19 Oct: the Pinnacle bots compared hours-old pre-match odds with live in-play prices. Those bets stay
+        # in the pot (the money was really 'lost'), but move to their own label so the fixed bots start clean.
+        n = db.execute("UPDATE trades SET strategy = strategy || '_inplay_bug' WHERE strategy IN "
+                       "('sharp','sharp_spread','sharp_draw') AND opened_at < '2026-10-19T12:00' AND "
+                       "(julianday(close_time) - julianday(opened_at)) * 24 < 4.5").rowcount
+        db.execute("INSERT INTO meta VALUES ('fix_sharp_inplay', ?)", (str(n),))
+        db.commit()
+        if n:
+            print(f"  (relabelled {n} Pinnacle bets placed on games already in play)")
     print(f"Paper trading on {source.name} | db {db_path} | start ${broker.start:,.2f} | Ctrl+C to stop")
 
     if args.dashboard:

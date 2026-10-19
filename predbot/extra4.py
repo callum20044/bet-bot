@@ -4,6 +4,11 @@
                    (the original only looks 3 days ahead).
   longshot_long  - longshot fade (NO on YES 3-15c), same 3-6 day window.
   ladder3        - ladder smoothing for 3-rung ladders, which the original (4+ rungs) skips.
+
+Added 19 Oct (weekly review):
+  longshot_prematch - longshot fade (NO on YES 3-15c, up to 3 days out) that skips sport markets in their
+                   last 6 hours. In-play longshot prices already know the score: longshot_fade lost $41 on
+                   173 such bets while making $65 on 195 sport bets placed 6h+ out and $49 on 132 non-sport.
 """
 from . import config
 from .extra import _edge, ladder_smooth
@@ -34,7 +39,29 @@ def longshot_long(m, now, broker):
     return _fade(m, now, config.LONGSHOT_LONG, "longshot_long")
 
 
-PER_MARKET = [underdog_long, longshot_long]
+def longshot_prematch(m, now, broker):
+    c = config.LONGSHOT_PRE
+    if not c["enabled"] or m.yes_mid is None or m.no_ask is None:
+        return None
+    h = m.hours_to_close(now)
+    if h is None or not (0 < h <= c["max_hours_to_close"]):
+        return None
+    from .shadow import is_sport
+    sport = is_sport(m)
+    if sport and h < c["min_hours_sport"]:
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] <= mid <= c["yes_max"]):
+        return None
+    est_no = 1 - mid * c["shrink"]
+    e = _edge(est_no, m.no_ask)
+    if e < c["min_edge"]:
+        return None
+    return Signal(m, "no", m.no_ask, est_no, e, "longshot_prematch",
+                  f"YES at {mid*100:.0f}c, {h:.0f}h out{' (pre-match)' if sport else ''}; est NO {est_no*100:.1f}%")
+
+
+PER_MARKET = [underdog_long, longshot_long, longshot_prematch]
 
 
 def group_signals(tradable, now):

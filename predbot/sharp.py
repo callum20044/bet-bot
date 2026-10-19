@@ -79,7 +79,14 @@ def load_odds(broker, c, key):
     return events
 
 
-def match(m, events, team=None):
+PRE_START_MIN = 15   # minutes: Pinnacle odds are cached for hours, so only bet games that haven't started
+
+
+def _not_started(start, now):
+    return now is None or (start - now).total_seconds() / 60 >= PRE_START_MIN
+
+
+def match(m, events, team=None, now=None):
     """(Pinnacle probability, event, outcome name) for this Kalshi team market, or None.
     Same sport, kick-off a few hours before Kalshi expects the result, and exactly one bookie
     team that fits the name - anything ambiguous is skipped."""
@@ -98,6 +105,8 @@ def match(m, events, team=None):
             continue
         if not (0 <= (when - start).total_seconds() / 3600 <= 8):
             continue          # Kalshi expects the result a few hours after the start
+        if not _not_started(start, now):
+            continue          # in play: the cached pre-match odds no longer mean anything (fix 19 Oct)
         for name, p in fair_probs(ev).items():
             if name != "Draw" and same_team(sub, name):
                 hits.append((p, ev, name))
@@ -116,7 +125,7 @@ def signals(markets, now, broker, ok=lambda m: True):
     for m in markets:
         if "GAME" not in m.event_ticker.split("-")[0] or m.ticker.endswith("-TIE") or not ok(m):
             continue
-        hit = match(m, events)
+        hit = match(m, events, now=now)
         if not hit:
             continue
         p, ev, name = hit
@@ -125,6 +134,8 @@ def signals(markets, now, broker, ok=lambda m: True):
             if price is None or not (c["price_min"] <= price <= c["price_max"]):
                 continue
             edge = pr - price - fee_per_contract(price)
+            if abs(pr - price) > c.get("max_disagree", 1):
+                continue      # a huge gap usually means a mismatch or stale odds, not value
             if edge >= c["min_edge"] and (best is None or edge > best[3]):
                 best = (side, pr, price, edge)
         if best:
@@ -134,7 +145,7 @@ def signals(markets, now, broker, ok=lambda m: True):
     return out
 
 
-def candidate_events(m, events):
+def candidate_events(m, events, now=None):
     """Pinnacle games in the same sport that kick off a few hours before Kalshi expects the result."""
     sport = SPORT.get(m.event_ticker.split("-")[0])
     when = m.resolve_time
@@ -148,15 +159,15 @@ def candidate_events(m, events):
             start = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00"))
         except (KeyError, ValueError):
             continue
-        if 0 <= (when - start).total_seconds() / 3600 <= 8:
+        if 0 <= (when - start).total_seconds() / 3600 <= 8 and _not_started(start, now):
             out.append(ev)
     return out
 
 
-def best_side(p, m, lo, hi, min_edge):
+def best_side(p, m, lo, hi, min_edge, max_disagree=1.0):
     best = None
     for side, pr, price in (("yes", p, m.yes_ask), ("no", 1 - p, m.no_ask)):
-        if price is None or not (lo <= price <= hi):
+        if price is None or not (lo <= price <= hi) or abs(pr - price) > max_disagree:
             continue
         edge = pr - price - fee_per_contract(price)
         if edge >= min_edge and (best is None or edge > best[3]):
@@ -181,7 +192,7 @@ def draw_signals(markets, all_markets, now, events, ok=lambda m: True):
         if len(names) != 2:
             continue
         hits = []
-        for ev in candidate_events(m, events):
+        for ev in candidate_events(m, events, now):
             probs = fair_probs(ev)
             sides = [n for n in probs if n != "Draw"]
             if "Draw" in probs and len(sides) == 2 and (
@@ -191,7 +202,7 @@ def draw_signals(markets, all_markets, now, events, ok=lambda m: True):
         if len(hits) != 1:
             continue
         p, ev = hits[0]
-        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"])
+        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"], c.get("max_disagree", 1.0))
         if best:
             side, pr, price, edge = best
             out.append(Signal(m, side, price, pr, edge, "sharp_draw",
@@ -218,7 +229,7 @@ def spread_signals(markets, now, events, ok=lambda m: True):
         if not hit:
             continue
         team, line = hit.group(1), float(hit.group(2))
-        found = match(m, events, team=team)
+        found = match(m, events, team=team, now=now)
         if not found:
             continue
         p_win, ev, name = found
@@ -227,7 +238,7 @@ def spread_signals(markets, now, events, ok=lambda m: True):
         sd = c["sd"][series]
         mu = sd * NormalDist().inv_cdf(p_win)
         p = 1 - NormalDist(mu, sd).cdf(line)
-        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"])
+        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"], c.get("max_disagree", 1.0))
         if best:
             side, pr, price, edge = best
             out.append(Signal(m, side, price, pr, edge, "sharp_spread",
@@ -246,7 +257,7 @@ def extra_signals(markets, all_markets, now, broker):
     d, sp = draw_signals(markets, all_markets, now, events), spread_signals(markets, now, events)
     ties = [m for m in markets if m.ticker.endswith("-TIE") and SPORT.get(m.event_ticker.split("-")[0], "").startswith("soccer")]
     spreads = [m for m in markets if m.event_ticker.split("-")[0] in config.SHARP_SPREAD["sd"]]
-    matched = sum(1 for m in spreads if (h := SPREAD_RE.match(m.title.split(" - ")[-1])) and match(m, events, team=h.group(1)))
+    matched = sum(1 for m in spreads if (h := SPREAD_RE.match(m.title.split(" - ")[-1])) and match(m, events, team=h.group(1), now=now))
     print(f"  pinnacle extras: {len(events)} games; ties {len(ties)} -> {len(d)} bets; "
           f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets")
     return d + sp

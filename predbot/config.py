@@ -151,6 +151,7 @@ SHARP = dict(
     refresh_hours=6,                # 4 sports x 4 refreshes a day = ~480 of the 500 free calls/month
     price_min=0.05, price_max=0.95,
     min_edge=0.03,
+    max_disagree=0.15,              # 19 Oct: bigger gaps were stale odds on games already in play
 )
 
 # 14. Pinnacle draws: Kalshi football 'Tie' markets vs Pinnacle's draw price (same odds download).
@@ -158,6 +159,7 @@ SHARP_DRAW = dict(
     enabled=True,
     price_min=0.10, price_max=0.60,
     min_edge=0.03,
+    max_disagree=0.15,
 )
 
 # 15. Pinnacle spreads: 'X wins by over N points' (NFL/NBA), priced from Pinnacle's win odds with a
@@ -167,6 +169,7 @@ SHARP_SPREAD = dict(
     sd={"KXNFLSPREAD": 13.5, "KXNBASPREAD": 12.0},   # typical spread of the final margin, points
     price_min=0.10, price_max=0.90,
     min_edge=0.05,
+    max_disagree=0.15,
 )
 
 # ----- 16-21: six more, added 15 Oct (each capped at 25 open bets so they get a fair test) -----
@@ -240,6 +243,13 @@ LADDER3 = dict(enabled=False,  # off 18 Oct: 10-15, -$40 (t=-1.7) - 3 rungs is t
                 max_open=25, min_rungs=3, min_gap=0.06, trust_rung=0.3,
                max_hours_to_close=72, min_edge=0.02)
 
+# ----- 36: added 19 Oct (weekly review) -----
+# 36. Longshot fade without in-play sport. The data: longshot_fade on sport markets in their last 6 hours
+#     (games already under way) went 173 bets, -$41; the same bets 6h+ out went 195 bets, +$65; non-sport
+#     markets made money at every distance. So: NO on YES 3-15c, but sport only while 6h+ from the result.
+LONGSHOT_PRE = dict(enabled=True, max_open=20, yes_min=0.03, yes_max=0.15, max_hours_to_close=72,
+                    min_hours_sport=6, shrink=0.75, min_edge=0.01)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -274,6 +284,7 @@ STRATEGY_CONFIG = {
     "result_sniper": "SNIPER", "gas_price": "GAS", "football_elo": "FOOTBALL_ELO", "tennis_elo": "TENNIS_ELO",
     "polymarket": "POLY", "rotten": "ROTTEN",
     "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
+    "longshot_prematch": "LONGSHOT_PRE",
 }
 
 
