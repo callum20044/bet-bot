@@ -1,13 +1,21 @@
 """One-off: can GitHub's machine log in to Betfair with the delayed key and read prices? Never prints secrets."""
-import json, os, urllib.request, urllib.parse
+import json, os, urllib.request, urllib.parse, urllib.error
 
 KEY, USER, PW = (os.environ.get(k, "") for k in ("BETFAIR_APP_KEY", "BETFAIR_USERNAME", "BETFAIR_PASSWORD"))
 print("secrets present:", {"key": bool(KEY), "user": bool(USER), "password": bool(PW)})
 
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) CallumBetBot/1.0"
+
 def req(url, data=None, headers=None):
-    r = urllib.request.Request(url, data=data, headers=headers or {})
-    with urllib.request.urlopen(r, timeout=30) as f:
-        return json.loads(f.read().decode())
+    h = {"User-Agent": UA, **(headers or {})}
+    r = urllib.request.Request(url, data=data, headers=h)
+    try:
+        with urllib.request.urlopen(r, timeout=30) as f:
+            return json.loads(f.read().decode())
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        print(f"HTTP {e.code} from {url.split('/')[2]}: {body[:400]!r}")
+        raise
 
 try:
     ip = req("https://ipinfo.io/json")
