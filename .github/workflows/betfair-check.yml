@@ -1,16 +1,27 @@
 name: betfair-check
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python research/betfair_check.py
+      - run: python research/betfair_check.py 2>&1 | tee /tmp/betfair_check.txt
         env:
           BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
           BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
           BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
+      - name: Save result
+        if: always()
+        run: |
+          mkdir /tmp/o && cp /tmp/betfair_check.txt /tmp/o/ && cd /tmp/o
+          git init -q -b betfair-check
+          git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm result
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" betfair-check
