@@ -1,0 +1,74 @@
+482 USD coins on Coinbase
+449 coins with history, 1100 days
+# Free-roaming crypto bot: backtest
+
+Run 2026-10-24 10:15 UTC. 449 Coinbase coins, 2023-10-21 to 2026-10-24. Unseen period starts 2025-08-11. Weekly rebalance, 0.8% cost per buy/sell, coins need $1M+/day volume.
+
+## Benchmarks (unseen period)
+- Hold Bitcoin: -32% (worst drop -53%)
+- Top 20 coins by volume, equal weight: -65% (worst drop -77%)
+
+## Random picking (luck check, 100 runs each, unseen period)
+| Coins held | BTC filter | Random median | Random best 10% |
+|---|---|---|---|
+| 3 | no | -90% | -78% |
+| 3 | yes | -68% | -47% |
+| 5 | no | -89% | -82% |
+| 5 | yes | -69% | -53% |
+| 10 | no | -88% | -82% |
+| 10 | yes | -66% | -55% |
+
+## Every rule (sorted by unseen return)
+| Rule | Seen return | Unseen return | Unseen Sharpe | Unseen worst drop | Beats % of random |
+|---|---|---|---|---|---|
+| reversal top10 60d +BTC filter | -74% | -50% | -0.78 | -68% | 95% |
+| momentum top5 14d +BTC filter | -76% | -55% | -0.33 | -71% | 87% |
+| reversal top10 30d +BTC filter | -77% | -58% | -1.30 | -69% | 83% |
+| momentum top10 14d +BTC filter | -67% | -59% | -0.88 | -63% | 82% |
+| reversal top5 60d +BTC filter | -75% | -61% | -0.94 | -76% | 74% |
+| reversal top5 30d +BTC filter | -83% | -65% | -1.52 | -72% | 62% |
+| momentum top10 7d +BTC filter | -73% | -69% | -1.29 | -73% | 27% |
+| momentum top10 30d +BTC filter | -80% | -69% | -1.43 | -73% | 26% |
+| reversal top10 60d | -71% | -71% | -0.77 | -84% | 99% |
+| reversal top3 30d +BTC filter | -85% | -72% | -1.57 | -77% | 40% |
+| momentum top5 7d +BTC filter | -80% | -74% | -0.91 | -79% | 29% |
+| reversal top5 60d | -56% | -76% | -0.74 | -87% | 99% |
+| reversal top10 14d +BTC filter | -84% | -77% | -2.31 | -79% | 0% |
+| momentum top3 7d +BTC filter | -92% | -78% | -0.67 | -88% | 15% |
+| reversal top3 60d +BTC filter | -78% | -78% | -1.61 | -81% | 15% |
+| momentum top3 14d +BTC filter | -70% | -80% | -0.56 | -89% | 12% |
+| reversal top10 30d | -69% | -80% | -1.29 | -87% | 92% |
+| momentum top10 60d +BTC filter | -58% | -81% | -2.37 | -82% | 0% |
+| momentum top3 30d +BTC filter | -88% | -81% | -0.72 | -90% | 8% |
+| reversal top10 7d +BTC filter | -64% | -81% | -2.93 | -82% | 0% |
+| momentum top5 30d +BTC filter | -82% | -82% | -1.52 | -84% | 5% |
+| reversal top5 14d +BTC filter | -92% | -84% | -2.58 | -86% | 0% |
+| momentum top5 14d | -92% | -85% | -0.76 | -90% | 75% |
+| momentum top10 14d | -81% | -87% | -1.49 | -90% | 56% |
+| reversal top5 7d +BTC filter | -86% | -89% | -3.02 | -89% | 0% |
+| momentum top10 60d | -79% | -89% | -1.86 | -90% | 36% |
+| reversal top3 60d | -56% | -89% | -1.20 | -91% | 54% |
+| momentum top10 7d | -92% | -89% | -1.77 | -91% | 27% |
+| momentum top5 60d +BTC filter | -49% | -90% | -2.66 | -91% | 0% |
+| momentum top10 30d | -91% | -90% | -1.86 | -91% | 24% |
+| reversal top3 14d +BTC filter | -96% | -90% | -2.76 | -91% | 0% |
+| momentum top5 7d | -96% | -91% | -1.06 | -93% | 30% |
+| reversal top5 30d | -80% | -91% | -1.81 | -93% | 29% |
+| reversal top3 30d | -83% | -93% | -1.61 | -94% | 27% |
+| reversal top3 7d +BTC filter | -90% | -93% | -3.05 | -93% | 0% |
+| reversal top10 14d | -84% | -93% | -2.45 | -94% | 1% |
+| momentum top3 14d | -91% | -94% | -0.76 | -94% | 19% |
+| momentum top5 60d | -82% | -95% | -1.95 | -95% | 2% |
+| reversal top10 7d | -61% | -95% | -3.00 | -96% | 0% |
+| reversal top5 14d | -93% | -96% | -2.48 | -96% | 0% |
+| momentum top3 7d | -98% | -96% | -1.16 | -98% | 1% |
+| momentum top3 60d +BTC filter | -58% | -97% | -3.06 | -97% | 0% |
+| momentum top5 30d | -96% | -97% | -2.25 | -97% | 0% |
+| reversal top5 7d | -87% | -97% | -2.97 | -97% | 0% |
+| momentum top3 30d | -98% | -98% | -1.47 | -98% | 0% |
+| reversal top3 14d | -97% | -98% | -2.76 | -98% | 0% |
+| momentum top3 60d | -89% | -99% | -2.16 | -99% | 0% |
+| reversal top3 7d | -91% | -99% | -3.62 | -99% | 0% |
+
+**Rules that made money in BOTH periods and beat 90%+ of random pickers: 0 of 48**
+none
