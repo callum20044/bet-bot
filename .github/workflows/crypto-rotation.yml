@@ -1,0 +1,24 @@
+name: crypto-rotation
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy pandas
+      - run: python research/crypto_rotation.py 2>&1 | tee run.txt
+      - name: Save results
+        if: always()
+        run: |
+          mkdir /tmp/out && cp crypto_rotation.md run.txt /tmp/out/ 2>/dev/null; cd /tmp/out
+          git init -q -b crypto-rotation
+          git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm results
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" crypto-rotation
