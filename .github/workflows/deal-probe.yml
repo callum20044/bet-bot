@@ -1,0 +1,18 @@
+name: deal-probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 research/deal_probe.py 2>&1 | tee probe.txt
+      - name: Save
+        if: always()
+        run: |
+          mkdir /tmp/o && cp probe.txt /tmp/o/ && cd /tmp/o && git init -q -b deal-probe
+          git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm probe
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" deal-probe
