@@ -249,6 +249,11 @@ LADDER3 = dict(enabled=False,  # off 18 Oct: 10-15, -$40 (t=-1.7) - 3 rungs is t
 #     markets made money at every distance. So: NO on YES 3-15c, but sport only while 6h+ from the result.
 LONGSHOT_PRE = dict(enabled=True, max_open=20, yes_min=0.03, yes_max=0.15, max_hours_to_close=72,
                     min_hours_sport=6, shrink=0.75, min_edge=0.01)
+# 37. (25 Oct) Underdog fade on NON-sport markets only. underdog's 1,071 settled bets split: non-sport +$94
+#     (+6.6p per $1, t=2.0, 312 bets) vs sport +$57 (+1.7p, t=0.8). underdog is often full (60 open), so this
+#     takes the non-sport bets it has no room for - a fresh, forward test of the non-sport pocket.
+UNDERDOG_FOCUS = dict(enabled=True, max_open=20, yes_min=0.15, yes_max=0.30, min_hours_to_close=0,
+                      max_hours_to_close=72, shrink=0.85, min_edge=0.005)
 
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
@@ -284,7 +289,7 @@ STRATEGY_CONFIG = {
     "result_sniper": "SNIPER", "gas_price": "GAS", "football_elo": "FOOTBALL_ELO", "tennis_elo": "TENNIS_ELO",
     "polymarket": "POLY", "rotten": "ROTTEN",
     "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
-    "longshot_prematch": "LONGSHOT_PRE",
+    "longshot_prematch": "LONGSHOT_PRE", "underdog_focus": "UNDERDOG_FOCUS",
 }
 
 

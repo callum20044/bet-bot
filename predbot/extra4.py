@@ -9,6 +9,9 @@ Added 19 Oct (weekly review):
   longshot_prematch - longshot fade (NO on YES 3-15c, up to 3 days out) that skips sport markets in their
                    last 6 hours. In-play longshot prices already know the score: longshot_fade lost $41 on
                    173 such bets while making $65 on 195 sport bets placed 6h+ out and $49 on 132 non-sport.
+
+Added 25 Oct:
+  underdog_focus - underdog fade on non-sport markets only (the half of underdog that's doing best).
 """
 from . import config
 from .extra import _edge, ladder_smooth
@@ -61,7 +64,15 @@ def longshot_prematch(m, now, broker):
                   f"YES at {mid*100:.0f}c, {h:.0f}h out{' (pre-match)' if sport else ''}; est NO {est_no*100:.1f}%")
 
 
-PER_MARKET = [underdog_long, longshot_long, longshot_prematch]
+def underdog_focus(m, now, broker):
+    """(25 Oct) underdog fade, non-sport markets only - see config.UNDERDOG_FOCUS."""
+    from .shadow import is_sport
+    if is_sport(m):
+        return None
+    return _fade(m, now, config.UNDERDOG_FOCUS, "underdog_focus")
+
+
+PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus]
 
 
 def group_signals(tradable, now):
