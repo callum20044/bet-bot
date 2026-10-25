@@ -67,7 +67,8 @@ def longshot_prematch(m, now, broker):
 def underdog_focus(m, now, broker):
     """(25 Oct) underdog fade, non-sport markets only - see config.UNDERDOG_FOCUS."""
     from .shadow import is_sport
-    if is_sport(m):
+    series = m.event_ticker.split("-")[0]
+    if is_sport(m) or any(w in series for w in ("MAP", "BTTS", "GAME", "MATCH", "SPREAD", "TOTAL", "GOAL", "SET", "ROUND")):
         return None
     return _fade(m, now, config.UNDERDOG_FOCUS, "underdog_focus")
 
