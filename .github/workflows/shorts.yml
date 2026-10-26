@@ -14,14 +14,15 @@ jobs:
           python-version: "3.12"
       - run: sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
       - run: pip install pillow edge-tts
-      - run: python shorts/make_short.py
+      - run: mkdir -p shorts/out && python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
+        shell: bash
       - name: Save videos to the shorts branch
+        if: always()
         run: |
-          git fetch origin shorts && git show origin/shorts:index.txt > /tmp/index.txt 2>/dev/null || true
           mkdir /tmp/o && cd /tmp/o && git init -q -b shorts
           git config user.name shorts && git config user.email shorts@users.noreply.github.com
           git fetch -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shorts && git checkout -q FETCH_HEAD -- . 2>/dev/null || true
-          cp $GITHUB_WORKSPACE/shorts/out/*.mp4 $GITHUB_WORKSPACE/shorts/out/*.json .
-          ls *.mp4 > index.txt
+          cp $GITHUB_WORKSPACE/shorts/out/*.mp4 $GITHUB_WORKSPACE/shorts/out/*.json $GITHUB_WORKSPACE/shorts/out/log.txt . 2>/dev/null || true
+          ls *.mp4 > index.txt 2>/dev/null || true
           git add . && git commit -qm "short $(date -u +%F)"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shorts
