@@ -17,7 +17,7 @@ def longshot_fade(m, now, broker):
     if not c["enabled"] or m.yes_mid is None:
         return None
     hrs = m.hours_to_close(now)
-    if hrs is None or not (0 < hrs <= c["max_hours_to_close"]):
+    if hrs is None or not (c.get("min_hours_to_close", 0) < hrs <= c["max_hours_to_close"]):
         return None
     mid = round(m.yes_mid, 4)   # avoid 0.15000000000000002 falling outside a 15c limit
     if not (c["yes_min"] <= mid <= c["yes_max"]):

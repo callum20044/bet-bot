@@ -12,6 +12,10 @@ Added 19 Oct (weekly review):
 
 Added 25 Oct:
   underdog_focus - underdog fade on non-sport markets only (the half of underdog that's doing best).
+
+Added 26 Oct (weekly review):
+  weather_fade   - NO on weather markets (temperature bins, rain) with YES at 5-30c, up to 3 days out.
+                   Weather is the one topic where fading has paid in real bets and in both shadow families.
 """
 from . import config
 from .extra import _edge, ladder_smooth
@@ -73,7 +77,33 @@ def underdog_focus(m, now, broker):
     return _fade(m, now, config.UNDERDOG_FOCUS, "underdog_focus")
 
 
-PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus]
+def weather_fade(m, now, broker):
+    """(26 Oct) Fade weather long shots and underdogs - see config.WEATHER_FADE.
+    Only Kalshi weather series (KXHIGH*, KXLOWT*, KXTEMP*, KXRAIN*); YES 5-30c valued at price x 0.75 (<15c)
+    or x 0.85 (15c+); needs a real two-sided book (no 'empty book' prices)."""
+    c = config.WEATHER_FADE
+    if not c["enabled"] or m.yes_mid is None or m.no_ask is None:
+        return None
+    if not m.event_ticker.split("-")[0].startswith(c["series"]):
+        return None
+    if not m.yes_bid or m.yes_ask is None or m.yes_ask >= 0.99:   # empty book shows bid 0 / ask $1
+        return None
+    h = m.hours_to_close(now)
+    if h is None or not (c["min_hours_to_close"] < h <= c["max_hours_to_close"]):
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] <= mid <= c["yes_max"]):
+        return None
+    low = mid < c["split"]
+    est_no = 1 - mid * (c["shrink_low"] if low else c["shrink_high"])
+    e = _edge(est_no, m.no_ask)
+    if e < (c["min_edge_low"] if low else c["min_edge_high"]):
+        return None
+    return Signal(m, "no", m.no_ask, est_no, e, "weather_fade",
+                  f"weather: YES at {mid*100:.0f}c, {h:.0f}h out; est NO {est_no*100:.1f}%")
+
+
+PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus, weather_fade]
 
 
 def group_signals(tradable, now):

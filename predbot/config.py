@@ -32,6 +32,8 @@ LONGSHOT = dict(
     enabled=True,
     yes_min=0.03, yes_max=0.15,     # only look at YES priced 3c-15c
     max_hours_to_close=72,          # only markets resolving within 3 days
+    min_hours_to_close=6,           # (26 Oct) skip the last 6 hours: those bets lost in BOTH weeks
+                                    # (185 bets -4.1p per $1, then 366 bets -3.2p; -$83 in all)
     shrink=0.75,
     min_edge=0.01,                  # need at least 1c expected profit per contract after fees
 )
@@ -254,6 +256,15 @@ LONGSHOT_PRE = dict(enabled=True, max_open=20, yes_min=0.03, yes_max=0.15, max_h
 #     takes the non-sport bets it has no room for - a fresh, forward test of the non-sport pocket.
 UNDERDOG_FOCUS = dict(enabled=True, max_open=20, yes_min=0.15, yes_max=0.30, min_hours_to_close=0,
                       max_hours_to_close=72, shrink=0.85, min_edge=0.005)
+# ----- 38: added 26 Oct (weekly review) -----
+# 38. Weather fade: NO on weather markets (daily high/low temperature bins, temperature, rain) where YES is
+#     priced 5-30c, up to 3 days out. Weather is the one topic where the fade has made money in every data
+#     set: real underdog bets on weather +$31 (91 bets, +7.9p per $1, up in both weeks), shadow underdog-weather
+#     +$57 (544 bets) and shadow longshot-weather +$29 (507 bets), while sport/finance/other fades drifted to
+#     break-even or worse. Values YES at price x 0.75 below 15c and x 0.85 from 15c (same as the two fades).
+WEATHER_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_hours_to_close=0,
+                    max_hours_to_close=72, series=("KXHIGH", "KXLOWT", "KXTEMP", "KXRAIN"),
+                    shrink_low=0.75, shrink_high=0.85, split=0.15, min_edge_low=0.01, min_edge_high=0.005)
 
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
@@ -290,6 +301,7 @@ STRATEGY_CONFIG = {
     "polymarket": "POLY", "rotten": "ROTTEN",
     "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
     "longshot_prematch": "LONGSHOT_PRE", "underdog_focus": "UNDERDOG_FOCUS",
+    "weather_fade": "WEATHER_FADE",
 }
 
 
