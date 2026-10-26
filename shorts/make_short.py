@@ -42,9 +42,20 @@ def get(url):
 def fetch(days=4, league="eng.1"):
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=days)
-    sb = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/scoreboard?dates={start:%Y%m%d}-{end:%Y%m%d}")
+    events, seen = [], set()
+    for i in range(days + 1):
+        day = start + timedelta(days=i)
+        try:
+            sb = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{league}/scoreboard?dates={day:%Y%m%d}")
+        except Exception as e:
+            print(f"  {day:%Y-%m-%d}: {e}")
+            continue
+        for ev in sb.get("events", []):
+            if ev["id"] not in seen:
+                seen.add(ev["id"])
+                events.append(ev)
     games = []
-    for ev in sb.get("events", []):
+    for ev in events:
         comp = ev["competitions"][0]
         if not comp.get("status", {}).get("type", {}).get("completed"):
             continue
