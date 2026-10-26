@@ -1,0 +1,27 @@
+name: shorts
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+      - run: pip install pillow edge-tts
+      - run: python shorts/make_short.py
+      - name: Save videos to the shorts branch
+        run: |
+          git fetch origin shorts && git show origin/shorts:index.txt > /tmp/index.txt 2>/dev/null || true
+          mkdir /tmp/o && cd /tmp/o && git init -q -b shorts
+          git config user.name shorts && git config user.email shorts@users.noreply.github.com
+          git fetch -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" shorts && git checkout -q FETCH_HEAD -- . 2>/dev/null || true
+          cp $GITHUB_WORKSPACE/shorts/out/*.mp4 $GITHUB_WORKSPACE/shorts/out/*.json .
+          ls *.mp4 > index.txt
+          git add . && git commit -qm "short $(date -u +%F)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:shorts
