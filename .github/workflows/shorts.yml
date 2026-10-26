@@ -1,5 +1,8 @@
 name: shorts
 on:
+  schedule:
+    - cron: "30 7 * * 1"     # Monday morning: Fri-Sun games
+    - cron: "30 7 * * 4"     # Thursday morning: midweek games (skipped if fewer than 3)
   workflow_dispatch:
 permissions:
   contents: write

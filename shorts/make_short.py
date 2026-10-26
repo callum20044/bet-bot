@@ -26,7 +26,7 @@ W, H, FPS = 1080, 1920, 30
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36"}
 VOICE, RATE = "en-GB-RyanNeural", "+16%"
-CHANNEL = os.environ.get("SHORTS_CHANNEL", "stats in 30 seconds")
+CHANNEL = os.environ.get("SHORTS_CHANNEL", "@footyin30")
 ACCENT, WHITE, GREY, GREEN, RED = (255, 204, 0), (248, 248, 252), (200, 204, 220), (90, 235, 150), (255, 95, 95)
 BRAND = [(255, 0, 110), (131, 56, 236), (58, 134, 255), (0, 200, 170), (255, 190, 11)]
 TEAMS = {}       # short name -> dict(abbr, color, alt)
@@ -68,7 +68,7 @@ def _team(t):
     return name
 
 
-def fetch(days=4, league="eng.1"):
+def fetch(days=3, league="eng.1"):
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=days)
     events, seen = [], set()
@@ -129,8 +129,9 @@ def colour(team):
 
 # ------------------------------------------------------------------ story
 def slides(games, table, title="PREMIER LEAGUE"):
-    if not games:
-        raise SystemExit("no finished games in the window")
+    if len(games) < 3:
+        print(f"only {len(games)} finished games in the window - no video this time")
+        sys.exit(0)
     goals = sum(g["hg"] + g["ag"] for g in games)
     big = max(games, key=lambda g: (abs(g["hg"] - g["ag"]), g["hg"] + g["ag"]))
     most = max(games, key=lambda g: (g["hg"] + g["ag"], -abs(g["hg"] - g["ag"])))
@@ -158,8 +159,8 @@ def slides(games, table, title="PREMIER LEAGUE"):
     bot = table[-3:]
     out.append(dict(kind="table", label="DROP ZONE", rows=bot, danger=True, teams=[r["team"] for r in bot],
                     say=f"At the bottom, {bot[-1]['team']} are on {bot[-1]['pts']} points."))
-    out.append(dict(kind="title", big="FOLLOW", small="FOR EVERY WEEKEND IN 30 SECONDS", teams=[],
-                    say="Follow for every weekend in thirty seconds."))
+    out.append(dict(kind="title", big="FOLLOW", small=f"{CHANNEL.upper()} FOR EVERY WEEKEND", teams=[],
+                    say="Follow Footy in 30 for every weekend in thirty seconds."))
     return out
 
 
@@ -405,7 +406,7 @@ def build(sl, name):
                         "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", final], check=True)
     meta = dict(title=f"Premier League weekend in 30 seconds ⚽ {datetime.now(timezone.utc):%d %b %Y}",
                 description="Every Premier League result and the key stats from the weekend, in 30 seconds.\n"
-                            "#PremierLeague #football #shorts",
+                            "#premierleague #football #footy #footballtiktok #pl #epl #shorts",
                 script=[s["say"] for s in sl], voiced=voiced, length=round(total, 1))
     json.dump(meta, open(os.path.join(OUT, f"{name}.json"), "w"), indent=1, ensure_ascii=False)
     print(f"made {final} ({meta['length']}s, voice-over {'yes' if voiced else 'no'})")
