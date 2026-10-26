@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
-      - run: pip install pillow edge-tts
+      - run: pip install pillow edge-tts numpy
       - run: mkdir -p shorts/out && python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
         shell: bash
       - name: Save videos to the shorts branch
