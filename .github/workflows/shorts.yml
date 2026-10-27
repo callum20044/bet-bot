@@ -4,6 +4,11 @@ on:
     - cron: "30 7 * * 1"     # Monday morning: Fri-Sun games
     - cron: "30 7 * * 4"     # Thursday morning: midweek games (skipped if fewer than 3)
   workflow_dispatch:
+    inputs:
+      test_upload:
+        description: "Only re-upload the newest existing video to YouTube as PRIVATE (connection test)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 jobs:
@@ -17,8 +22,25 @@ jobs:
           python-version: "3.12"
       - run: sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
       - run: pip install pillow edge-tts numpy
-      - run: mkdir -p shorts/out && python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
+      - name: Make the video
+        if: ${{ github.event.inputs.test_upload != 'true' }}
+        run: mkdir -p shorts/out && python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
         shell: bash
+      - name: (test) fetch the newest existing video
+        if: ${{ github.event.inputs.test_upload == 'true' }}
+        run: |
+          mkdir -p shorts/out && git fetch -q origin shorts
+          f=$(git ls-tree --name-only origin/shorts | grep '^pl_.*mp4$' | sort | tail -1)
+          git show origin/shorts:$f > shorts/out/$f && git show origin/shorts:${f%.mp4}.json > shorts/out/${f%.mp4}.json
+          git show origin/shorts:log.txt > shorts/out/log.txt || true
+      - name: Upload to YouTube
+        run: python shorts/upload_youtube.py 2>&1 | tee -a shorts/out/log.txt; exit ${PIPESTATUS[0]}
+        shell: bash
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_PRIVACY: ${{ github.event.inputs.test_upload == 'true' && 'private' || 'public' }}
       - name: Save videos to the shorts branch
         if: always()
         run: |
