@@ -33,7 +33,8 @@ jobs:
           f=$(git ls-tree --name-only origin/shorts | grep '^pl_.*mp4$' | sort | tail -1)
           git show origin/shorts:$f > shorts/out/$f && git show origin/shorts:${f%.mp4}.json > shorts/out/${f%.mp4}.json
           git show origin/shorts:log.txt > shorts/out/log.txt || true
-      - name: Upload to YouTube
+      - name: Upload to YouTube (only if YT_UPLOAD variable is "on"; off for now - Callum posts manually)
+        if: ${{ vars.YT_UPLOAD == 'on' }}
         run: python shorts/upload_youtube.py 2>&1 | tee -a shorts/out/log.txt; exit ${PIPESTATUS[0]}
         shell: bash
         env:
