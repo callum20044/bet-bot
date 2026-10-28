@@ -22,7 +22,7 @@ def env(k):
 
 def check():
     cid, sec, ref = env("YT_CLIENT_ID"), env("YT_CLIENT_SECRET"), env("YT_REFRESH_TOKEN")
-    print(f"YT_CLIENT_ID: {cid}  (length {len(cid)}, looks right: {cid.endswith('.apps.googleusercontent.com')})")
+    print(f"YT_CLIENT_ID: length {len(cid)} (looks right: {cid.endswith('.apps.googleusercontent.com')})")
     print(f"YT_CLIENT_SECRET: starts {sec[:7]!r}, length {len(sec)} (looks right: {sec.startswith('GOCSPX-')})")
     print(f"YT_REFRESH_TOKEN: starts {ref[:3]!r}, length {len(ref)} (looks right: {ref.startswith('1//')})")
 
