@@ -16,9 +16,20 @@ import urllib.request
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
 
+def env(k):
+    return os.environ.get(k, "").strip().strip('"').strip("'")
+
+
+def check():
+    cid, sec, ref = env("YT_CLIENT_ID"), env("YT_CLIENT_SECRET"), env("YT_REFRESH_TOKEN")
+    print(f"YT_CLIENT_ID: {cid}  (length {len(cid)}, looks right: {cid.endswith('.apps.googleusercontent.com')})")
+    print(f"YT_CLIENT_SECRET: starts {sec[:7]!r}, length {len(sec)} (looks right: {sec.startswith('GOCSPX-')})")
+    print(f"YT_REFRESH_TOKEN: starts {ref[:3]!r}, length {len(ref)} (looks right: {ref.startswith('1//')})")
+
+
 def token():
-    data = urllib.parse.urlencode({"client_id": os.environ["YT_CLIENT_ID"], "client_secret": os.environ["YT_CLIENT_SECRET"],
-                                   "refresh_token": os.environ["YT_REFRESH_TOKEN"], "grant_type": "refresh_token"}).encode()
+    data = urllib.parse.urlencode({"client_id": env("YT_CLIENT_ID"), "client_secret": env("YT_CLIENT_SECRET"),
+                                   "refresh_token": env("YT_REFRESH_TOKEN"), "grant_type": "refresh_token"}).encode()
     with urllib.request.urlopen("https://oauth2.googleapis.com/token", data, timeout=30) as r:
         return json.load(r)["access_token"]
 
@@ -58,6 +69,7 @@ if __name__ == "__main__":
     if not vids:
         print("no video made this run - nothing to upload")
         sys.exit(0)
+    check()
     try:
         upload(vids[-1])
     except urllib.error.HTTPError as e:
