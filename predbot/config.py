@@ -266,6 +266,15 @@ WEATHER_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_h
                     max_hours_to_close=72, series=("KXHIGH", "KXLOWT", "KXTEMP", "KXRAIN"),
                     shrink_low=0.75, shrink_high=0.85, split=0.15, min_edge_low=0.01, min_edge_high=0.005)
 
+# ----- 39: added 2 Nov (weekly review) -----
+# 39. Underdog day-ahead: the underdog fade (NO on YES 15-30c) on SPORT markets only, placed 12-24 hours before
+#     the market is expected to settle - i.e. the evening before / morning of the game, well before kick-off.
+#     underdog's 1,412 settled sport bets split by time-to-settle: 12-24h +$106 (288 bets, +7.8p per $1, t=2.4,
+#     up in every week so far), while 3.5-12h lost $80 (486 bets) and 24-72h was flat. underdog is often full,
+#     so this gives the best slice its own room. Pre-match only (12h+ out is before kick-off for every sport).
+UNDERDOG_DAYAHEAD = dict(enabled=True, max_open=20, yes_min=0.15, yes_max=0.30, min_hours_to_close=12,
+                         max_hours_to_close=24, shrink=0.85, min_edge=0.005)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -301,7 +310,7 @@ STRATEGY_CONFIG = {
     "polymarket": "POLY", "rotten": "ROTTEN",
     "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
     "longshot_prematch": "LONGSHOT_PRE", "underdog_focus": "UNDERDOG_FOCUS",
-    "weather_fade": "WEATHER_FADE",
+    "weather_fade": "WEATHER_FADE", "underdog_dayahead": "UNDERDOG_DAYAHEAD",
 }
 
 

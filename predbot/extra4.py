@@ -16,6 +16,10 @@ Added 25 Oct:
 Added 26 Oct (weekly review):
   weather_fade   - NO on weather markets (temperature bins, rain) with YES at 5-30c, up to 3 days out.
                    Weather is the one topic where fading has paid in real bets and in both shadow families.
+
+Added 2 Nov (weekly review):
+  underdog_dayahead - underdog fade on sport markets only, 12-24h before they settle (pre-match). The one
+                   time-window of underdog's sport bets that has made money every week (+7.8p per $1, 288 bets).
 """
 from . import config
 from .extra import _edge, ladder_smooth
@@ -103,7 +107,16 @@ def weather_fade(m, now, broker):
                   f"weather: YES at {mid*100:.0f}c, {h:.0f}h out; est NO {est_no*100:.1f}%")
 
 
-PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus, weather_fade]
+def underdog_dayahead(m, now, broker):
+    """(2 Nov) underdog fade, SPORT markets only, 12-24h before settling - see config.UNDERDOG_DAYAHEAD.
+    Needs a real two-sided book (an empty book shows bid 0 / ask $1)."""
+    from .shadow import is_sport
+    if not is_sport(m) or not m.yes_bid or m.yes_ask is None or m.yes_ask >= 0.99:
+        return None
+    return _fade(m, now, config.UNDERDOG_DAYAHEAD, "underdog_dayahead")
+
+
+PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus, weather_fade, underdog_dayahead]
 
 
 def group_signals(tradable, now):
