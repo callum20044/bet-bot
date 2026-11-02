@@ -104,11 +104,13 @@ def step(source, broker, verbose=True):
 
     open_rows = broker.open_trades()
     open_tickers = {r["ticker"] for r in open_rows}
-    open_events, by_strat = {}, {}
+    open_events, by_strat, by_game = {}, {}, {}
     for r in open_rows:
         ek = (r["strategy"], r["event_ticker"])
         open_events[ek] = open_events.get(ek, 0) + 1
         by_strat[r["strategy"]] = by_strat.get(r["strategy"], 0) + 1
+        gk = (r["strategy"], _game(r["event_ticker"]))
+        by_game[gk] = by_game.get(gk, 0) + 1
 
     placed = 0
     if config.ARB["enabled"]:
@@ -131,6 +133,10 @@ def step(source, broker, verbose=True):
             placed += len(b.legs)
             print(f"  ARB  {n:4d} sets, locked profit ~${b.profit(n):.2f}  [{b.kind}] {b.legs[0][0].title[:50]}  ({b.note})")
     for s in signals:
+        cap = _game_cap(s.strategy)      # (2 Nov) optional per-game cap: props/spreads/totals of one match are one bet
+        gk = (s.strategy, _game(s.market.event_ticker))
+        if cap and by_game.get(gk, 0) >= cap:
+            continue
         n, why = risk.size_and_check(s, broker, now, open_tickers, open_events, len(open_tickers), by_strat)
         if not n:
             if why in ("max open positions", "daily loss limit hit"):
@@ -142,6 +148,7 @@ def step(source, broker, verbose=True):
             ek = (s.strategy, s.market.event_ticker)
             open_events[ek] = open_events.get(ek, 0) + 1
             by_strat[s.strategy] = by_strat.get(s.strategy, 0) + 1
+            by_game[gk] = by_game.get(gk, 0) + 1
             print(f"  BUY  {n:4d} x {s.side.upper():3} @ {s.price*100:4.1f}c  edge {s.edge*100:4.1f}c  "
                   f"[{s.strategy}] {s.market.title[:50]}  ({s.reason})")
 
@@ -155,6 +162,17 @@ def step(source, broker, verbose=True):
     if verbose:
         print(f"[{now:%Y-%m-%d %H:%M}] markets {len(markets)}, tradable {len(tradable)}, signals {len(signals)}, "
               f"new bets {placed}, open {len(open_tickers)} | cash ${broker.cash():,.2f}  equity ${broker.equity():,.2f}")
+
+
+def _game(event_ticker):
+    """The match/day part of an event ticker: KXNFLTD-26NOV02CHISEA and KXNFLSPREAD-26NOV02CHISEA -> 26NOV02CHISEA."""
+    parts = event_ticker.split("-", 1)
+    return parts[1] if len(parts) > 1 else event_ticker
+
+
+def _game_cap(strategy):
+    block = getattr(config, config.STRATEGY_CONFIG.get(strategy, ""), None)
+    return block.get("max_per_game") if isinstance(block, dict) else None
 
 
 def main():

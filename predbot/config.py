@@ -272,8 +272,10 @@ WEATHER_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_h
 #     underdog's 1,412 settled sport bets split by time-to-settle: 12-24h +$106 (288 bets, +7.8p per $1, t=2.4,
 #     up in every week so far), while 3.5-12h lost $80 (486 bets) and 24-72h was flat. underdog is often full,
 #     so this gives the best slice its own room. Pre-match only (12h+ out is before kick-off for every sport).
+#     max_per_game=2: its first scan put 9 of its 20 bets on one NFL game (spread, total, player props) -
+#     those all ride on the same match, so at most 2 bets per game.
 UNDERDOG_DAYAHEAD = dict(enabled=True, max_open=20, yes_min=0.15, yes_max=0.30, min_hours_to_close=12,
-                         max_hours_to_close=24, shrink=0.85, min_edge=0.005)
+                         max_hours_to_close=24, shrink=0.85, min_edge=0.005, max_per_game=2)
 
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
