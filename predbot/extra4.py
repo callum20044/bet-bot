@@ -20,6 +20,10 @@ Added 26 Oct (weekly review):
 Added 2 Nov (weekly review):
   underdog_dayahead - underdog fade on sport markets only, 12-24h before they settle (pre-match). The one
                    time-window of underdog's sport bets that has made money every week (+7.8p per $1, 288 bets).
+
+Added 9 Nov (weekly review):
+  finance_fade   - NO on finance markets with YES at 5-30c, 1-6 days before they settle. The shadow variants'
+                   best topic/time pocket (412 bets, +$75, t=2.0, both fade families, every week).
 """
 from . import config
 from .extra import _edge, ladder_smooth
@@ -116,7 +120,37 @@ def underdog_dayahead(m, now, broker):
     return _fade(m, now, config.UNDERDOG_DAYAHEAD, "underdog_dayahead")
 
 
-PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus, weather_fade, underdog_dayahead]
+def finance_fade(m, now, broker):
+    """(9 Nov) Fade finance long shots and underdogs 24-144h out - see config.FINANCE_FADE.
+    Finance = the shadow variants' 'finance' topic (crypto, stock index, commodity, FX, Fed, GDP, jobs series).
+    Skips 'touch' series (MIN/MAX: will the price ever reach X) and needs a real two-sided book.
+    YES 5-30c valued at price x 0.75 (<15c) or x 0.85 (15c+), the same as the two fade families."""
+    c = config.FINANCE_FADE
+    if not c["enabled"] or m.yes_mid is None or m.no_ask is None:
+        return None
+    from .shadow import topic
+    series = m.event_ticker.split("-")[0]
+    if topic(m) != "finance" or any(w in series for w in c["skip_series_words"]):
+        return None
+    if not m.yes_bid or m.yes_ask is None or m.yes_ask >= 0.99:   # empty book shows bid 0 / ask $1
+        return None
+    h = m.hours_to_close(now)
+    if h is None or not (c["min_hours_to_close"] < h <= c["max_hours_to_close"]):
+        return None
+    mid = round(m.yes_mid, 4)
+    if not (c["yes_min"] <= mid <= c["yes_max"]):
+        return None
+    low = mid < c["split"]
+    est_no = 1 - mid * (c["shrink_low"] if low else c["shrink_high"])
+    e = _edge(est_no, m.no_ask)
+    if e < (c["min_edge_low"] if low else c["min_edge_high"]):
+        return None
+    return Signal(m, "no", m.no_ask, est_no, e, "finance_fade",
+                  f"finance: YES at {mid*100:.0f}c, {h:.0f}h out; est NO {est_no*100:.1f}%")
+
+
+PER_MARKET = [underdog_long, longshot_long, longshot_prematch, underdog_focus, weather_fade, underdog_dayahead,
+              finance_fade]
 
 
 def group_signals(tradable, now):

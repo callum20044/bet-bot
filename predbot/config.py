@@ -277,6 +277,19 @@ WEATHER_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_h
 UNDERDOG_DAYAHEAD = dict(enabled=True, max_open=20, yes_min=0.15, yes_max=0.30, min_hours_to_close=12,
                          max_hours_to_close=24, shrink=0.85, min_edge=0.005, max_per_game=2)
 
+# ----- 40: added 9 Nov (weekly review) -----
+# 40. Finance fade, 1-6 days out: NO on finance markets (crypto/stock/commodity price brackets, Fed, GDP...) where
+#     YES is 5-30c and the market settles 24-144 hours away. The shadow variants found this pocket in BOTH fade
+#     families and BOTH time windows: longshot-finance 24-72h +$24 (131 bets), 72-144h +$10 (60); underdog-finance
+#     24-72h +$28 (148), 72-144h +$13 (73) - 412 bets, +$75, +3.9p per $1, t=2.0, up in each of the last 3 weeks
+#     and spread over 30+ series. The same fades under 24h out lost (-$97, 1,183 bets), so it stops at 24h.
+#     Skips 'touch' markets (will BTC hit/dip to X this month - series with MIN/MAX): they lost -$64 on 37 bets.
+#     max_per_game=2: BTC and ETH hourly brackets for the same hour share a game key, so at most 2 per hour.
+FINANCE_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_hours_to_close=24,
+                    max_hours_to_close=144, skip_series_words=("MIN", "MAX"),
+                    shrink_low=0.75, shrink_high=0.85, split=0.15, min_edge_low=0.01, min_edge_high=0.005,
+                    max_per_game=2)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -313,6 +326,7 @@ STRATEGY_CONFIG = {
     "underdog_long": "UNDERDOG_LONG", "longshot_long": "LONGSHOT_LONG", "ladder3": "LADDER3",
     "longshot_prematch": "LONGSHOT_PRE", "underdog_focus": "UNDERDOG_FOCUS",
     "weather_fade": "WEATHER_FADE", "underdog_dayahead": "UNDERDOG_DAYAHEAD",
+    "finance_fade": "FINANCE_FADE",
 }
 
 
