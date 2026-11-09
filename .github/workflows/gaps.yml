@@ -1,0 +1,28 @@
+name: gaps
+on:
+  schedule:
+    - cron: "17 9,17 * * *"     # twice a day, keeps inside the free 500 credits/month (3 leagues x 2 markets)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: gaps
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load saved state
+        run: |
+          git fetch -q origin gaps 2>/dev/null && git checkout -q origin/gaps -- gaps_state.json gaps_log.csv 2>/dev/null || echo "first run"
+      - run: python gaps/gap_bot.py 2>&1 | tee run.txt
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      - name: Save results
+        if: always()
+        run: |
+          mkdir /tmp/out && cp gaps.md gaps_state.json gaps_log.csv run.txt /tmp/out/ 2>/dev/null; cd /tmp/out
+          git init -q -b gaps
+          git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm results
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" gaps
