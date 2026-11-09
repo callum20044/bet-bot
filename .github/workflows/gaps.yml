@@ -21,7 +21,7 @@ jobs:
       - name: Save results
         if: always()
         run: |
-          mkdir /tmp/out && cp gaps.md gaps_state.json gaps_log.csv run.txt /tmp/out/ 2>/dev/null; cd /tmp/out
+          mkdir /tmp/out && cp gaps.md gaps_state.json gaps_log.csv run.txt /tmp/out/ 2>/dev/null || true; cd /tmp/out
           git init -q -b gaps
           git config user.name bot && git config user.email bot@users.noreply.github.com
           git add . && git commit -qm results
