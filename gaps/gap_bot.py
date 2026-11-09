@@ -20,12 +20,12 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 
-SPORTS = ["soccer_epl", "soccer_efl_champ", "soccer_uefa_champs_league"]
+SPORTS = ["soccer_epl", "soccer_efl_champ"]   # shares the free key with the Pinnacle bot, so kept small
 COMM = 0.05            # Betfair Exchange commission on net winnings
 STAKE = 100.0          # pretend bookie-side stake per gap
 MIN_PCT = 0.5          # only log gaps worth at least 0.5% of the stake
 MAX_ODDS = 15.0        # ignore long shots (stale prices, tiny liquidity)
-KEEP_CREDITS = 40      # stop using the free allowance when it gets this low
+KEEP_CREDITS = 150       # leave plenty for the Pinnacle bot (it uses ~350 a month)
 STATE, LOG, REPORT = "gaps_state.json", "gaps_log.csv", "gaps.md"
 NOW = datetime.now(timezone.utc)
 

@@ -1,7 +1,7 @@
 name: gaps
 on:
   schedule:
-    - cron: "17 9,17 * * *"     # twice a day, keeps inside the free 500 credits/month (3 leagues x 2 markets)
+    - cron: "17 16 * * *"     # once a day, 2 leagues x 2 markets = ~120 credits a month (key shared with the Pinnacle bot)
   workflow_dispatch:
 permissions:
   contents: write
