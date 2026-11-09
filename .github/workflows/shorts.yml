@@ -3,6 +3,7 @@ on:
   schedule:
     - cron: "30 7 * * 1"     # Monday morning: Fri-Sun games
     - cron: "30 7 * * 4"     # Thursday morning: midweek games (skipped if fewer than 3)
+    - cron: "30 10 * * 1,4"  # backup run in case GitHub skips the early one (does nothing if today's video exists)
   workflow_dispatch:
     inputs:
       test_upload:
@@ -24,7 +25,13 @@ jobs:
       - run: pip install pillow edge-tts numpy
       - name: Make the video
         if: ${{ github.event.inputs.test_upload != 'true' }}
-        run: mkdir -p shorts/out && python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
+        run: |
+          mkdir -p shorts/out
+          git fetch -q origin shorts || true
+          if git ls-tree --name-only origin/shorts 2>/dev/null | grep -q "pl_$(date -u +%Y%m%d).mp4"; then
+            echo "today's video already made - nothing to do" | tee shorts/out/log.txt; exit 0
+          fi
+          python shorts/make_short.py 2>&1 | tee shorts/out/log.txt; exit ${PIPESTATUS[0]}
         shell: bash
       - name: (test) fetch the newest existing video
         if: ${{ github.event.inputs.test_upload == 'true' }}
