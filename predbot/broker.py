@@ -119,8 +119,11 @@ class PaperBroker:
                 won = m.result == t["side"]
                 payout = float(t["contracts"]) if won else 0.0
                 status = "won" if won else "lost"
-            elif m.status in ("settled", "finalized") and not m.result:
-                payout, status = t["cost"] + t["fee"], "void"     # cancelled market: refund
+            elif m.status in ("settled", "finalized") or m.result == "void":
+                # (12 Nov) cancelled / voided market: refund. This used to require an EMPTY result, but Kalshi
+                # marks these with a non-yes/no result (e.g. "scalar"), so such bets stayed "open" for ever and
+                # their stake stayed locked. Same rule the shadow bets already use.
+                payout, status = t["cost"] + t["fee"], "void"
             else:
                 continue   # closed but not resolved yet
             self.db.execute("UPDATE trades SET status=?, payout=?, settled_at=?, mark=NULL WHERE id=?",
