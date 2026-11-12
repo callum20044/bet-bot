@@ -14,7 +14,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Load saved state
         run: |
-          git fetch -q origin gaps 2>/dev/null && git checkout -q FETCH_HEAD -- gaps_state.json; git checkout -q FETCH_HEAD -- gaps_log.csv 2>/dev/null 2>/dev/null || echo "first run"
+          # (12 Nov) stop (red X) if the saved branch can't be fetched, rather than starting from scratch and
+          # overwriting the saved gap history with an empty one
+          ok=""; for i in 1 2 3; do if git fetch -q origin gaps; then ok=1; break; fi; sleep 15; done
+          [ -n "$ok" ] || { echo "::error::could not fetch saved state - stopping so nothing gets overwritten"; exit 1; }
+          git checkout -q FETCH_HEAD -- gaps_state.json
+          git checkout -q FETCH_HEAD -- gaps_log.csv 2>/dev/null || echo "no gaps logged yet"
       - run: python gaps/gap_bot.py 2>&1 | tee run.txt
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}

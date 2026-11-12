@@ -32,10 +32,21 @@ jobs:
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git clone --quiet --depth 1 --branch data "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" prev 2>/dev/null; then
-            cp prev/predbot.db predbot.db && echo "Loaded previous results"
-          else
+          # (12 Nov) Only start fresh if the data branch truly doesn't exist. Before, ANY failed download (a
+          # GitHub hiccup) counted as "no previous results", and the run then overwrote the whole betting
+          # history with a brand-new empty database.
+          url="https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          rc=0; git ls-remote --exit-code --heads "$url" data >/dev/null 2>&1 || rc=$?
+          if [ "$rc" = "2" ]; then
             echo "No previous results yet - starting fresh with \$1,000 paper money"
+          else
+            ok=""; for i in 1 2 3; do
+              rm -rf prev
+              if git clone --quiet --depth 1 --branch data "$url" prev 2>/dev/null && [ -s prev/predbot.db ]; then ok=1; break; fi
+              sleep 15
+            done
+            [ -n "$ok" ] || { echo "::error::could not load previous results - stopping so the saved history is not overwritten"; exit 1; }
+            cp prev/predbot.db predbot.db && echo "Loaded previous results"
           fi
 
       - name: Load recent price history
