@@ -1,0 +1,13 @@
+soccer_epl: HTTP 502
+soccer_efl_champ: 12 matches, credits left 323
+0 new gaps
+# Betfair vs bookies gap bot (paper mode)
+
+Updated 2026-11-13 22:00 UTC.
+
+Runs: 5 · match checks: 140 · free credits left this month: 323
+
+**Gaps found: 0** (0 back/lay, 0 bookie-vs-bookie) · pretend locked-in profit if each was taken once: **£0.00**
+
+Still there on a later check (more likely to be real, not a stale price): 0
+
