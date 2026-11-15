@@ -19,7 +19,7 @@ def req(url, data=None, headers=None):
 
 try:
     ip = req("https://ipinfo.io/json")
-    print("runner location:", ip.get("country"), ip.get("region"))
+    print("runner location:", ip.get("country"), ip.get("region"), "(Betfair calls go via the UK server tunnel when it is open)")
 except Exception as e:
     print("location lookup failed:", e)
 
