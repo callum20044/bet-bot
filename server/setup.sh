@@ -60,11 +60,15 @@ echo "tunnel secrets saved to GitHub (bet-bot)"
 echo "== clock: start the bots on time"
 cat > /opt/roundtable-run <<'RUN'
 #!/usr/bin/env bash
-# start one GitHub workflow (log times are UK time): roundtable-run <repo> <workflow file>
+# start one GitHub workflow (log times are UK time): roundtable-run <repo> <workflow file> [input=value ...]
 export GH_TOKEN="$(cat /etc/roundtable/token)"
-gh workflow run "$2" -R "callum20044/$1" >/dev/null 2>&1 \
-  && echo "$(date +%FT%H:%M) started $1/$2" >> /var/log/roundtable.log \
-  || echo "$(date +%FT%H:%M) FAILED $1/$2" >> /var/log/roundtable.log
+repo="$1"; wf="$2"; shift 2
+args=(); for kv in "$@"; do args+=(-f "$kv"); done
+if out=$(gh workflow run "$wf" -R "callum20044/$repo" "${args[@]}" 2>&1); then
+  echo "$(date +%FT%H:%M) started $repo/$wf $*" >> /var/log/roundtable.log
+else
+  echo "$(date +%FT%H:%M) FAILED $repo/$wf: $(echo "$out" | tr '\n' ' ' | cut -c1-200)" >> /var/log/roundtable.log
+fi
 RUN
 chmod 755 /opt/roundtable-run
 cat > /etc/cron.d/roundtable <<'CRON'
@@ -74,9 +78,9 @@ SHELL=/bin/bash
 7 * * * 1-5    root /opt/roundtable-run swing-bot cfd-trader.yml
 7 22,23 * * 0  root /opt/roundtable-run swing-bot cfd-trader.yml
 17 */2 * * *   root /opt/roundtable-run swing-bot deals.yml
-40 14 * * 1-5  root /opt/roundtable-run swing-bot swing-bot.yml
-40 15 * * 1-5  root /opt/roundtable-run swing-bot swing-bot.yml
-25 9,13 * * 1-5 root /opt/roundtable-run swing-bot gold-bot.yml
+40 14 * * 1-5  root /opt/roundtable-run swing-bot swing-bot.yml test_run=false
+40 15 * * 1-5  root /opt/roundtable-run swing-bot swing-bot.yml test_run=false
+25 9,13 * * 1-5 root /opt/roundtable-run swing-bot gold-bot.yml test_run=false
 23 6 * * *     root /opt/roundtable-run swing-bot cfd-factory.yml
 41 6 * * *     root /opt/roundtable-run swing-bot funding.yml
 17 16 * * *    root /opt/roundtable-run bet-bot gaps.yml
@@ -85,5 +89,5 @@ CRON
 chmod 644 /etc/cron.d/roundtable
 systemctl restart cron
 echo
-echo "ALL DONE - server $IP is set up. Starting one Kalshi scan now as a test..."
-/opt/roundtable-run bet-bot scan.yml; tail -1 /var/log/roundtable.log
+echo "ALL DONE - server $IP is set up. Test-starting one bot in each repo..."
+/opt/roundtable-run bet-bot scan.yml; /opt/roundtable-run swing-bot deals.yml; tail -2 /var/log/roundtable.log
