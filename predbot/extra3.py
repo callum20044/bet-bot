@@ -33,7 +33,9 @@ def get(url, as_json=False):
     if url in _cache:
         return _cache[url]
     try:
-        req = urllib.request.Request(url, headers=UA)
+        # (16 Nov) Polymarket's API answers 406 'Not Acceptable' to the browser-style Accept header - ask for JSON
+        hdr = dict(UA, Accept="application/json") if as_json else UA
+        req = urllib.request.Request(url, headers=hdr)
         with urllib.request.urlopen(req, timeout=25) as r:
             body = r.read().decode("utf-8", "replace")
         val = json.loads(body) if as_json else body
