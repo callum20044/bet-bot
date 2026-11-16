@@ -63,8 +63,10 @@ cat > /opt/roundtable-run <<'RUN'
 # start one GitHub workflow (log times are UK time): roundtable-run <repo> <workflow file> [input=value ...]
 export GH_TOKEN="$(cat /etc/roundtable/token)"
 repo="$1"; wf="$2"; shift 2
-args=(); for kv in "$@"; do args+=(-f "$kv"); done
-if out=$(gh workflow run "$wf" -R "callum20044/$repo" "${args[@]}" 2>&1); then
+args=(-f ref=main); for kv in "$@"; do args+=(-f "inputs[${kv%%=*}]=${kv#*=}"); done
+# REST call (needs only Actions: write) - "gh workflow run" also looks up the default branch, which a
+# fine-grained token can't read on a private repo without Contents permission
+if out=$(gh api -X POST "repos/callum20044/$repo/actions/workflows/$wf/dispatches" "${args[@]}" 2>&1); then
   echo "$(date +%FT%H:%M) started $repo/$wf $*" >> /var/log/roundtable.log
 else
   echo "$(date +%FT%H:%M) FAILED $repo/$wf: $(echo "$out" | tr '\n' ' ' | cut -c1-200)" >> /var/log/roundtable.log
