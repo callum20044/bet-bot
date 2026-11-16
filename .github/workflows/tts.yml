@@ -1,0 +1,41 @@
+name: tts
+# One-off voiceovers: input = lines separated by "|", output = line01.mp3, line02.mp3 ... on the `tts` branch.
+on:
+  workflow_dispatch:
+    inputs:
+      lines:
+        description: "Lines to speak, separated by |"
+        required: true
+      voice:
+        default: en-GB-RyanNeural
+      rate:
+        default: "+8%"
+permissions:
+  contents: write
+jobs:
+  speak:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q edge-tts
+      - name: Speak
+        env:
+          LINES: ${{ inputs.lines }}
+          VOICE: ${{ inputs.voice }}
+          RATE: ${{ inputs.rate }}
+        run: |
+          mkdir out && cd out
+          python - <<'PY'
+          import os, subprocess
+          for i, t in enumerate([x.strip() for x in os.environ["LINES"].split("|") if x.strip()], 1):
+              subprocess.run(["edge-tts", "--voice", os.environ["VOICE"], f"--rate={os.environ['RATE']}", "--text", t,
+                              "--write-media", f"line{i:02d}.mp3"], check=True)
+          PY
+          ls -la
+      - name: Save
+        run: |
+          cd out && git init -q -b tts && git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm voice && git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" tts
