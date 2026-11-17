@@ -299,8 +299,19 @@ def layer(s, t, idx, n):
 
 # ------------------------------------------------------------------ audio
 async def _tts(text, path):
+    """The free voice service sometimes returns no audio (seen 17 Nov) - retry a few times before giving up."""
+    import asyncio
     import edge_tts
-    await edge_tts.Communicate(text, VOICE, rate=RATE).save(path)
+    last = None
+    for attempt in range(6):
+        try:
+            await edge_tts.Communicate(text, VOICE, rate=RATE).save(path)
+            if os.path.exists(path) and os.path.getsize(path) > 1000:
+                return
+        except Exception as e:          # NoAudioReceived and network blips
+            last = e
+        await asyncio.sleep(5 + attempt * 5)
+    raise RuntimeError(f"no voice audio after 6 tries: {last}")
 
 
 def duration(path):
