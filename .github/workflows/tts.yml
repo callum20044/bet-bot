@@ -29,10 +29,16 @@ jobs:
         run: |
           mkdir out && cd out
           python - <<'PY'
-          import os, subprocess
+          import os, subprocess, time
           for i, t in enumerate([x.strip() for x in os.environ["LINES"].split("|") if x.strip()], 1):
-              subprocess.run(["edge-tts", "--voice", os.environ["VOICE"], f"--rate={os.environ['RATE']}", "--text", t,
-                              "--write-media", f"line{i:02d}.mp3"], check=True)
+              for attempt in range(6):          # the free voice service sometimes returns no audio - retry
+                  r = subprocess.run(["edge-tts", "--voice", os.environ["VOICE"], f"--rate={os.environ['RATE']}", "--text", t,
+                                      "--write-media", f"line{i:02d}.mp3"])
+                  if r.returncode == 0 and os.path.getsize(f"line{i:02d}.mp3") > 1000:
+                      break
+                  time.sleep(5 + attempt * 5)
+              else:
+                  raise SystemExit(f"line {i}: no audio after 6 tries")
           PY
           ls -la
       - name: Save
