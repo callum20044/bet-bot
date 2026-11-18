@@ -92,3 +92,39 @@ jobs:
         id: deploy
         uses: actions/deploy-pages@v4
         continue-on-error: true
+
+  # (18 Nov) Horse racing paper bots on Betfair - separate job, so a Betfair problem never stops the Kalshi scan
+  horses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load saved state
+        run: |
+          rc=0; git ls-remote --exit-code --heads origin horses >/dev/null 2>&1 || rc=$?
+          if [ "$rc" = "2" ]; then echo "first run - starting fresh"; exit 0; fi
+          ok=""; for i in 1 2 3; do if git fetch -q origin horses; then ok=1; break; fi; sleep 15; done
+          [ -n "$ok" ] || { echo "::error::could not fetch saved state - stopping so nothing gets overwritten"; exit 1; }
+          git checkout -q FETCH_HEAD -- horses_state.json
+          git checkout -q FETCH_HEAD -- horses_bets.csv 2>/dev/null || echo "no settled bets yet"
+      - name: Open the UK tunnel to Betfair (Oracle server, London)
+        run: bash .github/betfair-tunnel.sh
+        env:
+          BF_HOST: ${{ secrets.BETFAIR_SSH_HOST }}
+          BF_KEY: ${{ secrets.BETFAIR_SSH_KEY }}
+          BF_HOSTKEY: ${{ secrets.BETFAIR_SSH_HOSTKEY }}
+      - run: python horses/horse_bot.py 2>&1 | tee run.txt
+        env:
+          BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
+          BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
+          BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
+      - name: Save results
+        run: |
+          mkdir /tmp/out && cp horses.md horses_state.json run.txt /tmp/out/ && { cp horses_bets.csv /tmp/out/ 2>/dev/null || true; }
+          cd /tmp/out && git init -q -b horses
+          git config user.name bot && git config user.email bot@users.noreply.github.com
+          git add . && git commit -qm "horses $(date -u +%H:%M)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" horses
