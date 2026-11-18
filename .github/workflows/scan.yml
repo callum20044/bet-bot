@@ -100,7 +100,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        kind: [horses, dogs]
+        kind: [horses, dogs, football]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -121,7 +121,12 @@ jobs:
           BF_HOST: ${{ secrets.BETFAIR_SSH_HOST }}
           BF_KEY: ${{ secrets.BETFAIR_SSH_KEY }}
           BF_HOSTKEY: ${{ secrets.BETFAIR_SSH_HOSTKEY }}
-      - run: python horses/horse_bot.py ${{ matrix.kind }} 2>&1 | tee run.txt
+      - name: Pinnacle odds from the Kalshi bot (football only, no extra credits)
+        if: matrix.kind == 'football'
+        run: git fetch -q --depth 1 origin data && git show FETCH_HEAD:predbot.db > predbot.db || echo "no Pinnacle odds this run"
+      - run: |
+          if [ "${{ matrix.kind }}" = football ]; then python horses/football_bot.py 2>&1 | tee run.txt
+          else python horses/horse_bot.py ${{ matrix.kind }} 2>&1 | tee run.txt; fi
         env:
           BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
           BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
