@@ -1,7 +1,8 @@
 """Betfair vs bookies gap bot (paper mode, pretend money only).
 
-Every run it pulls football odds from The Odds API (UK region: Bet365, Sky Bet, William Hill, Paddy Power,
-Betfair Exchange back + lay prices, etc.) and looks for two kinds of locked-in profit:
+Every run it pulls bookie odds from The Odds API (UK region: Bet365, Sky Bet, William Hill, Paddy Power, etc.)
+and live lay prices straight from Betfair Exchange (gaps/betfair.py, through the UK server tunnel; since 18 Nov),
+then looks for two kinds of locked-in profit:
 
   BACK/LAY : back a result at a bookie, lay the same result on Betfair Exchange (5% commission on winnings)
   BOOKIES  : back all three results (home / draw / away) at different bookies so every outcome pays
@@ -9,10 +10,12 @@ Betfair Exchange back + lay prices, etc.) and looks for two kinds of locked-in p
 Each gap is sized as if we had £100 to put on the bookie side, and the guaranteed profit is logged.
 Paper only: nothing is ever bet. Needs secret ODDS_API_KEY (free tier = 500 credits a month); the bot
 reads the remaining credits from the API and skips runs when they run low. Never prints the key.
-Caveat: the API gives no Betfair liquidity, so small gaps may not have had enough money behind them.
+Betfair also says how much money is waiting at each lay price, so every back/lay gap records whether there was
+enough to cover the lay ("covered"). If Betfair can't be reached, the run still does the bookie-vs-bookie check.
 Files (gaps branch): gaps.md (report), gaps_log.csv (every gap), gaps_state.json.
 """
 import csv
+import sys
 import json
 import os
 import urllib.error
@@ -26,12 +29,13 @@ STAKE = 100.0          # pretend bookie-side stake per gap
 MIN_PCT = 0.5          # only log gaps worth at least 0.5% of the stake
 MAX_ODDS = 15.0        # ignore long shots (stale prices, tiny liquidity)
 KEEP_CREDITS = 150       # leave plenty for the Pinnacle bot (it uses ~350 a month)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 STATE, LOG, REPORT = "gaps_state.json", "gaps_log.csv", "gaps.md"
 NOW = datetime.now(timezone.utc)
 
 
 def odds(sport, key):
-    q = urllib.parse.urlencode({"apiKey": key, "regions": "uk", "markets": "h2h,h2h_lay", "oddsFormat": "decimal"})
+    q = urllib.parse.urlencode({"apiKey": key, "regions": "uk", "markets": "h2h", "oddsFormat": "decimal"})
     req = urllib.request.Request(f"https://api.the-odds-api.com/v4/sports/{sport}/odds?{q}")
     with urllib.request.urlopen(req, timeout=40) as r:
         return json.load(r), int(float(r.headers.get("x-requests-remaining", "0") or 0))
@@ -43,30 +47,25 @@ def back_lay(back, lay):
     return ls, -STAKE + ls * (1 - COMM)
 
 
-def scan(game):
-    """Return a list of gaps for one match."""
+def scan(game, lays):
+    """Return a list of gaps for one match. lays = {outcome: (Betfair lay price, £ waiting)} (may be empty)."""
     gaps = []
     best = {}                        # outcome -> (odds, bookie) best bookie back price
-    lays = {}                        # outcome -> Betfair lay price
     for bk in game.get("bookmakers", []):
-        is_ex = bk["key"].startswith("betfair_ex")
+        if bk["key"].startswith("betfair_ex"):
+            continue
         for m in bk.get("markets", []):
             for o in m.get("outcomes", []):
                 p = float(o["price"])
-                if not 1.01 < p <= MAX_ODDS:
-                    continue
-                if m["key"] == "h2h_lay":
-                    if is_ex:
-                        lays[o["name"]] = p
-                elif m["key"] == "h2h" and not is_ex:
-                    if p > best.get(o["name"], (0, ""))[0]:
-                        best[o["name"]] = (p, bk["title"])
+                if m["key"] == "h2h" and 1.01 < p <= MAX_ODDS and p > best.get(o["name"], (0, ""))[0]:
+                    best[o["name"]] = (p, bk["title"])
     for name, (b, who) in best.items():
-        if name in lays:
-            ls, pr = back_lay(b, lays[name])
+        if name in lays and 1.01 < lays[name][0] <= MAX_ODDS:
+            lay, avail = lays[name]
+            ls, pr = back_lay(b, lay)
             if pr / STAKE * 100 >= MIN_PCT:
-                gaps.append(dict(kind="back/lay", pick=name, detail=f"back {b} @ {who}, lay {lays[name]} @ Betfair (lay £{ls:.2f})",
-                                 profit=pr))
+                gaps.append(dict(kind="back/lay", pick=name, profit=pr, covered=avail >= ls,
+                                 detail=f"back {b} @ {who}, lay {lay} @ Betfair (lay £{ls:.2f}, £{avail:.0f} waiting)"))
     if len(best) == 3:
         inv = sum(1 / v[0] for v in best.values())
         if inv < 1:
@@ -87,19 +86,38 @@ def main():
         print(f"only {state['credits']} free credits left this month - skipping until they reset")
     else:
         new = 0
+        bf, bf_note = None, ""
+        try:
+            import betfair
+            bf = betfair.Betfair()
+        except Exception as e:               # message never contains secrets
+            bf_note = f"Betfair not reachable ({str(e)[:80]}) - bookie-vs-bookie only this run"
+            print(bf_note)
+        state["bf_note"] = bf_note
         for sport in SPORTS:
+            bf_list = []
+            if bf:
+                try:
+                    bf_list = bf.matches(sport)
+                except Exception as e:
+                    print(f"{sport}: Betfair error {str(e)[:80]}")
             try:
                 games, left = odds(sport, key)
             except urllib.error.HTTPError as e:
                 print(f"{sport}: HTTP {e.code}")
                 continue
             state["credits"] = left
+            paired = 0
             for g in games:
                 kick = datetime.fromisoformat(g["commence_time"].replace("Z", "+00:00"))
                 if kick < NOW:                     # in-play prices move too fast to trust
                     continue
                 state["matches"] = state.get("matches", 0) + 1
-                for gap in scan(g):
+                lays = betfair.pair(g, bf_list) if bf_list else None
+                if lays:
+                    paired += 1
+                    state["bf_matches"] = state.get("bf_matches", 0) + 1
+                for gap in scan(g, lays or {}):
                     k = f"{g['id']}|{gap['kind']}|{gap['pick']}"
                     first = k not in state["seen"]
                     rec = state["seen"].setdefault(k, dict(match=f"{g['home_team']} v {g['away_team']}", sport=sport,
@@ -107,13 +125,15 @@ def main():
                                                            first=NOW.isoformat(), best=0, times=0))
                     rec["times"] += 1
                     rec["last"] = NOW.isoformat()
+                    if gap.get("covered"):
+                        rec["covered"] = True
                     if gap["profit"] > rec["best"]:
                         rec["best"], rec["detail"] = round(gap["profit"], 2), gap["detail"]
                     if first:
                         new += 1
                         log([NOW.isoformat(timespec="minutes"), sport, rec["match"], gap["kind"], gap["pick"],
                              round(gap["profit"], 2), gap["detail"]])
-            print(f"{sport}: {len(games)} matches, credits left {state['credits']}")
+            print(f"{sport}: {len(games)} bookie matches, {len(bf_list)} on Betfair, {paired} paired, credits left {state['credits']}")
         state["runs"] += 1
         print(f"{new} new gaps")
     json.dump(state, open(STATE, "w"), indent=1)
@@ -137,16 +157,20 @@ def report(state, has_key):
     out = ["# Betfair vs bookies gap bot (paper mode)", "", f"Updated {NOW:%Y-%m-%d %H:%M} UTC.", ""]
     if not has_key:
         out += ["**Waiting for the ODDS_API_KEY secret.**"]
-    out += [f"Runs: {state['runs']} · match checks: {state.get('matches', 0)} · free credits left this month: {state.get('credits')}", "",
+    if state.get("bf_note"):
+        out += [f"**{state['bf_note']}**", ""]
+    out += [f"Runs: {state['runs']} · match checks: {state.get('matches', 0)} (with live Betfair prices: {state.get('bf_matches', 0)})"
+            f" · free credits left this month: {state.get('credits')}", "",
             f"**Gaps found: {len(seen)}** ({len(bl)} back/lay, {len(bk)} bookie-vs-bookie) · "
             f"pretend locked-in profit if each was taken once: **£{sum(s['best'] for s in seen):.2f}**", "",
-            f"Still there on a later check (more likely to be real, not a stale price): {len(repeat)}", "",
+            f"Still there on a later check (more likely to be real, not a stale price): {len(repeat)} · "
+            f"back/lay gaps with enough money waiting on Betfair: {sum(1 for s in bl if s.get('covered'))}", "",
             "| First seen | Match | Type | Pick | Best profit | Times seen | Detail |", "|---|---|---|---|---|---|---|"]
     for s in sorted(seen, key=lambda s: s["first"], reverse=True)[:40]:
         out.append(f"| {s['first'][5:16].replace('T', ' ')} | {s['match']} | {s['kind']} | {s['pick']} | £{s['best']:.2f} | "
                    f"{s['times']} | {s.get('detail', '')} |")
     out += ["", "Profit is per £100 on the bookie side (bookie-vs-bookie: per £300 split over the 3 results), after 5% Betfair commission.",
-            "Paper only - nothing is bet. No Betfair liquidity data, so treat small gaps with caution."]
+            "Paper only - nothing is bet. Betfair prices come from a delayed (free) key, so they can be a little behind."]
     open(REPORT, "w").write("\n".join(out) + "\n")
     print("\n".join(out[:10]))
 

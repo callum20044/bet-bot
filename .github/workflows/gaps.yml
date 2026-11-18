@@ -1,7 +1,8 @@
 name: gaps
 on:
   schedule:
-    - cron: "17 16 * * *"     # once a day, 2 leagues x 2 markets = ~120 credits a month (key shared with the Pinnacle bot)
+    - cron: "17 10 * * *"     # 10:17 UTC; the Oracle server also starts it at 16:17 UK time. Bookie odds only now
+                              # (Betfair prices come from Betfair itself): 2 runs x 2 leagues x 1 credit = ~120 credits a month
   workflow_dispatch:
 permissions:
   contents: write
@@ -20,9 +21,19 @@ jobs:
           [ -n "$ok" ] || { echo "::error::could not fetch saved state - stopping so nothing gets overwritten"; exit 1; }
           git checkout -q FETCH_HEAD -- gaps_state.json
           git checkout -q FETCH_HEAD -- gaps_log.csv 2>/dev/null || echo "no gaps logged yet"
+      - name: Open the UK tunnel to Betfair (Oracle server, London)
+        continue-on-error: true      # if the server is down the bot still does the bookie-vs-bookie check
+        run: bash .github/betfair-tunnel.sh
+        env:
+          BF_HOST: ${{ secrets.BETFAIR_SSH_HOST }}
+          BF_KEY: ${{ secrets.BETFAIR_SSH_KEY }}
+          BF_HOSTKEY: ${{ secrets.BETFAIR_SSH_HOSTKEY }}
       - run: python gaps/gap_bot.py 2>&1 | tee run.txt
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
+          BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
+          BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
       - name: Save results
         if: always()
         run: |
