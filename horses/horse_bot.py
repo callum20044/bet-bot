@@ -17,6 +17,9 @@ The bots (each back bet = £10 stake; each lay bet = £10 at risk):
 
 Winnings pay 5% Betfair commission. Prices come from Betfair's free delayed key, so they can be a little behind.
 Files (horses branch): horses.md (report), horses_bets.csv (every settled bet), horses_state.json.
+
+(18 Nov) Same bots on UK GREYHOUNDS: `python horses/horse_bot.py dogs` -> dogs.md / dogs_bets.csv / dogs_state.json.
+Hundreds of dog races a day, so the dog bots reach a meaningful number of bets in weeks rather than months.
 """
 import csv
 import json
@@ -29,13 +32,16 @@ from datetime import datetime, timedelta, timezone
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "gaps"))
 import betfair  # noqa: E402  (login + API calls, never prints secrets)
 
-STATE, LOG, REPORT = "horses_state.json", "horses_bets.csv", "horses.md"
+KIND = sys.argv[1] if len(sys.argv) > 1 else "horses"
+SPORT = {"horses": dict(event="7", countries=["GB", "IE"], title="Horse racing paper bots (Betfair, UK + Irish races)", animal="horse"),
+         "dogs": dict(event="4339", countries=["GB"], title="Greyhound paper bots (Betfair, UK tracks)", animal="dog")}[KIND]
+STATE, LOG, REPORT = f"{KIND}_state.json", f"{KIND}_bets.csv", f"{KIND}.md"
 COMM, STAKE, LIAB = 0.05, 10.0, 10.0
 NOW = datetime.now(timezone.utc)
 BOTS = ["fav_back", "steamer_back", "drifter_lay", "longshot_lay", "random_back"]
-WHAT = {"fav_back": "back the favourite (4.0 or shorter)", "steamer_back": "back the horse being backed in (shortened 20%+)",
-        "drifter_lay": "lay the horse drifting out (30%+ longer)", "longshot_lay": "lay an outsider priced 20-40",
-        "random_back": "LUCK CHECK - back a random horse"}
+WHAT = {"fav_back": "back the favourite (4.0 or shorter)", "steamer_back": "back the runner being backed in (shortened 20%+)",
+        "drifter_lay": "lay the runner drifting out (30%+ longer)", "longshot_lay": "lay an outsider priced 20-40",
+        "random_back": "LUCK CHECK - back a random runner"}
 
 
 def ts(s):
@@ -55,7 +61,7 @@ def decide(market, book, early):
     backs = {r["selectionId"]: best(r, "back") for r in live}
     lays = {r["selectionId"]: best(r, "lay") for r in live}
     priced = sorted((p[0], s) for s, p in backs.items() if p[0])
-    if len(priced) < 4:
+    if len(priced) < 4 or len(priced) < len(live):     # every runner needs a price
         return []
     bets = []
 
@@ -142,9 +148,14 @@ def main():
     state["open"] = still
 
     # 2) races in the next 90 minutes
-    cat = bf.call("listMarketCatalogue", {"filter": {"eventTypeIds": ["7"], "marketCountries": ["GB", "IE"], "marketTypeCodes": ["WIN"],
+    def catalogue(n):
+        return bf.call("listMarketCatalogue", {"filter": {"eventTypeIds": [SPORT["event"]], "marketCountries": SPORT["countries"], "marketTypeCodes": ["WIN"],
                   "marketStartTime": {"from": (NOW - timedelta(minutes=5)).isoformat(), "to": (NOW + timedelta(minutes=90)).isoformat()}},
-                  "maxResults": "100", "marketProjection": ["EVENT", "MARKET_START_TIME", "RUNNER_DESCRIPTION"]})
+                  "maxResults": str(n), "marketProjection": ["EVENT", "MARKET_START_TIME", "RUNNER_DESCRIPTION"]})
+    try:
+        cat = catalogue(300)
+    except Exception:                                    # too much data in one go - take the next 100 races
+        cat = catalogue(100)
     placed = 0
     for i in range(0, len(cat), 40):
         part = cat[i:i + 40]
@@ -199,7 +210,7 @@ def tscore(s):
 
 def save(state):
     json.dump(state, open(STATE, "w"), indent=0)
-    out = ["# Horse racing paper bots (Betfair, UK + Irish races)", "", f"Updated {NOW:%Y-%m-%d %H:%M} UTC · runs {state['runs']}", ""]
+    out = [f"# {SPORT['title']}", "", f"Updated {NOW:%Y-%m-%d %H:%M} UTC · runs {state['runs']}", ""]
     if state.get("note"):
         out += [f"**{state['note']}**", ""]
     out += ["| Bot | What it does | Bets settled | Won | Profit (£) | Per £1 risked | t-score | Open |", "|---|---|---|---|---|---|---|---|"]
