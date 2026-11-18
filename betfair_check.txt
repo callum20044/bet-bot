@@ -1,0 +1,8 @@
+secrets present: {'key': True, 'user': True, 'password': True}
+runner location: US Washington (Betfair calls go via the UK server tunnel when it is open)
+login status: SUCCESS 
+sports: Soccer(7446), Basketball(358), Tennis(2389), Golf(43), Cricket(297), Ice Hockey(205), Rugby Union(48), Rugby League(1), Boxing(59), Horse Racing(640), Motor Sport(11), Esports(4)
+Test W v Test F | None back None; None back None; The Draw back None
+test a v test b | None back None; None back None; The Draw back None
+Test C v Test V | None back None; None back None; The Draw back None
+ALL GOOD
