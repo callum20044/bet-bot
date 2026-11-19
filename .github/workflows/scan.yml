@@ -114,7 +114,7 @@ jobs:
           ok=""; for i in 1 2 3; do if git fetch -q origin $b; then ok=1; break; fi; sleep 15; done
           [ -n "$ok" ] || { echo "::error::could not fetch saved state - stopping so nothing gets overwritten"; exit 1; }
           git checkout -q FETCH_HEAD -- ${b}_state.json
-          git checkout -q FETCH_HEAD -- ${b}_bets.csv 2>/dev/null || echo "no settled bets yet"
+          git checkout -q FETCH_HEAD -- "${b}_*.csv" 2>/dev/null || echo "no settled bets yet"
       - name: Open the UK tunnel to Betfair (Oracle server, London)
         run: bash .github/betfair-tunnel.sh
         env:
@@ -134,7 +134,7 @@ jobs:
       - name: Save results
         run: |
           b=${{ matrix.kind }}
-          mkdir /tmp/out && cp $b.md ${b}_state.json run.txt /tmp/out/ && { cp ${b}_bets.csv /tmp/out/ 2>/dev/null || true; }
+          mkdir /tmp/out && cp $b.md ${b}_state.json run.txt /tmp/out/ && { cp ${b}_*.csv /tmp/out/ 2>/dev/null || true; }
           cd /tmp/out && git init -q -b $b
           git config user.name bot && git config user.email bot@users.noreply.github.com
           git add . && git commit -qm "$b $(date -u +%H:%M)"

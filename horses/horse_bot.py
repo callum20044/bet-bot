@@ -63,16 +63,24 @@ def decide(market, book, early):
     priced = sorted((p[0], s) for s, p in backs.items() if p[0])
     if len(priced) < 4 or len(priced) < len(live):     # every runner needs a price
         return []
+    # (19 Nov) skip thin races: in a liquid market the best back prices add up to about 100%. Day 1 had dog bots
+    # laying at 250 (dog really ~6) and the luck check backing a 300-1 shot, because nobody was offering a real price.
+    if not 0.95 <= sum(1 / p for p, _ in priced) <= 1.08:
+        return []
+
+    def tight(sel):                                    # this runner's back and lay prices are close together
+        b, l = backs[sel][0], lays[sel][0]
+        return bool(b and l and l / b <= 1.12)
     bets = []
 
     def take_back(bot, sel):
         p, size = backs[sel]
-        if p and size >= STAKE:
+        if p and p <= 50 and size >= STAKE and tight(sel):
             bets.append((bot, sel, names.get(sel, "?"), "back", p))
 
     def take_lay(bot, sel):
         p, size = lays[sel]
-        if p and p > 1.01 and size >= LIAB / (p - 1):
+        if p and 1.01 < p <= 50 and size >= LIAB / (p - 1) and tight(sel):
             bets.append((bot, sel, names.get(sel, "?"), "lay", p))
 
     fav_p, fav = priced[0]
@@ -89,7 +97,7 @@ def decide(market, book, early):
     outs = [(p, s) for p, s in priced if 20 <= p <= 40]
     if outs:
         take_lay("longshot_lay", outs[0][1])
-    take_back("random_back", random.Random(market["marketId"]).choice([s for _, s in priced]))
+    take_back("random_back", random.Random(market["marketId"]).choice([s for p, s in priced if p <= 50] or [priced[0][1]]))
     return bets
 
 
@@ -107,6 +115,10 @@ def settle(bet, status):
 def main():
     state = json.load(open(STATE)) if os.path.exists(STATE) else {"runs": 0, "snaps": {}, "open": [], "done": {}, "bot": {}}
     state["runs"] += 1
+    if state.get("v") != 2:                            # (19 Nov) thin-market fix: restart the scores clean
+        state.update(v=2, bot={}, open=[], since=NOW.isoformat(timespec="minutes"))
+        if os.path.exists(LOG):
+            os.rename(LOG, LOG.replace(".csv", "_v1_thin_markets.csv"))
     try:
         bf = betfair.Betfair()
     except Exception as e:
@@ -204,13 +216,13 @@ def tscore(s):
     if n < 2:
         return 0.0
     mean = s["r"] / n
-    var = max(s["r2"] / n - mean ** 2, 1e-12) * n / (n - 1)
-    return mean / math.sqrt(var / n)
+    var = (s["r2"] / n - mean ** 2) * n / (n - 1)
+    return mean / math.sqrt(var / n) if var > 1e-9 else 0.0     # all bets the same result: no spread to judge
 
 
 def save(state):
     json.dump(state, open(STATE, "w"), indent=0)
-    out = [f"# {SPORT['title']}", "", f"Updated {NOW:%Y-%m-%d %H:%M} UTC · runs {state['runs']}", ""]
+    out = [f"# {SPORT['title']}", "", f"Updated {NOW:%Y-%m-%d %H:%M} UTC · runs {state['runs']} · scores since {state.get('since', '-')}", ""]
     if state.get("note"):
         out += [f"**{state['note']}**", ""]
     out += ["| Bot | What it does | Bets settled | Won | Profit (£) | Per £1 risked | t-score | Open |", "|---|---|---|---|---|---|---|---|"]

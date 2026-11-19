@@ -215,8 +215,8 @@ def tscore(s):
     if n < 2:
         return 0.0
     mean = s["r"] / n
-    var = max(s["r2"] / n - mean ** 2, 1e-12) * n / (n - 1)
-    return mean / math.sqrt(var / n)
+    var = (s["r2"] / n - mean ** 2) * n / (n - 1)
+    return mean / math.sqrt(var / n) if var > 1e-9 else 0.0     # all bets the same result: no spread to judge
 
 
 def save(state):
