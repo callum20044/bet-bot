@@ -1,0 +1,13 @@
+soccer_epl: 14 bookie matches, 13 on Betfair, 13 paired, credits left 178
+soccer_efl_champ: 24 bookie matches, 2 on Betfair, 2 paired, credits left 177
+0 new gaps
+# Betfair vs bookies gap bot (paper mode)
+
+Updated 2026-11-21 17:30 UTC.
+
+Runs: 18 · match checks: 651 (with live Betfair prices: 147) · free credits left this month: 177
+
+**Gaps found: 1** (0 back/lay, 1 bookie-vs-bookie) · pretend locked-in profit if each was taken once: **£1.89**
+
+Still there on a later check (more likely to be real, not a stale price): 0 · back/lay gaps with enough money waiting on Betfair: 0
+

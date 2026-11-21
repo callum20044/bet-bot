@@ -1,0 +1,21 @@
+{
+ "runs": 18,
+ "seen": {
+  "9f38413bdad666e2d2dfcc574dd12e66|bookies|all 3 results": {
+   "match": "Coventry City v Crystal Palace",
+   "sport": "soccer_epl",
+   "kickoff": "2026-11-21T15:00:00Z",
+   "kind": "bookies",
+   "pick": "all 3 results",
+   "first": "2026-11-20T16:17:12.326131+00:00",
+   "best": 1.89,
+   "times": 1,
+   "last": "2026-11-20T16:17:12.326131+00:00",
+   "detail": "Coventry City 2.6 @ Smarkets (\u00a3116), Crystal Palace 2.92 @ Smarkets (\u00a3103), Draw 3.75 @ BoyleSports (\u00a381)"
+  }
+ },
+ "credits": 177,
+ "matches": 651,
+ "bf_note": "",
+ "bf_matches": 147
+}
