@@ -1,0 +1,194 @@
+settled,bot,race,horse,side,price,result,pnl_gbp
+2026-11-20T12:15+00:00,fav_back,Chepstow 11:50,Sea The Day,back,2.44,lost,-10.0
+2026-11-20T12:15+00:00,fav_back,Catterick 12:00,Sacre Chef,back,1.81,lost,-10.0
+2026-11-20T12:15+00:00,random_back,Catterick 12:00,Magical Merlot,back,4.7,lost,-10.0
+2026-11-20T12:45+00:00,fav_back,Chepstow 11:20,Bande Organisee,back,2.36,lost,-10.0
+2026-11-20T12:45+00:00,longshot_lay,Chepstow 11:20,Noble Charge,lay,23.0,won,0.43
+2026-11-20T12:45+00:00,random_back,Chepstow 11:20,Moments In Time,back,9.2,won,77.9
+2026-11-20T12:45+00:00,fav_back,Chepstow 12:22,Old Habits,back,2.36,won,12.92
+2026-11-20T12:45+00:00,random_back,Chepstow 12:22,Justoneglance,back,18.0,lost,-10.0
+2026-11-20T12:45+00:00,fav_back,Catterick 12:33,Ive Got A Friend,back,1.89,won,8.45
+2026-11-20T12:45+00:00,longshot_lay,Catterick 12:33,Little John,lay,30.0,won,0.33
+2026-11-20T12:45+00:00,random_back,Catterick 12:33,Largy Silver,back,14.5,lost,-10.0
+2026-11-20T13:00+00:00,fav_back,Ascot 12:45,No Way Jay,back,2.22,won,11.59
+2026-11-20T13:00+00:00,longshot_lay,Ascot 12:45,Affinitive,lay,24.0,won,0.41
+2026-11-20T13:00+00:00,random_back,Ascot 12:45,Jet Bay,back,17.0,lost,-10.0
+2026-11-20T13:15+00:00,longshot_lay,Chepstow 12:57,Opening Bid,lay,34.0,won,0.29
+2026-11-20T13:15+00:00,random_back,Chepstow 12:57,Hardy Du Seuil,back,42.0,lost,-10.0
+2026-11-20T13:30+00:00,fav_back,Catterick 13:08,Legendary Luke,back,3.4,lost,-10.0
+2026-11-20T13:30+00:00,steamer_back,Catterick 13:08,Singapore Trip,back,6.2,lost,-10.0
+2026-11-20T13:30+00:00,random_back,Catterick 13:08,Singapore Trip,back,6.2,lost,-10.0
+2026-11-20T13:30+00:00,fav_back,Ascot 13:20,Spanish Stroll,back,2.72,won,16.34
+2026-11-20T13:30+00:00,random_back,Ascot 13:20,Push The Limit,back,2.74,lost,-10.0
+2026-11-20T14:00+00:00,fav_back,Catterick 13:43,Jeteye,back,3.55,won,24.22
+2026-11-20T14:00+00:00,longshot_lay,Catterick 13:43,Quercus Robur,lay,23.0,won,0.43
+2026-11-20T14:00+00:00,random_back,Catterick 13:43,Loulou Madrik,back,10.5,lost,-10.0
+2026-11-20T14:15+00:00,fav_back,Ascot 13:55,Western Knight,back,3.15,won,20.43
+2026-11-20T14:15+00:00,random_back,Ascot 13:55,Somespring Special,back,8.8,lost,-10.0
+2026-11-20T14:30+00:00,fav_back,Chepstow 14:07,Gingerbred,back,3.85,won,27.07
+2026-11-20T14:30+00:00,longshot_lay,Chepstow 14:07,Tommys Charm,lay,22.0,won,0.45
+2026-11-20T14:30+00:00,random_back,Chepstow 14:07,Jongleur Detoiles,back,8.4,lost,-10.0
+2026-11-20T14:30+00:00,fav_back,Catterick 14:18,Some Scope,back,2.74,lost,-10.0
+2026-11-20T14:30+00:00,drifter_lay,Catterick 14:18,Melton Mossy,lay,6.6,won,1.7
+2026-11-20T14:30+00:00,random_back,Catterick 14:18,Move With The Beat,back,7.8,lost,-10.0
+2026-11-20T14:45+00:00,fav_back,Ascot 14:30,Wondering Why,back,3.85,lost,-10.0
+2026-11-20T14:45+00:00,random_back,Ascot 14:30,Fasol,back,6.2,lost,-10.0
+2026-11-20T15:00+00:00,fav_back,Chepstow 14:42,Northwest Passage,back,2.16,lost,-10.0
+2026-11-20T15:00+00:00,longshot_lay,Chepstow 14:42,Activist,lay,22.0,won,0.45
+2026-11-20T15:00+00:00,random_back,Chepstow 14:42,Best Trump,back,7.2,lost,-10.0
+2026-11-20T15:15+00:00,longshot_lay,Catterick 14:53,Balkardy,lay,24.0,won,0.41
+2026-11-20T15:15+00:00,random_back,Catterick 14:53,Anytrixwilldo,back,7.0,lost,-10.0
+2026-11-20T15:15+00:00,steamer_back,Ascot 15:05,Fever Dream,back,8.4,lost,-10.0
+2026-11-20T15:15+00:00,longshot_lay,Ascot 15:05,Mahler Moon,lay,32.0,won,0.31
+2026-11-20T15:15+00:00,random_back,Ascot 15:05,Yes Day,back,10.0,lost,-10.0
+2026-11-20T15:45+00:00,fav_back,Catterick 15:28,La Dame Ecarlate,back,2.9,lost,-10.0
+2026-11-20T15:45+00:00,longshot_lay,Catterick 15:28,Slainte Mo Chara,lay,23.0,won,0.43
+2026-11-20T15:45+00:00,random_back,Catterick 15:28,Billey Shiftit,back,8.8,lost,-10.0
+2026-11-20T16:00+00:00,fav_back,Ascot 15:40,Power Steering,back,2.02,won,9.69
+2026-11-20T16:00+00:00,steamer_back,Ascot 15:40,Irish Ocean,back,9.4,lost,-10.0
+2026-11-20T16:00+00:00,random_back,Ascot 15:40,Denniss Honor,back,5.5,lost,-10.0
+2026-11-20T16:45+00:00,longshot_lay,Wolverhampton 16:30,Offiahs Boy,lay,25.0,won,0.4
+2026-11-20T16:45+00:00,random_back,Wolverhampton 16:30,Offiahs Boy,back,23.0,lost,-10.0
+2026-11-20T17:00+00:00,fav_back,Dundalk 16:45,Sapphire Sun,back,3.2,lost,-10.0
+2026-11-20T17:15+00:00,fav_back,Wolverhampton 17:00,Frantic,back,2.58,lost,-10.0
+2026-11-20T17:15+00:00,longshot_lay,Wolverhampton 17:00,Beatrice Briannie,lay,30.0,won,0.33
+2026-11-20T17:15+00:00,random_back,Wolverhampton 17:00,Oliaku,back,2.58,won,15.01
+2026-11-20T17:30+00:00,fav_back,Dundalk 17:15,Surpass And Shine,back,3.2,won,20.9
+2026-11-20T17:45+00:00,fav_back,Wolverhampton 17:30,Noble Light,back,2.04,lost,-10.0
+2026-11-20T17:45+00:00,longshot_lay,Wolverhampton 17:30,Lavender Bay,lay,28.0,won,0.35
+2026-11-20T17:45+00:00,random_back,Wolverhampton 17:30,My Amanah,back,11.5,won,99.75
+2026-11-20T18:00+00:00,fav_back,Dundalk 17:45,Prince Of Peppard,back,3.55,won,24.22
+2026-11-20T18:00+00:00,random_back,Dundalk 17:45,Bull Shark,back,3.8,lost,-10.0
+2026-11-20T18:15+00:00,fav_back,Wolverhampton 18:00,Zhuri,back,1.65,lost,-10.0
+2026-11-20T18:15+00:00,longshot_lay,Wolverhampton 18:00,Mesolithic,lay,21.0,won,0.47
+2026-11-20T18:15+00:00,random_back,Wolverhampton 18:00,Mesolithic,back,20.0,lost,-10.0
+2026-11-20T18:30+00:00,fav_back,Dundalk 18:15,City House,back,3.65,lost,-10.0
+2026-11-20T18:30+00:00,random_back,Dundalk 18:15,Alissam,back,8.6,lost,-10.0
+2026-11-20T18:45+00:00,fav_back,Wolverhampton 18:30,Gunfighter,back,2.6,won,15.2
+2026-11-20T18:45+00:00,longshot_lay,Wolverhampton 18:30,Epictetus,lay,21.0,won,0.47
+2026-11-20T18:45+00:00,random_back,Wolverhampton 18:30,King Casper,back,36.0,lost,-10.0
+2026-11-20T19:00+00:00,random_back,Dundalk 18:45,Golden Idol,back,4.5,lost,-10.0
+2026-11-20T19:15+00:00,fav_back,Wolverhampton 19:00,Printing Money,back,3.65,won,25.17
+2026-11-20T19:15+00:00,longshot_lay,Wolverhampton 19:00,Better Nature,lay,32.0,won,0.31
+2026-11-20T19:15+00:00,random_back,Wolverhampton 19:00,Printing Money,back,3.65,won,25.17
+2026-11-20T19:30+00:00,fav_back,Dundalk 19:15,Castilian Queen,back,1.86,lost,-10.0
+2026-11-20T19:30+00:00,longshot_lay,Dundalk 19:15,Seanbonekapone,lay,29.0,won,0.34
+2026-11-20T19:45+00:00,fav_back,Wolverhampton 19:30,Asuka,back,2.76,won,16.72
+2026-11-20T19:45+00:00,longshot_lay,Wolverhampton 19:30,Rogue Messiah,lay,29.0,won,0.34
+2026-11-20T19:45+00:00,random_back,Wolverhampton 19:30,Secret Santa,back,3.05,lost,-10.0
+2026-11-20T20:00+00:00,longshot_lay,Dundalk 19:45,Justenzia,lay,22.0,won,0.45
+2026-11-20T20:00+00:00,random_back,Dundalk 19:45,Justenzia,back,20.0,lost,-10.0
+2026-11-20T20:15+00:00,fav_back,Wolverhampton 20:00,Our Planet,back,3.1,won,19.95
+2026-11-20T20:15+00:00,longshot_lay,Wolverhampton 20:00,Tomarlo,lay,26.0,won,0.38
+2026-11-20T20:15+00:00,random_back,Wolverhampton 20:00,My Mate Mackley,back,16.0,lost,-10.0
+2026-11-20T20:30+00:00,random_back,Dundalk 20:15,Tintinabulla,back,13.5,lost,-10.0
+2026-11-20T20:45+00:00,longshot_lay,Wolverhampton 20:30,Super Hit,lay,21.0,void,0.0
+2026-11-20T20:45+00:00,random_back,Wolverhampton 20:30,Pulsar Star,back,6.8,lost,-10.0
+2026-11-21T11:15+00:00,fav_back,Lingfield 11:00,Honey Dale,back,2.04,won,9.88
+2026-11-21T11:15+00:00,longshot_lay,Lingfield 11:00,Heated Moment,lay,21.0,won,0.47
+2026-11-21T11:15+00:00,random_back,Lingfield 11:00,Labiche,back,5.3,lost,-10.0
+2026-11-21T11:45+00:00,fav_back,Lingfield 11:30,Al Lazzaz,back,3.3,lost,-10.0
+2026-11-21T11:45+00:00,longshot_lay,Lingfield 11:30,If You Like,lay,26.0,won,0.38
+2026-11-21T11:45+00:00,random_back,Lingfield 11:30,Hot Mission,back,46.0,won,427.5
+2026-11-21T12:15+00:00,fav_back,Punchestown 11:53,Delamotte,back,1.97,lost,-10.0
+2026-11-21T12:15+00:00,random_back,Punchestown 11:53,Kingstonian,back,5.0,won,38.0
+2026-11-21T12:15+00:00,fav_back,Lingfield 12:00,Bibury Star,back,1.76,lost,-10.0
+2026-11-21T12:30+00:00,fav_back,Huntingdon 12:13,Lastbutnotleased,back,1.71,won,6.74
+2026-11-21T12:30+00:00,longshot_lay,Huntingdon 12:13,Kasgani,lay,21.0,won,0.47
+2026-11-21T12:30+00:00,random_back,Huntingdon 12:13,Westbrooke Boy,back,12.5,lost,-10.0
+2026-11-21T12:45+00:00,fav_back,Ascot 12:20,The Walk,back,1.9,lost,-10.0
+2026-11-21T12:45+00:00,steamer_back,Ascot 12:20,Katarcice,back,6.2,won,49.4
+2026-11-21T12:45+00:00,random_back,Ascot 12:20,Handmedownastar,back,15.5,lost,-10.0
+2026-11-21T12:45+00:00,fav_back,Punchestown 12:28,Mighty Park,back,2.68,won,15.96
+2026-11-21T12:45+00:00,random_back,Punchestown 12:28,Mighty Park,back,2.68,won,15.96
+2026-11-21T12:45+00:00,fav_back,Lingfield 12:35,Iris Olivia,back,2.32,lost,-10.0
+2026-11-21T12:45+00:00,longshot_lay,Lingfield 12:35,Romantic Pursuit,lay,21.0,won,0.47
+2026-11-21T12:45+00:00,random_back,Lingfield 12:35,Crimson Blaze,back,5.9,lost,-10.0
+2026-11-21T13:00+00:00,fav_back,Haydock 12:40,Kykorock,back,2.66,lost,-10.0
+2026-11-21T13:00+00:00,longshot_lay,Haydock 12:40,Calgary Tiger,lay,32.0,won,0.31
+2026-11-21T13:00+00:00,random_back,Haydock 12:40,Tigers Moon,back,6.2,lost,-10.0
+2026-11-21T13:00+00:00,fav_back,Huntingdon 12:48,U S Marshall,back,3.6,lost,-10.0
+2026-11-21T13:00+00:00,longshot_lay,Huntingdon 12:48,Footage Detectives,lay,26.0,won,0.38
+2026-11-21T13:00+00:00,random_back,Huntingdon 12:48,U S Marshall,back,3.6,lost,-10.0
+2026-11-21T13:15+00:00,longshot_lay,Lingfield 13:10,Pleasant Man,lay,30.0,won,0.33
+2026-11-21T13:15+00:00,random_back,Lingfield 13:10,Pleasant Man,back,29.0,lost,-10.0
+2026-11-21T13:30+00:00,fav_back,Punchestown 13:03,Kiss Will,back,3.4,won,22.8
+2026-11-21T13:30+00:00,longshot_lay,Punchestown 13:03,Kings Bucks,lay,25.0,won,0.4
+2026-11-21T13:30+00:00,random_back,Punchestown 13:03,Largy Star,back,7.8,lost,-10.0
+2026-11-21T13:30+00:00,fav_back,Haydock 13:15,North Shore,back,3.55,lost,-10.0
+2026-11-21T13:30+00:00,longshot_lay,Haydock 13:15,Kershaw,lay,24.0,won,0.41
+2026-11-21T13:30+00:00,random_back,Haydock 13:15,Kershaw,back,22.0,lost,-10.0
+2026-11-21T13:45+00:00,random_back,Huntingdon 13:23,Kilworth,back,5.2,lost,-10.0
+2026-11-21T14:00+00:00,fav_back,Punchestown 13:38,Letos,back,3.25,won,21.38
+2026-11-21T14:00+00:00,random_back,Punchestown 13:38,Argento Boy,back,13.5,lost,-10.0
+2026-11-21T14:00+00:00,fav_back,Lingfield 13:45,Uncle Don,back,3.45,won,23.27
+2026-11-21T14:00+00:00,longshot_lay,Lingfield 13:45,Brosay,lay,22.0,won,0.45
+2026-11-21T14:00+00:00,random_back,Lingfield 13:45,Shaman Champion,back,34.0,lost,-10.0
+2026-11-21T14:00+00:00,fav_back,Haydock 13:50,Kocktail Bleu,back,2.54,won,14.63
+2026-11-21T14:00+00:00,random_back,Haydock 13:50,Kocktail Bleu,back,2.54,won,14.63
+2026-11-21T14:15+00:00,longshot_lay,Huntingdon 13:58,Pergamon,lay,28.0,won,0.35
+2026-11-21T14:30+00:00,longshot_lay,Ascot 14:05,Popova,lay,34.0,won,0.29
+2026-11-21T14:30+00:00,random_back,Ascot 14:05,Smugglers Haven,back,9.4,lost,-10.0
+2026-11-21T14:30+00:00,fav_back,Punchestown 14:10,Lossiemouth,back,1.16,won,1.52
+2026-11-21T14:30+00:00,longshot_lay,Punchestown 14:10,Blake,lay,28.0,won,0.35
+2026-11-21T14:30+00:00,random_back,Punchestown 14:10,Lossiemouth,back,1.16,won,1.52
+2026-11-21T14:30+00:00,fav_back,Lingfield 14:20,Giorgio M,back,3.65,won,25.17
+2026-11-21T14:30+00:00,longshot_lay,Lingfield 14:20,An Outlaws Grace,lay,21.0,won,0.47
+2026-11-21T14:30+00:00,random_back,Lingfield 14:20,Herculeus,back,16.0,lost,-10.0
+2026-11-21T14:45+00:00,longshot_lay,Haydock 14:25,Eagles Reprieve,lay,23.0,won,0.43
+2026-11-21T14:45+00:00,random_back,Haydock 14:25,Serious Chat,back,26.0,lost,-10.0
+2026-11-21T14:45+00:00,fav_back,Huntingdon 14:33,Chosen Hero,back,3.35,lost,-10.0
+2026-11-21T14:45+00:00,longshot_lay,Huntingdon 14:33,Mcgrath From Clune,lay,28.0,won,0.35
+2026-11-21T14:45+00:00,random_back,Huntingdon 14:33,Walk The Plank,back,8.6,lost,-10.0
+2026-11-21T15:00+00:00,fav_back,Ascot 14:40,Rock My Way,back,3.2,lost,-10.0
+2026-11-21T15:00+00:00,longshot_lay,Ascot 14:40,Mt Fugi Park,lay,21.0,won,0.47
+2026-11-21T15:00+00:00,random_back,Ascot 14:40,Hold Your Fort,back,9.2,lost,-10.0
+2026-11-21T15:00+00:00,fav_back,Punchestown 14:45,Momentum Of Love,back,2.54,lost,-10.0
+2026-11-21T15:00+00:00,steamer_back,Punchestown 14:45,Fallacy,back,7.6,lost,-10.0
+2026-11-21T15:00+00:00,fav_back,Newcastle 14:49,Mr Moonshine,back,3.4,lost,-10.0
+2026-11-21T15:00+00:00,longshot_lay,Newcastle 14:49,Naval Command,lay,23.0,won,0.43
+2026-11-21T15:00+00:00,random_back,Newcastle 14:49,West Tyrone,back,13.0,won,114.0
+2026-11-21T15:15+00:00,fav_back,Haydock 15:00,Grey Dawning,back,2.2,won,11.4
+2026-11-21T15:15+00:00,longshot_lay,Haydock 15:00,Handstands,lay,21.0,won,0.47
+2026-11-21T15:15+00:00,random_back,Haydock 15:00,Gorgeous Tom,back,8.2,lost,-10.0
+2026-11-21T15:15+00:00,fav_back,Lingfield 15:05,The Anthony Gover,back,2.78,won,16.91
+2026-11-21T15:15+00:00,longshot_lay,Lingfield 15:05,Dion Baker,lay,32.0,won,0.31
+2026-11-21T15:15+00:00,random_back,Lingfield 15:05,Didaar,back,8.4,lost,-10.0
+2026-11-21T15:30+00:00,fav_back,Huntingdon 15:10,Nostrae De Cougny,back,3.75,lost,-10.0
+2026-11-21T15:30+00:00,fav_back,Ascot 15:18,Vanderpoel,back,2.28,won,12.16
+2026-11-21T15:30+00:00,longshot_lay,Ascot 15:18,Gabriels Getaway,lay,24.0,won,0.41
+2026-11-21T15:30+00:00,random_back,Ascot 15:18,Vanderpoel,back,2.28,won,12.16
+2026-11-21T15:45+00:00,fav_back,Punchestown 15:23,Loi Des Jeux,back,3.5,lost,-10.0
+2026-11-21T15:45+00:00,steamer_back,Punchestown 15:23,Thankyouforthedays,back,5.6,won,43.7
+2026-11-21T15:45+00:00,longshot_lay,Punchestown 15:23,Regno,lay,23.0,won,0.43
+2026-11-21T15:45+00:00,random_back,Punchestown 15:23,Barrys Spirit,back,17.5,lost,-10.0
+2026-11-21T15:45+00:00,fav_back,Newcastle 15:29,Humble Spark,back,3.9,won,27.55
+2026-11-21T15:45+00:00,random_back,Newcastle 15:29,Royal Blaze,back,17.5,lost,-10.0
+2026-11-21T16:00+00:00,fav_back,Haydock 15:35,Dexperts Opinion,back,3.8,lost,-10.0
+2026-11-21T16:00+00:00,random_back,Haydock 15:35,Dexperts Opinion,back,3.8,lost,-10.0
+2026-11-21T16:00+00:00,fav_back,Lingfield 15:40,Brave Leader,back,2.64,lost,-10.0
+2026-11-21T16:00+00:00,longshot_lay,Lingfield 15:40,Masterofperfection,lay,32.0,won,0.31
+2026-11-21T16:00+00:00,random_back,Lingfield 15:40,Brave Leader,back,2.64,lost,-10.0
+2026-11-21T16:00+00:00,fav_back,Ascot 15:48,Herbygoesbananas,back,3.4,lost,-10.0
+2026-11-21T16:00+00:00,longshot_lay,Ascot 15:48,Muskerry Rock,lay,24.0,won,0.41
+2026-11-21T16:00+00:00,random_back,Ascot 15:48,Kilnew Supreme,back,4.1,lost,-10.0
+2026-11-21T16:15+00:00,fav_back,Punchestown 15:53,Mister Boum,back,3.1,lost,-10.0
+2026-11-21T16:15+00:00,longshot_lay,Punchestown 15:53,Shine On Sam,lay,28.0,won,0.35
+2026-11-21T16:15+00:00,random_back,Punchestown 15:53,Le Grand Retour,back,8.8,lost,-10.0
+2026-11-21T16:15+00:00,fav_back,Newcastle 16:00,Bondy Boy,back,1.2,won,1.9
+2026-11-21T16:45+00:00,fav_back,Newcastle 16:30,Eagle Storm,back,3.1,won,19.95
+2026-11-21T16:45+00:00,longshot_lay,Newcastle 16:30,Wild Orchid,lay,28.0,won,0.35
+2026-11-21T16:45+00:00,random_back,Newcastle 16:30,Adoramus,back,12.5,lost,-10.0
+2026-11-21T17:15+00:00,fav_back,Newcastle 17:00,Cornichon,back,1.29,won,2.76
+2026-11-21T17:15+00:00,longshot_lay,Newcastle 17:00,Kalahari Flame,lay,24.0,won,0.41
+2026-11-21T17:15+00:00,random_back,Newcastle 17:00,Debutante,back,8.6,lost,-10.0
+2026-11-21T17:45+00:00,longshot_lay,Newcastle 17:30,What What What,lay,25.0,won,0.4
+2026-11-21T17:45+00:00,random_back,Newcastle 17:30,Queensmaite,back,50.0,lost,-10.0
+2026-11-21T18:15+00:00,fav_back,Newcastle 18:00,Oppenheimer,back,2.24,lost,-10.0
+2026-11-21T18:15+00:00,longshot_lay,Newcastle 18:00,Concert Boy,lay,22.0,won,0.45
+2026-11-21T18:15+00:00,random_back,Newcastle 18:00,Starliner,back,40.0,lost,-10.0
+2026-11-21T18:43+00:00,fav_back,Newcastle 18:30,Oxford Circus,back,1.96,lost,-10.0
+2026-11-21T18:43+00:00,longshot_lay,Newcastle 18:30,Jkr Cobbler,lay,22.0,won,0.45
+2026-11-21T18:43+00:00,random_back,Newcastle 18:30,Operation Gimcrack,back,22.0,lost,-10.0
+2026-11-21T19:15+00:00,longshot_lay,Newcastle 19:00,Blue Force,lay,24.0,won,0.41
+2026-11-21T19:15+00:00,random_back,Newcastle 19:00,Habrdi,back,50.0,lost,-10.0
