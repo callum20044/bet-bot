@@ -1,0 +1,1425 @@
+{
+"runs": 301,
+"open": [
+{
+"bot": "underdog_lay",
+"market": "1.265262622",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.8,
+"match": "Juventus v Venezia (Serie A, Sun 22 Nov 11:30)",
+"start": "2026-11-22T11:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265262622",
+"sel": 44504,
+"pick": "Venezia",
+"side": "back",
+"price": 9.4,
+"match": "Juventus v Venezia (Serie A, Sun 22 Nov 11:30)",
+"start": "2026-11-22T11:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265261381",
+"sel": 48350,
+"pick": "Blackburn",
+"side": "lay",
+"price": 4.2,
+"match": "Burnley v Blackburn (Championship, Sun 22 Nov 12:00)",
+"start": "2026-11-22T12:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265261381",
+"sel": 56299,
+"pick": "Burnley",
+"side": "back",
+"price": 1.97,
+"match": "Burnley v Blackburn (Championship, Sun 22 Nov 12:00)",
+"start": "2026-11-22T12:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265683138",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.9,
+"match": "Cottbus v Hertha Berlin (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265683138",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.5,
+"match": "Cottbus v Hertha Berlin (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265548584",
+"sel": 498543,
+"pick": "Dynamo Dresden",
+"side": "lay",
+"price": 3.45,
+"match": "Kaiserslautern v Dynamo Dresden (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265548584",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.6,
+"match": "Kaiserslautern v Dynamo Dresden (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265683248",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.1,
+"match": "Karlsruhe v VfL Osnabruck (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265683248",
+"sel": 13450471,
+"pick": "VFL Osnabruck",
+"side": "back",
+"price": 2.74,
+"match": "Karlsruhe v VfL Osnabruck (Bundesliga, Sun 22 Nov 12:30)",
+"start": "2026-11-22T12:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265269357",
+"sel": 52480964,
+"pick": "Barcelona",
+"side": "back",
+"price": 1.21,
+"match": "Barcelona v Villarreal (La Liga, Sun 22 Nov 13:00)",
+"start": "2026-11-22T13:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265277509",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 6.2,
+"match": "Paris FC v Angers (Ligue 1, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265277509",
+"sel": 473963,
+"pick": "Angers",
+"side": "back",
+"price": 10.5,
+"match": "Paris FC v Angers (Ligue 1, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265261732",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.8,
+"match": "Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265261732",
+"sel": 18567,
+"pick": "Brighton",
+"side": "back",
+"price": 1.54,
+"match": "Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265261858",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.0,
+"match": "Bologna v Udinese (Serie A, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265261858",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.95,
+"match": "Bologna v Udinese (Serie A, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265261437",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.55,
+"match": "Sassuolo v Genoa (Serie A, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265261437",
+"sel": 60310,
+"pick": "Genoa",
+"side": "back",
+"price": 2.62,
+"match": "Sassuolo v Genoa (Serie A, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265287125",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.1,
+"match": "Augsburg v Mainz (Bundesliga, Sun 22 Nov 14:30)",
+"start": "2026-11-22T14:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265287125",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.0,
+"match": "Augsburg v Mainz (Bundesliga, Sun 22 Nov 14:30)",
+"start": "2026-11-22T14:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265269481",
+"sel": 24072,
+"pick": "Racing Santander",
+"side": "lay",
+"price": 3.45,
+"match": "Racing Santander v Real Sociedad (La Liga, Sun 22 Nov 15:15)",
+"start": "2026-11-22T15:15:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265269481",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.3,
+"match": "Racing Santander v Real Sociedad (La Liga, Sun 22 Nov 15:15)",
+"start": "2026-11-22T15:15:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265271159",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.65,
+"match": "Lorient v Rennes (Ligue 1, Sun 22 Nov 16:15)",
+"start": "2026-11-22T16:15:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265271159",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.5,
+"match": "Lorient v Rennes (Ligue 1, Sun 22 Nov 16:15)",
+"start": "2026-11-22T16:15:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.264344671",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.4,
+"match": "Liverpool v Man Utd (English Premier League, Sun 22 Nov 16:30)",
+"start": "2026-11-22T16:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.264344671",
+"sel": 56323,
+"pick": "Liverpool",
+"side": "back",
+"price": 1.82,
+"match": "Liverpool v Man Utd (English Premier League, Sun 22 Nov 16:30)",
+"start": "2026-11-22T16:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265270923",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.6,
+"match": "Werder Bremen v Hamburger SV (Bundesliga, Sun 22 Nov 16:30)",
+"start": "2026-11-22T16:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265270923",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.4,
+"match": "Werder Bremen v Hamburger SV (Bundesliga, Sun 22 Nov 16:30)",
+"start": "2026-11-22T16:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265276254",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.2,
+"match": "AC Milan v Frosinone (Serie A, Sun 22 Nov 17:00)",
+"start": "2026-11-22T17:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265276254",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 5.0,
+"match": "AC Milan v Frosinone (Serie A, Sun 22 Nov 17:00)",
+"start": "2026-11-22T17:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265287669",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.85,
+"match": "Osasuna v Malaga (La Liga, Sun 22 Nov 17:30)",
+"start": "2026-11-22T17:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265287669",
+"sel": 13360,
+"pick": "Malaga",
+"side": "back",
+"price": 4.6,
+"match": "Osasuna v Malaga (La Liga, Sun 22 Nov 17:30)",
+"start": "2026-11-22T17:30:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265277846",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.3,
+"match": "Marseille v Le Mans (Ligue 1, Sun 22 Nov 19:45)",
+"start": "2026-11-22T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265277846",
+"sel": 52457652,
+"pick": "Marseille",
+"side": "back",
+"price": 1.49,
+"match": "Marseille v Le Mans (Ligue 1, Sun 22 Nov 19:45)",
+"start": "2026-11-22T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265276378",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.0,
+"match": "Atalanta v Inter (Serie A, Sun 22 Nov 19:45)",
+"start": "2026-11-22T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265276378",
+"sel": 63347,
+"pick": "Inter",
+"side": "back",
+"price": 1.63,
+"match": "Atalanta v Inter (Serie A, Sun 22 Nov 19:45)",
+"start": "2026-11-22T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265276092",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.3,
+"match": "Getafe v Atletico Madrid (La Liga, Sun 22 Nov 20:00)",
+"start": "2026-11-22T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265276092",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.1,
+"match": "Getafe v Atletico Madrid (La Liga, Sun 22 Nov 20:00)",
+"start": "2026-11-22T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265400899",
+"sel": 13659467,
+"pick": "AC Monza",
+"side": "lay",
+"price": 3.95,
+"match": "AC Monza v Fiorentina (Serie A, Mon 23 Nov 19:45)",
+"start": "2026-11-23T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265400899",
+"sel": 13659467,
+"pick": "AC Monza",
+"side": "back",
+"price": 3.75,
+"match": "AC Monza v Fiorentina (Serie A, Mon 23 Nov 19:45)",
+"start": "2026-11-23T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265330368",
+"sel": 309111,
+"pick": "Elche",
+"side": "lay",
+"price": 3.45,
+"match": "Levante v Elche (La Liga, Mon 23 Nov 20:00)",
+"start": "2026-11-23T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265330368",
+"sel": 214865,
+"pick": "Levante",
+"side": "back",
+"price": 2.22,
+"match": "Levante v Elche (La Liga, Mon 23 Nov 20:00)",
+"start": "2026-11-23T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265321700",
+"sel": 56343,
+"pick": "Everton",
+"side": "lay",
+"price": 3.6,
+"match": "Brentford v Everton (English Premier League, Mon 23 Nov 20:00)",
+"start": "2026-11-23T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265321700",
+"sel": 56343,
+"pick": "Everton",
+"side": "back",
+"price": 3.5,
+"match": "Brentford v Everton (English Premier League, Mon 23 Nov 20:00)",
+"start": "2026-11-23T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265195127",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.4,
+"match": "Galatasaray v Aston Villa (Champions League, Tue 24 Nov 17:45)",
+"start": "2026-11-24T17:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265195127",
+"sel": 2436,
+"pick": "Galatasaray",
+"side": "back",
+"price": 2.6,
+"match": "Galatasaray v Aston Villa (Champions League, Tue 24 Nov 17:45)",
+"start": "2026-11-24T17:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265194989",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.8,
+"match": "Bodo Glimt v Lask Linz (Champions League, Tue 24 Nov 17:45)",
+"start": "2026-11-24T17:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194989",
+"sel": 8587663,
+"pick": "LASK Linz",
+"side": "back",
+"price": 5.3,
+"match": "Bodo Glimt v Lask Linz (Champions League, Tue 24 Nov 17:45)",
+"start": "2026-11-24T17:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265683578",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 1.02,
+"match": "Hibernian v Dundee (Scottish Prem, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.264769994",
+"sel": 1189,
+"pick": "Aberdeen",
+"side": "back",
+"price": 8.8,
+"match": "Rangers v Aberdeen (Scottish Prem, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265194851",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.9,
+"match": "Arsenal v Dortmund (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194851",
+"sel": 1096,
+"pick": "Arsenal",
+"side": "back",
+"price": 1.4,
+"match": "Arsenal v Dortmund (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194713",
+"sel": 676464,
+"pick": "Napoli",
+"side": "back",
+"price": 10.5,
+"match": "Man City v Napoli (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265194575",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 6.4,
+"match": "Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194575",
+"sel": 10758,
+"pick": "AEK Athens",
+"side": "back",
+"price": 9.8,
+"match": "Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194437",
+"sel": 2426,
+"pick": "Real Madrid",
+"side": "back",
+"price": 1.2,
+"match": "Real Madrid v PSV (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "value_back",
+"market": "1.265194437",
+"sel": 48451,
+"pick": "PSV",
+"side": "back",
+"price": 13.0,
+"match": "Real Madrid v PSV (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265194299",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 5.9,
+"match": "RB Leipzig v Lens (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194299",
+"sel": 44793,
+"pick": "Lens",
+"side": "back",
+"price": 6.2,
+"match": "RB Leipzig v Lens (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194161",
+"sel": 46933,
+"pick": "Slovan Bratislava",
+"side": "back",
+"price": 11.0,
+"match": "Slovan Bratislava v Betis (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193057",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.1,
+"match": "Feyenoord v Porto (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193057",
+"sel": 55264,
+"pick": "Feyenoord",
+"side": "back",
+"price": 2.7,
+"match": "Feyenoord v Porto (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-18T20:16+00:00"
+},
+{
+"bot": "value_back",
+"market": "1.265194575",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 5.7,
+"match": "Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-19T14:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265331436",
+"sel": 52480964,
+"pick": "Barcelona",
+"side": "back",
+"price": 1.11,
+"match": "FC Sabah v Barcelona (Champions League, Wed 25 Nov 17:45)",
+"start": "2026-11-25T17:45:00.000Z",
+"placed": "2026-11-19T17:45+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265194023",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.2,
+"match": "Slavia Prague v Villarreal (Champions League, Wed 25 Nov 17:45)",
+"start": "2026-11-25T17:45:00.000Z",
+"placed": "2026-11-19T17:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265194023",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.9,
+"match": "Slavia Prague v Villarreal (Champions League, Wed 25 Nov 17:45)",
+"start": "2026-11-25T17:45:00.000Z",
+"placed": "2026-11-19T17:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265490424",
+"sel": 168747,
+"pick": "Viking",
+"side": "back",
+"price": 22.0,
+"match": "Atletico Madrid v Viking (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193885",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 6.4,
+"match": "Paris St-G v Roma (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193885",
+"sel": 489720,
+"pick": "Paris St-G",
+"side": "back",
+"price": 1.38,
+"match": "Paris St-G v Roma (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193747",
+"sel": 10762,
+"pick": "Club Brugge",
+"side": "lay",
+"price": 4.8,
+"match": "Club Brugge v Liverpool (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193747",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.7,
+"match": "Club Brugge v Liverpool (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193609",
+"sel": 44790,
+"pick": "Lille",
+"side": "back",
+"price": 8.6,
+"match": "Lille v Bayern Munich (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193471",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 6.4,
+"match": "Inter v Stuttgart (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193471",
+"sel": 44519,
+"pick": "Stuttgart",
+"side": "back",
+"price": 6.2,
+"match": "Inter v Stuttgart (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193333",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.1,
+"match": "Sporting Lisbon v Man Utd (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193333",
+"sel": 52495073,
+"pick": "Sporting Lisbon",
+"side": "back",
+"price": 2.66,
+"match": "Sporting Lisbon v Man Utd (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265193195",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.95,
+"match": "Shakhtar v Fenerbahce (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265193195",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.55,
+"match": "Shakhtar v Fenerbahce (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:00+00:00"
+},
+{
+"bot": "value_back",
+"market": "1.265331436",
+"sel": 15293881,
+"pick": "FC Sabah",
+"side": "back",
+"price": 22.0,
+"match": "FC Sabah v Barcelona (Champions League, Wed 25 Nov 17:45)",
+"start": "2026-11-25T17:45:00.000Z",
+"placed": "2026-11-19T20:45+00:00"
+},
+{
+"bot": "value_back",
+"market": "1.265193609",
+"sel": 44790,
+"pick": "Lille",
+"side": "back",
+"price": 8.6,
+"match": "Lille v Bayern Munich (Champions League, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-19T20:45+00:00"
+},
+{
+"bot": "value_back",
+"market": "1.265261732",
+"sel": 70385,
+"pick": "Hull",
+"side": "back",
+"price": 7.0,
+"match": "Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",
+"start": "2026-11-22T14:00:00.000Z",
+"placed": "2026-11-21T10:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265877196",
+"sel": 47998,
+"pick": "Norwich",
+"side": "back",
+"price": 1.04,
+"match": "Norwich v QPR (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T13:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265881761",
+"sel": 121724,
+"pick": "Nurnberg",
+"side": "lay",
+"price": 3.7,
+"match": "FC Heidenheim v Nurnberg (Bundesliga, Fri 27 Nov 17:30)",
+"start": "2026-11-27T17:30:00.000Z",
+"placed": "2026-11-21T17:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265881761",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.95,
+"match": "FC Heidenheim v Nurnberg (Bundesliga, Fri 27 Nov 17:30)",
+"start": "2026-11-27T17:30:00.000Z",
+"placed": "2026-11-21T17:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265884503",
+"sel": 56295,
+"pick": "Preston",
+"side": "back",
+"price": 1.04,
+"match": "Cardiff v Preston (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T17:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265884719",
+"sel": 48470,
+"pick": "Sheff Utd",
+"side": "back",
+"price": 1.04,
+"match": "Sheff Utd v Southampton (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T17:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265885421",
+"sel": 56299,
+"pick": "Burnley",
+"side": "back",
+"price": 1.04,
+"match": "Burnley v Birmingham (Championship, Wed 25 Nov 19:45)",
+"start": "2026-11-25T19:45:00.000Z",
+"placed": "2026-11-21T17:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265884611",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 5.4,
+"match": "Wolves v Derby (Championship, Tue 24 Nov 20:00)",
+"start": "2026-11-24T20:00:00.000Z",
+"placed": "2026-11-21T18:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265885809",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 1.71,
+"match": "Stoke v Millwall (Championship, Wed 25 Nov 20:00)",
+"start": "2026-11-25T20:00:00.000Z",
+"placed": "2026-11-21T18:15+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265884835",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 4.5,
+"match": "Portsmouth v West Ham (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T18:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265884835",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.55,
+"match": "Portsmouth v West Ham (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T18:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265886379",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 1.13,
+"match": "Watford v Blackburn (Championship, Wed 25 Nov 19:45)",
+"start": "2026-11-25T19:45:00.000Z",
+"placed": "2026-11-21T18:43+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265889905",
+"sel": 1703,
+"pick": "West Brom",
+"side": "back",
+"price": 1.04,
+"match": "Bolton v West Brom (Championship, Wed 25 Nov 19:45)",
+"start": "2026-11-25T19:45:00.000Z",
+"placed": "2026-11-21T18:43+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265891871",
+"sel": 74303,
+"pick": "Middlesbrough",
+"side": "back",
+"price": 1.04,
+"match": "Middlesbrough v Swansea (Championship, Tue 24 Nov 19:45)",
+"start": "2026-11-24T19:45:00.000Z",
+"placed": "2026-11-21T19:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265510123",
+"sel": 84649,
+"pick": "Mgladbach",
+"side": "lay",
+"price": 4.7,
+"match": "Werder Bremen v Mgladbach (Bundesliga, Fri 27 Nov 19:30)",
+"start": "2026-11-27T19:30:00.000Z",
+"placed": "2026-11-21T19:30+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265510123",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 4.4,
+"match": "Werder Bremen v Mgladbach (Bundesliga, Fri 27 Nov 19:30)",
+"start": "2026-11-27T19:30:00.000Z",
+"placed": "2026-11-21T19:30+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265566046",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.9,
+"match": "Venezia v Bologna (Serie A, Fri 27 Nov 19:45)",
+"start": "2026-11-27T19:45:00.000Z",
+"placed": "2026-11-21T19:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265566046",
+"sel": 58805,
+"pick": "The Draw",
+"side": "back",
+"price": 3.6,
+"match": "Venezia v Bologna (Serie A, Fri 27 Nov 19:45)",
+"start": "2026-11-27T19:45:00.000Z",
+"placed": "2026-11-21T19:45+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265701874",
+"sel": 669348,
+"pick": "Brest",
+"side": "lay",
+"price": 3.4,
+"match": "Brest v Paris FC (Ligue 1, Fri 27 Nov 19:45)",
+"start": "2026-11-27T19:45:00.000Z",
+"placed": "2026-11-21T19:45+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265701874",
+"sel": 5168454,
+"pick": "Paris FC",
+"side": "back",
+"price": 2.28,
+"match": "Brest v Paris FC (Ligue 1, Fri 27 Nov 19:45)",
+"start": "2026-11-27T19:45:00.000Z",
+"placed": "2026-11-21T19:45+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265561622",
+"sel": 24072,
+"pick": "Racing Santander",
+"side": "lay",
+"price": 3.55,
+"match": "Levante v Racing Santander (La Liga, Fri 27 Nov 20:00)",
+"start": "2026-11-27T20:00:00.000Z",
+"placed": "2026-11-21T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265561622",
+"sel": 24072,
+"pick": "Racing Santander",
+"side": "back",
+"price": 3.25,
+"match": "Levante v Racing Santander (La Liga, Fri 27 Nov 20:00)",
+"start": "2026-11-27T20:00:00.000Z",
+"placed": "2026-11-21T20:00+00:00"
+},
+{
+"bot": "underdog_lay",
+"market": "1.265555468",
+"sel": 58805,
+"pick": "The Draw",
+"side": "lay",
+"price": 3.6,
+"match": "Nottm Forest v Chelsea (English Premier League, Fri 27 Nov 20:00)",
+"start": "2026-11-27T20:00:00.000Z",
+"placed": "2026-11-21T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265555468",
+"sel": 39674645,
+"pick": "Nottm Forest",
+"side": "back",
+"price": 2.82,
+"match": "Nottm Forest v Chelsea (English Premier League, Fri 27 Nov 20:00)",
+"start": "2026-11-27T20:00:00.000Z",
+"placed": "2026-11-21T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265886027",
+"sel": 74303,
+"pick": "Middlesbrough",
+"side": "back",
+"price": 1.04,
+"match": "Southampton v Middlesbrough (Championship, Fri 27 Nov 20:00)",
+"start": "2026-11-27T20:00:00.000Z",
+"placed": "2026-11-21T20:00+00:00"
+},
+{
+"bot": "random_back",
+"market": "1.265896783",
+"sel": 993093,
+"pick": "SV Darmstadt",
+"side": "back",
+"price": 1.04,
+"match": "Bochum v SV Darmstadt (Bundesliga, Fri 27 Nov 17:30)",
+"start": "2026-11-27T17:30:00.000Z",
+"placed": "2026-11-21T20:45+00:00"
+}
+],
+"done": {
+"1.265262622": [
+"underdog_lay",
+"random_back"
+],
+"1.265261381": [
+"underdog_lay",
+"random_back"
+],
+"1.265683138": [
+"underdog_lay",
+"random_back"
+],
+"1.265548584": [
+"underdog_lay",
+"random_back"
+],
+"1.265683248": [
+"underdog_lay",
+"random_back"
+],
+"1.265269357": [
+"random_back"
+],
+"1.265277509": [
+"underdog_lay",
+"random_back"
+],
+"1.265261732": [
+"underdog_lay",
+"random_back",
+"value_back"
+],
+"1.265261858": [
+"underdog_lay",
+"random_back"
+],
+"1.265261437": [
+"underdog_lay",
+"random_back"
+],
+"1.265287125": [
+"underdog_lay",
+"random_back"
+],
+"1.265269481": [
+"underdog_lay",
+"random_back"
+],
+"1.265271159": [
+"underdog_lay",
+"random_back"
+],
+"1.264344671": [
+"underdog_lay",
+"random_back"
+],
+"1.265270923": [
+"underdog_lay",
+"random_back"
+],
+"1.265276254": [
+"underdog_lay",
+"random_back"
+],
+"1.265287669": [
+"underdog_lay",
+"random_back"
+],
+"1.265277846": [
+"underdog_lay",
+"random_back"
+],
+"1.265276378": [
+"underdog_lay",
+"random_back"
+],
+"1.265276092": [
+"underdog_lay",
+"random_back"
+],
+"1.265400899": [
+"underdog_lay",
+"random_back"
+],
+"1.265330368": [
+"underdog_lay",
+"random_back"
+],
+"1.265321700": [
+"underdog_lay",
+"random_back"
+],
+"1.265195127": [
+"underdog_lay",
+"random_back"
+],
+"1.265194989": [
+"underdog_lay",
+"random_back"
+],
+"1.265683578": [
+"random_back"
+],
+"1.264769994": [
+"random_back"
+],
+"1.265194851": [
+"underdog_lay",
+"random_back"
+],
+"1.265194713": [
+"random_back"
+],
+"1.265194575": [
+"underdog_lay",
+"random_back",
+"value_back"
+],
+"1.265194437": [
+"random_back",
+"value_back"
+],
+"1.265194299": [
+"underdog_lay",
+"random_back"
+],
+"1.265194161": [
+"random_back"
+],
+"1.265193057": [
+"underdog_lay",
+"random_back"
+],
+"1.265331436": [
+"random_back",
+"value_back"
+],
+"1.265194023": [
+"underdog_lay",
+"random_back"
+],
+"1.265490424": [
+"random_back"
+],
+"1.265193885": [
+"underdog_lay",
+"random_back"
+],
+"1.265193747": [
+"underdog_lay",
+"random_back"
+],
+"1.265193609": [
+"random_back",
+"value_back"
+],
+"1.265193471": [
+"underdog_lay",
+"random_back"
+],
+"1.265193333": [
+"underdog_lay",
+"random_back"
+],
+"1.265193195": [
+"underdog_lay",
+"random_back"
+],
+"1.265877196": [
+"random_back"
+],
+"1.265881761": [
+"underdog_lay",
+"random_back"
+],
+"1.265884835": [
+"underdog_lay",
+"random_back"
+],
+"1.265884503": [
+"random_back"
+],
+"1.265884719": [
+"random_back"
+],
+"1.265884611": [
+"random_back"
+],
+"1.265885421": [
+"random_back"
+],
+"1.265885809": [
+"random_back"
+],
+"1.265886379": [
+"random_back"
+],
+"1.265889905": [
+"random_back"
+],
+"1.265891871": [
+"random_back"
+],
+"1.265510123": [
+"underdog_lay",
+"random_back"
+],
+"1.265566046": [
+"underdog_lay",
+"random_back"
+],
+"1.265701874": [
+"underdog_lay",
+"random_back"
+],
+"1.265561622": [
+"underdog_lay",
+"random_back"
+],
+"1.265555468": [
+"underdog_lay",
+"random_back"
+],
+"1.265886027": [
+"random_back"
+],
+"1.265896783": [
+"random_back"
+]
+},
+"bot": {
+"value_back": {
+"n": 3,
+"won": 0,
+"pnl": -30.0,
+"risk": 30.0,
+"r": -3.0,
+"r2": 3.0
+}
+},
+"note": "",
+"pin_age": 315
+}
