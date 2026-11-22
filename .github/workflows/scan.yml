@@ -96,7 +96,7 @@ jobs:
   # (18 Nov) Horse racing + greyhound paper bots on Betfair - separate jobs, so a Betfair problem never stops the Kalshi scan
   horses:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:

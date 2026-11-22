@@ -27,6 +27,7 @@ import math
 import os
 import random
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "gaps"))
@@ -35,6 +36,8 @@ import betfair  # noqa: E402  (login + API calls, never prints secrets)
 KIND = sys.argv[1] if len(sys.argv) > 1 else "horses"
 SPORT = {"horses": dict(event="7", countries=["GB", "IE"], title="Horse racing paper bots (Betfair, UK + Irish races)", animal="horse"),
          "dogs": dict(event="4339", countries=["GB"], title="Greyhound paper bots (Betfair, UK tracks)", animal="dog")}[KIND]
+LOOPS = int(os.environ.get("BF_LOOPS", "10"))          # one check a minute for ~10 minutes
+WINDOW = {"horses": (1, 6), "dogs": (0.5, 3)}[KIND]   # minutes before the off when bets are placed
 STATE, LOG, REPORT = f"{KIND}_state.json", f"{KIND}_bets.csv", f"{KIND}.md"
 COMM, STAKE, LIAB = 0.05, 10.0, 10.0
 NOW = datetime.now(timezone.utc)
@@ -118,6 +121,7 @@ def settle(bet, status):
 
 
 def main():
+    global NOW
     state = json.load(open(STATE)) if os.path.exists(STATE) else {"runs": 0, "snaps": {}, "open": [], "done": {}, "bot": {}}
     state["runs"] += 1
     if state.get("v") != 2:                            # (19 Nov) thin-market fix: restart the scores clean
@@ -133,79 +137,87 @@ def main():
         return
     state["note"] = ""
 
-    # 1) settle finished races
-    mids = sorted({b["market"] for b in state["open"]})
-    results = {}
-    for i in range(0, len(mids), 40):
-        for bk in bf.call("listMarketBook", {"marketIds": mids[i:i + 40]}):
-            if bk.get("status") == "CLOSED":
-                results[bk["marketId"]] = {r["selectionId"]: r.get("status") for r in bk["runners"]}
-    still = []
-    for b in state["open"]:
-        res = results.get(b["market"])
-        if res is None:
-            if NOW - ts(b["start"]) > timedelta(days=2):     # abandoned / never settled: stake back
-                res = {b["sel"]: "REMOVED"}
-            else:
-                still.append(b)
-                continue
-        b["pnl"], b["result"] = settle(b, res.get(b["sel"], "REMOVED"))
-        b["settled"] = NOW.isoformat(timespec="minutes")
-        log(b)
-        if b["result"] != "void":
-            s = state["bot"].setdefault(b["bot"], {"n": 0, "won": 0, "pnl": 0.0, "risk": 0.0, "r": 0.0, "r2": 0.0})
-            risk = STAKE if b["side"] == "back" else LIAB
-            s["n"] += 1
-            s["won"] += b["result"] == "won"
-            s["pnl"] = round(s["pnl"] + b["pnl"], 2)
-            s["risk"] += risk
-            s["r"] += b["pnl"] / risk
-            s["r2"] += (b["pnl"] / risk) ** 2
-    settled = len(state["open"]) - len(still)
-    state["open"] = still
+    settled = placed = n_races = 0
+    # (22 Nov) dog (and horse) markets only fill up in the last few minutes, so each run now watches for ~10 minutes
+    # and bets inside the final-minutes window, when real money is on offer.
+    for it in range(LOOPS):
+        NOW = datetime.now(timezone.utc)
+        # 1) settle finished races
+        mids = sorted({b["market"] for b in state["open"]})
+        results = {}
+        for i in range(0, len(mids), 40):
+            for bk in bf.call("listMarketBook", {"marketIds": mids[i:i + 40]}):
+                if bk.get("status") == "CLOSED":
+                    results[bk["marketId"]] = {r["selectionId"]: r.get("status") for r in bk["runners"]}
+        still = []
+        for b in state["open"]:
+            res = results.get(b["market"])
+            if res is None:
+                if NOW - ts(b["start"]) > timedelta(days=2):     # abandoned / never settled: stake back
+                    res = {b["sel"]: "REMOVED"}
+                else:
+                    still.append(b)
+                    continue
+            b["pnl"], b["result"] = settle(b, res.get(b["sel"], "REMOVED"))
+            b["settled"] = NOW.isoformat(timespec="minutes")
+            log(b)
+            if b["result"] != "void":
+                s = state["bot"].setdefault(b["bot"], {"n": 0, "won": 0, "pnl": 0.0, "risk": 0.0, "r": 0.0, "r2": 0.0})
+                risk = STAKE if b["side"] == "back" else LIAB
+                s["n"] += 1
+                s["won"] += b["result"] == "won"
+                s["pnl"] = round(s["pnl"] + b["pnl"], 2)
+                s["risk"] += risk
+                s["r"] += b["pnl"] / risk
+                s["r2"] += (b["pnl"] / risk) ** 2
+        settled += len(state["open"]) - len(still)
+        state["open"] = still
 
-    # 2) races in the next 90 minutes
-    def catalogue(n):
-        return bf.call("listMarketCatalogue", {"filter": {"eventTypeIds": [SPORT["event"]], "marketCountries": SPORT["countries"], "marketTypeCodes": ["WIN"],
-                  "marketStartTime": {"from": (NOW - timedelta(minutes=5)).isoformat(), "to": (NOW + timedelta(minutes=90)).isoformat()}},
-                  "maxResults": str(n), "marketProjection": ["EVENT", "MARKET_START_TIME", "RUNNER_DESCRIPTION"]})
-    try:
-        cat = catalogue(300)
-    except Exception:                                    # too much data in one go - take the next 100 races
-        cat = catalogue(100)
-    placed = 0
-    for i in range(0, len(cat), 40):
-        part = cat[i:i + 40]
-        books = {b["marketId"]: b for b in bf.call("listMarketBook", {"marketIds": [m["marketId"] for m in part],
-                 "priceProjection": {"priceData": ["EX_BEST_OFFERS"]}})}
-        for m in part:
-            bk, mid = books.get(m["marketId"]), m["marketId"]
-            if not bk or bk.get("status") != "OPEN" or bk.get("inplay"):
-                continue
-            mins = (ts(m["marketStartTime"]) - NOW).total_seconds() / 60
-            snap = state["snaps"].setdefault(mid, {"start": m["marketStartTime"], "early": {}})
-            if mins >= 25:                                   # "early" price = latest one seen 25+ min before the off
-                for r in bk["runners"]:
-                    p = best(r, "back")[0]
-                    if p:
-                        snap["early"][str(r["selectionId"])] = p
-            if 2 <= mins <= 16:
-                done = state["done"].setdefault(mid, [])
-                for bot, sel, name, side, price in decide(m, bk, snap["early"]):
-                    if bot in done:
-                        continue
-                    done.append(bot)
-                    placed += 1
-                    state["open"].append(dict(bot=bot, market=mid, sel=sel, horse=name, side=side, price=price,
-                                              race=f"{m['event'].get('venue') or m['event']['name']} {ts(m['marketStartTime']):%H:%M}",
-                                              start=m["marketStartTime"], placed=NOW.isoformat(timespec="minutes")))
+        # 2) races in the next 90 minutes
+        def catalogue(n):
+            return bf.call("listMarketCatalogue", {"filter": {"eventTypeIds": [SPORT["event"]], "marketCountries": SPORT["countries"], "marketTypeCodes": ["WIN"],
+                      "marketStartTime": {"from": (NOW - timedelta(minutes=5)).isoformat(), "to": (NOW + timedelta(minutes=90)).isoformat()}},
+                      "maxResults": str(n), "marketProjection": ["EVENT", "MARKET_START_TIME", "RUNNER_DESCRIPTION"]})
+        try:
+            cat = catalogue(300)
+        except Exception:                                    # too much data in one go - take the next 100 races
+            cat = catalogue(100)
+        pass
+        for i in range(0, len(cat), 40):
+            part = cat[i:i + 40]
+            books = {b["marketId"]: b for b in bf.call("listMarketBook", {"marketIds": [m["marketId"] for m in part],
+                     "priceProjection": {"priceData": ["EX_BEST_OFFERS"]}})}
+            for m in part:
+                bk, mid = books.get(m["marketId"]), m["marketId"]
+                if not bk or bk.get("status") != "OPEN" or bk.get("inplay"):
+                    continue
+                mins = (ts(m["marketStartTime"]) - NOW).total_seconds() / 60
+                snap = state["snaps"].setdefault(mid, {"start": m["marketStartTime"], "early": {}})
+                if mins >= 25:                                   # "early" price = latest one seen 25+ min before the off
+                    for r in bk["runners"]:
+                        p = best(r, "back")[0]
+                        if p:
+                            snap["early"][str(r["selectionId"])] = p
+                if WINDOW[0] <= mins <= WINDOW[1]:
+                    done = state["done"].setdefault(mid, [])
+                    for bot, sel, name, side, price in decide(m, bk, snap["early"]):
+                        if bot in done:
+                            continue
+                        done.append(bot)
+                        placed += 1
+                        state["open"].append(dict(bot=bot, market=mid, sel=sel, horse=name, side=side, price=price,
+                                                  race=f"{m['event'].get('venue') or m['event']['name']} {ts(m['marketStartTime']):%H:%M}",
+                                                  start=m["marketStartTime"], placed=NOW.isoformat(timespec="minutes")))
+        n_races = max(n_races, len(cat))
+        if it < LOOPS - 1:
+            time.sleep(60)
     # tidy old memory
     old = (NOW - timedelta(days=2)).isoformat()
     state["snaps"] = {k: v for k, v in state["snaps"].items() if v["start"] > old}
     state["done"] = {k: v for k, v in state["done"].items() if k in state["snaps"]}
     state["diag"] = (state.get("diag", []) + DIAG)[-300:]
     print(f"book % of races checked: {DIAG}")
-    print(f"{len(cat)} races in the next 90 min, {placed} new pretend bets, {settled} settled, {len(state['open'])} open")
+    print(f"{n_races} races in the next 90 min, {placed} new pretend bets, {settled} settled, {len(state['open'])} open")
     save(state)
 
 
