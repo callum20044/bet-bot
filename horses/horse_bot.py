@@ -54,6 +54,9 @@ def best(r, side):
     return (float(o["price"]), float(o["size"])) if o else (None, 0.0)
 
 
+DIAG = []                                              # book % of every race looked at this run (for tuning)
+
+
 def decide(market, book, early):
     """Return list of (bot, selectionId, side, price) for one race about to start."""
     names = {r["selectionId"]: r["runnerName"] for r in market["runners"]}
@@ -65,7 +68,9 @@ def decide(market, book, early):
         return []
     # (19 Nov) skip thin races: in a liquid market the best back prices add up to about 100%. Day 1 had dog bots
     # laying at 250 (dog really ~6) and the luck check backing a 300-1 shot, because nobody was offering a real price.
-    if not 0.95 <= sum(1 / p for p, _ in priced) <= 1.08:
+    book_pct = sum(1 / p for p, _ in priced)
+    DIAG.append(round(book_pct, 3))
+    if not 0.95 <= book_pct <= 1.08:
         return []
 
     def tight(sel):                                    # this runner's back and lay prices are close together
@@ -198,6 +203,8 @@ def main():
     old = (NOW - timedelta(days=2)).isoformat()
     state["snaps"] = {k: v for k, v in state["snaps"].items() if v["start"] > old}
     state["done"] = {k: v for k, v in state["done"].items() if k in state["snaps"]}
+    state["diag"] = (state.get("diag", []) + DIAG)[-300:]
+    print(f"book % of races checked: {DIAG}")
     print(f"{len(cat)} races in the next 90 min, {placed} new pretend bets, {settled} settled, {len(state['open'])} open")
     save(state)
 
