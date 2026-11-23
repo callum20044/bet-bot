@@ -224,7 +224,8 @@ SNIPER = dict(enabled=True, max_open=20, certainty=0.995, price_min=0.50, price_
 GAS = dict(enabled=False,  # off 16 Oct: 2-18, -$76 - kept buying 5c longshots the market knew were dead
            max_open=20, base_sd=0.004, price_min=0.05, price_max=0.95, min_edge=0.04)
 # 29. Football ratings (ClubElo) -> win / draw / loss chances.
-FOOTBALL_ELO = dict(enabled=True, max_open=20, home_adv=60, draw_base=0.29, draw_slope=0.31,
+FOOTBALL_ELO = dict(enabled=False,  # off 23 Nov: api.clubelo.com times out from GitHub every scan - 0 bets in 5 weeks
+                    max_open=20, home_adv=60, draw_base=0.29, draw_slope=0.31,
                     min_hours_to_close=4.5, max_hours_to_close=72, max_disagree=0.20, min_edge=0.04)
 # 30. Tennis ratings (Tennis Abstract Elo, blend of overall and hard court).
 TENNIS_ELO = dict(enabled=True, max_open=20, min_hours_to_close=4, max_hours_to_close=48,
