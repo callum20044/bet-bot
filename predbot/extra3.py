@@ -374,7 +374,15 @@ POLY_TAGS = {"KXNFLGAME": "nfl", "KXNBAGAME": "nba", "KXNHLGAME": "nhl", "KXMLBG
 
 def poly_prices(tag):
     """{(team name, date): probability} from Polymarket's open game markets for a sport."""
-    data = get(f"https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug={tag}", as_json=True) or []
+    # (23 Nov) Polymarket now refuses pages bigger than 50 events with HTTP 406 (probe: limit=50 OK, 100/200 406),
+    # which is why this bot never saw a price. Read up to 4 pages of 50 instead.
+    data = []
+    for off in range(0, 200, 50):
+        page = get(f"https://gamma-api.polymarket.com/events?closed=false&limit=50&offset={off}&tag_slug={tag}",
+                   as_json=True) or []
+        data += page
+        if len(page) < 50:
+            break
     out = {}
     for ev in data:
         slug = ev.get("slug", "")

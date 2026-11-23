@@ -119,3 +119,48 @@ def find(markets, all_markets=None):
             good.append(b)
     good.sort(key=lambda b: -b.profit(b.n))
     return good
+
+
+# ---------- (23 Nov) cross-event: 'wins by over N' vs 'wins' ----------
+
+def find_cross(markets, all_markets=None):
+    """'Chicago wins by over 9.5 points' can never be more likely than 'Chicago wins': the spread market
+    is in a different Kalshi event (KXNFLSPREAD-... vs KXNFLGAME-...), so the ladder check above never
+    compares them. If the spread's YES is bid above the win market's YES ask, buy YES 'wins' + NO 'wins by
+    over N': if the team wins big the first pays, if it loses (or draws) the second pays, and if it wins by a
+    little both pay - at least $1 back whatever happens. Same for football ('wins by more than 1.5 goals').
+    Legs must both be liquid (in `markets`) with real two-sided prices - an empty book shows ask $1."""
+    c = config.CROSS_ARB
+    if not c["enabled"]:
+        return []
+    by_ticker = {m.ticker: m for m in markets}
+    out = []
+    for sp in markets:
+        series = sp.event_ticker.split("-")[0]
+        if not series.endswith("SPREAD"):
+            continue
+        suffix = sp.ticker.rsplit("-", 1)[-1]
+        code = re.sub(r"\d+$", "", suffix)
+        if code == suffix or not code:
+            continue                       # not a 'team + line' market
+        game = by_ticker.get(f"{series[:-6]}GAME-{sp.event_ticker.split('-', 1)[1]}-{code}")
+        if game is None:
+            continue
+        prices = (game.yes_ask, game.yes_bid, sp.yes_bid, sp.no_ask)
+        if any(p is None for p in prices) or not (0.01 < game.yes_ask < 0.99 and 0.01 < sp.no_ask < 0.99) \
+                or game.yes_bid <= 0 or sp.yes_bid <= 0:
+            continue
+        if sp.yes_bid > game.yes_ask:
+            b = Basket([(game, "yes", game.yes_ask), (sp, "no", sp.no_ask)], 1.0, "cross",
+                       f"'{sp.title.split(' - ')[-1][:40]}' bid {sp.yes_bid*100:.0f}c > '{code} wins' ask "
+                       f"{game.yes_ask*100:.0f}c")
+            b.strategy = "cross_arb"
+            out.append(b)
+    good = []
+    for b in out:
+        n = min(config.MAX_CONTRACTS, max(1, math.floor(c["stake"] / max(b.cost_per_set(), 0.01))))
+        if b.profit(n) / n >= c["min_profit_per_set"]:
+            b.n = n
+            good.append(b)
+    good.sort(key=lambda b: -b.profit(b.n))
+    return good

@@ -9,6 +9,7 @@ Sleeps until a key is added: GitHub repo -> Settings -> Secrets and variables ->
 New repository secret, name ODDS_API_KEY.
 """
 import json
+import math
 import os
 import re
 import time
@@ -25,7 +26,8 @@ API = "https://api.the-odds-api.com/v4/sports/{}/odds?regions=eu&markets=h2h&boo
 # Kalshi series -> The Odds API sport, so a Seattle hockey game never matches the Seahawks
 SPORT = {"KXEPLGAME": "soccer_epl", "KXUCLGAME": "soccer_uefa_champs_league",
          "KXNFLGAME": "americanfootball_nfl", "KXNBAGAME": "basketball_nba",
-         "KXNFLSPREAD": "americanfootball_nfl", "KXNBASPREAD": "basketball_nba"}
+         "KXNFLSPREAD": "americanfootball_nfl", "KXNBASPREAD": "basketball_nba",
+         "KXEPLSPREAD": "soccer_epl", "KXUCLSPREAD": "soccer_uefa_champs_league"}
 STOP = {"fc", "cf", "sc", "afc", "club", "the", "de", "city", "united", "real", "st", "state"}
 
 
@@ -246,18 +248,101 @@ def spread_signals(markets, now, events, ok=lambda m: True):
     return out
 
 
+SOCCER_SPREAD_RE = re.compile(r"^(.*?) wins by more than ([\d.]+) goals", re.I)
+
+
+def _pois_row(lam, n=15):
+    out, p = [], math.exp(-lam)
+    for k in range(n):
+        out.append(p)
+        p *= lam / (k + 1)
+    return out
+
+
+def _margins(lh, la):
+    """{home goals - away goals: probability} for independent Poisson scores."""
+    ph, pa = _pois_row(lh), _pois_row(la)
+    d = {}
+    for i, x in enumerate(ph):
+        for j, y in enumerate(pa):
+            d[i - j] = d.get(i - j, 0.0) + x * y
+    return d
+
+
+def fit_goals(p_home, p_draw, p_away):
+    """Home and away goal rates whose Poisson scores give Pinnacle's home / draw / away chances.
+    For each expected total, split it so home-minus-away wins match; keep the total whose draw chance fits."""
+    target = p_home - p_away
+    best = None
+    for t10 in range(12, 50):                   # 1.2 to 4.9 goals a game
+        total = t10 / 10
+        lo, hi = 0.02, 0.98
+        for _ in range(30):
+            sh = (lo + hi) / 2
+            d = _margins(total * sh, total * (1 - sh))
+            diff = sum(v for k, v in d.items() if k > 0) - sum(v for k, v in d.items() if k < 0)
+            lo, hi = (sh, hi) if diff < target else (lo, sh)
+        err = abs(d.get(0, 0) - p_draw)
+        if best is None or err < best[0]:
+            best = (err, total * sh, total * (1 - sh), d)
+    return best
+
+
+def soccer_spread_signals(markets, now, events, ok=lambda m: True):
+    """(23 Nov) EPL / Champions League 'X wins by more than N goals' vs Pinnacle - see config.SHARP_SOCCER."""
+    c = config.SHARP_SOCCER
+    if not c["enabled"]:
+        return []
+    out = []
+    for m in markets:
+        if m.event_ticker.split("-")[0] not in c["sd_series"] or not ok(m):
+            continue
+        hit = SOCCER_SPREAD_RE.match(m.title.split(" - ")[-1])
+        if not hit:
+            continue
+        team, line = hit.group(1), float(hit.group(2))
+        cands = []
+        for ev in candidate_events(m, events, now):
+            start = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00"))
+            if (start - now).total_seconds() / 60 < c["min_minutes_to_kickoff"]:
+                continue
+            home, away = ev.get("home_team", ""), ev.get("away_team", "")
+            is_home, is_away = same_team(team, home), same_team(team, away)
+            if is_home != is_away:
+                cands.append((ev, is_home))
+        if len(cands) != 1:
+            continue                            # no match, or ambiguous - skip
+        ev, is_home = cands[0]
+        probs = fair_probs(ev)
+        ph, pa, pd = probs.get(ev["home_team"]), probs.get(ev["away_team"]), probs.get("Draw")
+        if None in (ph, pa, pd) or not (0.05 < ph < 0.95 and 0.05 < pa < 0.95):
+            continue
+        err, lh, la, d = fit_goals(ph, pd, pa)
+        if err > 0.03:
+            continue                            # Poisson can't reproduce these prices - don't trust it
+        p = sum(v for k, v in d.items() if (k if is_home else -k) > line)
+        best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"], c["max_disagree"])
+        if best:
+            side, pr, price, edge = best
+            out.append(Signal(m, side, price, pr, edge, "sharp_soccer",
+                              f"Pinnacle {ev['home_team']} {ph*100:.0f}/{pd*100:.0f}/{pa*100:.0f} -> goals "
+                              f"{lh:.1f}-{la:.1f}; {team} by {line}+ {p*100:.0f}% vs Kalshi {m.yes_ask*100:.0f}c"))
+    return out
+
+
 def extra_signals(markets, all_markets, now, broker):
     """Draw and spread bots: share the Pinnacle odds already downloaded for the sharp bot."""
     key = os.environ.get("ODDS_API_KEY", "").strip()
-    if not key or not (config.SHARP_DRAW["enabled"] or config.SHARP_SPREAD["enabled"]):
+    if not key or not (config.SHARP_DRAW["enabled"] or config.SHARP_SPREAD["enabled"] or config.SHARP_SOCCER["enabled"]):
         return []
     events = load_odds(broker, config.SHARP, key)
     if not events:
         return []
     d, sp = draw_signals(markets, all_markets, now, events), spread_signals(markets, now, events)
+    so = soccer_spread_signals(markets, now, events)
     ties = [m for m in markets if m.ticker.endswith("-TIE") and SPORT.get(m.event_ticker.split("-")[0], "").startswith("soccer")]
     spreads = [m for m in markets if m.event_ticker.split("-")[0] in config.SHARP_SPREAD["sd"]]
     matched = sum(1 for m in spreads if (h := SPREAD_RE.match(m.title.split(" - ")[-1])) and match(m, events, team=h.group(1), now=now))
     print(f"  pinnacle extras: {len(events)} games; ties {len(ties)} -> {len(d)} bets; "
-          f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets")
-    return d + sp
+          f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets; football spreads -> {len(so)} bets")
+    return d + sp + so

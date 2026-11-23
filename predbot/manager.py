@@ -18,7 +18,7 @@ KILL_MIN_N, KILL_T = 30, -1.5
 KILL_RED_N = 80
 PROVE_N, PROVE_T = 300, 2.0
 VARIANT_PROVE_T = 2.5            # stricter for variants: with ~100 tested, a few will hit t=2 by luck
-NEVER_TOUCH = {"arb"}            # near risk-free baskets: judged by hand
+NEVER_TOUCH = {"arb", "cross_arb"}   # near risk-free baskets: judged by hand
 
 
 def stats(rows):

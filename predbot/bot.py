@@ -113,10 +113,15 @@ def step(source, broker, verbose=True):
         by_game[gk] = by_game.get(gk, 0) + 1
 
     placed = 0
-    if config.ARB["enabled"]:
-        from . import arb
-        for b in arb.find(tradable, markets):
+    from . import arb
+    baskets = (arb.find(tradable, markets) if config.ARB["enabled"] else []) + arb.find_cross(tradable, markets)
+    if baskets:
+        for b in baskets:
+            strat = getattr(b, "strategy", "arb")      # (23 Nov) cross_arb baskets: spread vs win markets
             if any(m.ticker in open_tickers for m, _, _ in b.legs):
+                continue
+            cap = getattr(config, config.STRATEGY_CONFIG[strat]).get("max_open")
+            if cap and by_strat.get(strat, 0) + len(b.legs) > cap:
                 continue
             if len(open_tickers) + len(b.legs) > config.MAX_OPEN_POSITIONS:
                 break
@@ -125,11 +130,11 @@ def step(source, broker, verbose=True):
                 continue
             per_leg_edge = b.profit(n) / n / len(b.legs)
             for m, side, p in b.legs:
-                sig = Signal(m, side, p, p + per_leg_edge, per_leg_edge, "arb", b.note)
+                sig = Signal(m, side, p, p + per_leg_edge, per_leg_edge, strat, b.note)
                 if broker.buy(sig, n):
                     open_tickers.add(m.ticker)
-                    open_events[("arb", m.event_ticker)] = open_events.get(("arb", m.event_ticker), 0) + 1
-                    by_strat["arb"] = by_strat.get("arb", 0) + 1
+                    open_events[(strat, m.event_ticker)] = open_events.get((strat, m.event_ticker), 0) + 1
+                    by_strat[strat] = by_strat.get(strat, 0) + 1
             placed += len(b.legs)
             print(f"  ARB  {n:4d} sets, locked profit ~${b.profit(n):.2f}  [{b.kind}] {b.legs[0][0].title[:50]}  ({b.note})")
     for s in signals:

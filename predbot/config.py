@@ -290,6 +290,21 @@ FINANCE_FADE = dict(enabled=True, max_open=20, yes_min=0.05, yes_max=0.30, min_h
                     shrink_low=0.75, shrink_high=0.85, split=0.15, min_edge_low=0.01, min_edge_high=0.005,
                     max_per_game=2)
 
+# ----- 41-42: added 23 Nov (weekly review) -----
+# 41. Cross-market arbitrage: 'X wins by over N' (spread event) can never be worth more than 'X wins' (game
+#     event). When the spread's YES bid is above the win market's YES ask, buy YES win + NO spread: at least $1
+#     back whatever the score. The arb bot only checks inside one event, so it never sees these. Structural,
+#     like arb and overround (the two bots with the cleanest records: +$41 on 33 bets) - not a model.
+CROSS_ARB = dict(enabled=True, max_open=20, stake=20.00, min_profit_per_set=0.01)
+# 42. Pinnacle football spreads: 'X wins by more than 1.5 goals' (EPL / Champions League) priced from Pinnacle's
+#     home / draw / away odds. sharp_spread - the same idea for NFL/NBA - is the best bot per $1 bet (+19.6p,
+#     104 bets, t=1.4), while the versions that priced spreads from Kalshi's own prices lost (spread_moneyline,
+#     lowscore_spread). Fits two Poisson goal rates that reproduce Pinnacle's three prices exactly, then reads off
+#     the chance of winning by 2+, 3+... Pre-match only (kick-off 1h+ away; the Pinnacle odds are cached for up
+#     to 6h) and capped at a 10c disagreement - when a model and the market differ a lot, the market is right.
+SHARP_SOCCER = dict(enabled=True, max_open=20, sd_series=("KXEPLSPREAD", "KXUCLSPREAD"), price_min=0.08,
+                    price_max=0.92, min_edge=0.04, max_disagree=0.10, min_minutes_to_kickoff=60, max_per_game=2)
+
 # 10. Weather: Kalshi daily high-temperature markets vs the official US forecast (weather.gov).
 #    The forecast high is treated as the centre of a bell curve; sigma is how far off forecasts
 #    typically are (°F). Same-day bets also use what the station has already recorded.
@@ -327,6 +342,7 @@ STRATEGY_CONFIG = {
     "longshot_prematch": "LONGSHOT_PRE", "underdog_focus": "UNDERDOG_FOCUS",
     "weather_fade": "WEATHER_FADE", "underdog_dayahead": "UNDERDOG_DAYAHEAD",
     "finance_fade": "FINANCE_FADE",
+    "cross_arb": "CROSS_ARB", "sharp_soccer": "SHARP_SOCCER",
 }
 
 
