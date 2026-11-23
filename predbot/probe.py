@@ -16,6 +16,11 @@ SOURCES = {
     "clubelo_day": "http://api.clubelo.com/2026-10-15",
     "poly_epl": "https://gamma-api.polymarket.com/events?closed=false&limit=2&tag_slug=epl",
     "poly_nfl_games": "https://gamma-api.polymarket.com/events?closed=false&limit=2&tag_slug=nfl&order=startDate&ascending=true",
+    # 23 Nov: the polymarket bot gets HTTP 406 on limit=200 - which limit does the API still accept?
+    "poly_nfl_l50": "https://gamma-api.polymarket.com/events?closed=false&limit=50&tag_slug=nfl",
+    "poly_nfl_l100": "https://gamma-api.polymarket.com/events?closed=false&limit=100&tag_slug=nfl",
+    "poly_nfl_l200": "https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug=nfl",
+    "poly_nfl_l2": "https://gamma-api.polymarket.com/events?closed=false&limit=2&tag_slug=nfl",
 }
 KEYWORDS = ["gas", "tsa", "rotten", "tennis", "atp", "wta", "passenger", "check"]
 
