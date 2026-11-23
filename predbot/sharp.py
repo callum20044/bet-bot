@@ -248,6 +248,7 @@ def spread_signals(markets, now, events, ok=lambda m: True):
     return out
 
 
+SOCCER_SEEN = {}
 SOCCER_SPREAD_RE = re.compile(r"^(.*?) wins by more than ([\d.]+) goals", re.I)
 
 
@@ -291,12 +292,14 @@ def fit_goals(p_home, p_draw, p_away):
 def soccer_spread_signals(markets, now, events, ok=lambda m: True):
     """(23 Nov) EPL / Champions League 'X wins by more than N goals' vs Pinnacle - see config.SHARP_SOCCER."""
     c = config.SHARP_SOCCER
+    SOCCER_SEEN.update(markets=0, matched=0, priced=0)
     if not c["enabled"]:
         return []
     out = []
     for m in markets:
         if m.event_ticker.split("-")[0] not in c["sd_series"] or not ok(m):
             continue
+        SOCCER_SEEN["markets"] += 1
         hit = SOCCER_SPREAD_RE.match(m.title.split(" - ")[-1])
         if not hit:
             continue
@@ -313,6 +316,7 @@ def soccer_spread_signals(markets, now, events, ok=lambda m: True):
         if len(cands) != 1:
             continue                            # no match, or ambiguous - skip
         ev, is_home = cands[0]
+        SOCCER_SEEN["matched"] += 1
         probs = fair_probs(ev)
         ph, pa, pd = probs.get(ev["home_team"]), probs.get(ev["away_team"]), probs.get("Draw")
         if None in (ph, pa, pd) or not (0.05 < ph < 0.95 and 0.05 < pa < 0.95):
@@ -321,6 +325,7 @@ def soccer_spread_signals(markets, now, events, ok=lambda m: True):
         if err > 0.03:
             continue                            # Poisson can't reproduce these prices - don't trust it
         p = sum(v for k, v in d.items() if (k if is_home else -k) > line)
+        SOCCER_SEEN["priced"] += 1
         best = best_side(p, m, c["price_min"], c["price_max"], c["min_edge"], c["max_disagree"])
         if best:
             side, pr, price, edge = best
@@ -344,5 +349,6 @@ def extra_signals(markets, all_markets, now, broker):
     spreads = [m for m in markets if m.event_ticker.split("-")[0] in config.SHARP_SPREAD["sd"]]
     matched = sum(1 for m in spreads if (h := SPREAD_RE.match(m.title.split(" - ")[-1])) and match(m, events, team=h.group(1), now=now))
     print(f"  pinnacle extras: {len(events)} games; ties {len(ties)} -> {len(d)} bets; "
-          f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets; football spreads -> {len(so)} bets")
+          f"spreads {len(spreads)} ({matched} matched) -> {len(sp)} bets; football spreads {SOCCER_SEEN.get('markets', 0)} ({SOCCER_SEEN.get('matched', 0)} matched, "
+          f"{SOCCER_SEEN.get('priced', 0)} priced) -> {len(so)} bets")
     return d + sp + so
