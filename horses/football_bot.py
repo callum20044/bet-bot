@@ -212,7 +212,7 @@ def log(b):
 
 def tscore(s):
     n = s["n"]
-    if n < 2:
+    if n < 10:                       # too few bets to judge
         return 0.0
     mean = s["r"] / n
     var = (s["r2"] / n - mean ** 2) * n / (n - 1)
