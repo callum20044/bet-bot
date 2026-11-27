@@ -42,6 +42,8 @@ STATE, LOG, REPORT = f"{KIND}_state.json", f"{KIND}_bets.csv", f"{KIND}.md"
 COMM, STAKE, LIAB = 0.05, 10.0, 10.0
 NOW = datetime.now(timezone.utc)
 BOTS = ["fav_back", "steamer_back", "drifter_lay", "longshot_lay", "random_back"]
+# (27 Nov) switched off - clearly worse than the luck check after 180-290 bets each (Callum's "cut losers" rule)
+OFF = {"horses": {"fav_back", "steamer_back"}, "dogs": {"fav_back"}}
 WHAT = {"fav_back": "back the favourite (4.0 or shorter)", "steamer_back": "back the runner being backed in (shortened 20%+)",
         "drifter_lay": "lay the runner drifting out (30%+ longer)", "longshot_lay": "lay an outsider priced 20-40",
         "random_back": "LUCK CHECK - back a random runner"}
@@ -201,7 +203,7 @@ def main():
                 if WINDOW[0] <= mins <= WINDOW[1]:
                     done = state["done"].setdefault(mid, [])
                     for bot, sel, name, side, price in decide(m, bk, snap["early"]):
-                        if bot in done:
+                        if bot in done or bot in OFF.get(KIND, ()):
                             continue
                         done.append(bot)
                         placed += 1
@@ -253,7 +255,7 @@ def save(state):
         s = state["bot"].get(bot, {"n": 0, "won": 0, "pnl": 0.0, "risk": 0.0, "r": 0.0, "r2": 0.0})
         tot += s["pnl"] if bot != "random_back" else 0
         roi = s["pnl"] / s["risk"] if s["risk"] else 0
-        out.append(f"| {bot} | {WHAT[bot]} | {s['n']} | {s['won']} | {s['pnl']:+.2f} | {roi:+.3f} | {tscore(s):+.1f} | {openn.get(bot, 0)} |")
+        out.append(f"| {bot}{' (OFF)' if bot in OFF.get(KIND, ()) else ''} | {WHAT[bot]} | {s['n']} | {s['won']} | {s['pnl']:+.2f} | {roi:+.3f} | {tscore(s):+.1f} | {openn.get(bot, 0)} |")
     out += ["", f"Real bots combined (not counting the luck check): **£{tot:+.2f}**", "",
             "Back bets risk £10, lay bets risk £10. Winnings pay 5% commission. Pretend money only.",
             "Rule of thumb: ignore anything under ~300 bets; a bot needs t >= 2 AND to beat the luck check clearly."]
