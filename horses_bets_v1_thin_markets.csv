@@ -1,0 +1,82 @@
+settled,bot,race,horse,side,price,result,pnl_gbp
+2026-11-18T20:45+00:00,fav_back,Kempton 20:30,Crown Of Crowns,back,3.85,lost,-10.0
+2026-11-18T20:45+00:00,longshot_lay,Kempton 20:30,We Ride At Dawn,lay,25.0,won,0.4
+2026-11-18T20:45+00:00,random_back,Kempton 20:30,Velardo,back,75.0,lost,-10.0
+2026-11-19T11:30+00:00,fav_back,Lingfield 11:18,Nascondino,back,1.73,won,6.93
+2026-11-19T11:30+00:00,longshot_lay,Lingfield 11:18,Quipster,lay,42.0,won,0.23
+2026-11-19T11:30+00:00,random_back,Lingfield 11:18,Silk Braid,back,3.7,lost,-10.0
+2026-11-19T11:45+00:00,fav_back,Warwick 11:27,Leslies Pride,back,2.0,lost,-10.0
+2026-11-19T11:45+00:00,random_back,Warwick 11:27,Hera Dinor,back,5.5,won,42.75
+2026-11-19T12:00+00:00,fav_back,Lingfield 11:48,Rogue Imperial,back,3.2,lost,-10.0
+2026-11-19T12:00+00:00,longshot_lay,Lingfield 11:48,Cloud Summit,lay,38.0,won,0.26
+2026-11-19T12:00+00:00,random_back,Lingfield 11:48,Rogue Imperial,back,3.2,lost,-10.0
+2026-11-19T12:15+00:00,fav_back,Warwick 11:57,Friendly Glance,back,3.25,lost,-10.0
+2026-11-19T12:15+00:00,longshot_lay,Warwick 11:57,Twentysixsoldiers,lay,23.0,won,0.43
+2026-11-19T12:15+00:00,random_back,Warwick 11:57,Elmsford,back,90.0,lost,-10.0
+2026-11-19T12:30+00:00,fav_back,Thurles 12:08,Doctor Steinberg,back,1.46,won,4.37
+2026-11-19T12:30+00:00,longshot_lay,Thurles 12:08,Fort Dino,lay,34.0,won,0.29
+2026-11-19T12:30+00:00,random_back,Thurles 12:08,Doctor Steinberg,back,1.46,won,4.37
+2026-11-19T12:30+00:00,fav_back,Lingfield 12:18,Valley Rising,back,2.46,lost,-10.0
+2026-11-19T12:30+00:00,steamer_back,Lingfield 12:18,Fabulova,back,5.5,lost,-10.0
+2026-11-19T12:30+00:00,longshot_lay,Lingfield 12:18,Miss Clarice,lay,22.0,won,0.45
+2026-11-19T12:30+00:00,random_back,Lingfield 12:18,Acrackintime,back,300.0,won,2840.5
+2026-11-19T12:45+00:00,fav_back,Warwick 12:27,Smile John Boy,back,2.02,lost,-10.0
+2026-11-19T12:45+00:00,random_back,Warwick 12:27,Short Sell,back,280.0,lost,-10.0
+2026-11-19T13:00+00:00,fav_back,Thurles 12:40,Iamagetaway,back,3.25,lost,-10.0
+2026-11-19T13:00+00:00,longshot_lay,Thurles 12:40,Schiehallion,lay,21.0,won,0.47
+2026-11-19T13:00+00:00,random_back,Thurles 12:40,Brother Hollie,back,16.5,lost,-10.0
+2026-11-19T13:15+00:00,fav_back,Lingfield 12:53,Classic Bellini,back,2.62,won,15.39
+2026-11-19T13:15+00:00,longshot_lay,Lingfield 12:53,Kameko Star,lay,21.0,won,0.47
+2026-11-19T13:15+00:00,random_back,Lingfield 12:53,Classic Bellini,back,2.62,won,15.39
+2026-11-19T13:30+00:00,fav_back,Thurles 13:15,Hi Ho Idaho,back,3.1,lost,-10.0
+2026-11-19T13:30+00:00,steamer_back,Thurles 13:15,Little Ginger,back,5.2,lost,-10.0
+2026-11-19T13:30+00:00,random_back,Thurles 13:15,Little Ginger,back,5.2,lost,-10.0
+2026-11-19T13:45+00:00,fav_back,Lingfield 13:28,Zooella,back,1.54,won,5.13
+2026-11-19T13:45+00:00,longshot_lay,Lingfield 13:28,Moonlight Mirage,lay,40.0,won,0.24
+2026-11-19T13:45+00:00,random_back,Lingfield 13:28,Rajiba,back,12.5,lost,-10.0
+2026-11-19T14:00+00:00,random_back,Warwick 13:37,Knappers Hill,back,7.6,won,62.7
+2026-11-19T14:15+00:00,fav_back,Thurles 13:50,I Dont Really Care,back,2.92,lost,-10.0
+2026-11-19T14:15+00:00,random_back,Thurles 13:50,Jury Time,back,4.1,won,29.45
+2026-11-19T14:15+00:00,fav_back,Lingfield 14:03,Morrophore,back,2.74,lost,-10.0
+2026-11-19T14:15+00:00,longshot_lay,Lingfield 14:03,Pierian,lay,21.0,won,0.47
+2026-11-19T14:15+00:00,random_back,Lingfield 14:03,Cabrera,back,100.0,lost,-10.0
+2026-11-19T14:30+00:00,random_back,Warwick 14:12,Analiese,back,6.2,lost,-10.0
+2026-11-19T14:45+00:00,fav_back,Thurles 14:25,Cock And Bull,back,2.88,won,17.86
+2026-11-19T14:45+00:00,longshot_lay,Thurles 14:25,Demanding Gerry,lay,21.0,won,0.47
+2026-11-19T14:45+00:00,random_back,Thurles 14:25,Our Girl Ellie,back,9.6,lost,-10.0
+2026-11-19T15:00+00:00,fav_back,Lingfield 14:38,Enchanted Queen,back,3.6,lost,-10.0
+2026-11-19T15:00+00:00,longshot_lay,Lingfield 14:38,Song n Dance,lay,25.0,won,0.4
+2026-11-19T15:00+00:00,random_back,Lingfield 14:38,Sky Safari,back,4.9,lost,-10.0
+2026-11-19T15:15+00:00,fav_back,Lingfield 15:08,Credit Forgedd It,back,3.7,won,25.65
+2026-11-19T15:15+00:00,longshot_lay,Lingfield 15:08,Bomb Squad,lay,32.0,won,0.31
+2026-11-19T15:15+00:00,random_back,Lingfield 15:08,The Caribbean,back,14.0,lost,-10.0
+2026-11-19T15:30+00:00,fav_back,Thurles 15:00,Max Meridius,back,2.74,lost,-10.0
+2026-11-19T15:30+00:00,longshot_lay,Thurles 15:00,Amron Diamond,lay,26.0,won,0.38
+2026-11-19T15:30+00:00,random_back,Thurles 15:00,Avandra,back,85.0,lost,-10.0
+2026-11-19T15:45+00:00,fav_back,Thurles 15:30,Legendary Status,back,1.42,won,3.99
+2026-11-19T15:45+00:00,longshot_lay,Thurles 15:30,How Decc,lay,29.0,won,0.34
+2026-11-19T15:45+00:00,random_back,Thurles 15:30,Legendary Status,back,1.42,won,3.99
+2026-11-19T15:45+00:00,fav_back,Newcastle 15:35,Water to Wine,back,2.54,lost,-10.0
+2026-11-19T15:45+00:00,longshot_lay,Newcastle 15:35,Pearl Eye,lay,36.0,won,0.27
+2026-11-19T15:45+00:00,random_back,Newcastle 15:35,Paddy The Squire,back,16.0,lost,-10.0
+2026-11-19T16:00+00:00,fav_back,Lingfield 15:40,Nogos Dream,back,3.6,won,24.7
+2026-11-19T16:00+00:00,random_back,Lingfield 15:40,Roman Spring,back,13.0,lost,-10.0
+2026-11-19T16:30+00:00,fav_back,Newcastle 16:10,El Raady,back,2.24,lost,-10.0
+2026-11-19T16:30+00:00,longshot_lay,Newcastle 16:10,Win Or Lose,lay,34.0,void,0.0
+2026-11-19T16:30+00:00,random_back,Newcastle 16:10,Nip About,back,7.8,lost,-10.0
+2026-11-19T17:00+00:00,longshot_lay,Newcastle 16:40,Mollisha,lay,21.0,won,0.47
+2026-11-19T17:00+00:00,random_back,Newcastle 16:40,River Jordan,back,11.0,lost,-10.0
+2026-11-19T17:30+00:00,fav_back,Newcastle 17:10,High Threshold,back,2.24,won,11.78
+2026-11-19T17:30+00:00,random_back,Newcastle 17:10,Third Chapter,back,8.0,lost,-10.0
+2026-11-19T18:00+00:00,fav_back,Newcastle 17:40,Shimmering Shadow,back,2.14,won,10.83
+2026-11-19T18:00+00:00,longshot_lay,Newcastle 17:40,Hot Moonstone,lay,38.0,won,0.26
+2026-11-19T18:00+00:00,random_back,Newcastle 17:40,On A Boat That Day,back,11.5,lost,-10.0
+2026-11-19T18:30+00:00,fav_back,Newcastle 18:10,Frankies Dream,back,3.25,won,21.38
+2026-11-19T18:30+00:00,longshot_lay,Newcastle 18:10,The Childe Of Hale,lay,38.0,won,0.26
+2026-11-19T18:30+00:00,random_back,Newcastle 18:10,Fozzie,back,34.0,lost,-10.0
+2026-11-19T19:00+00:00,longshot_lay,Newcastle 18:40,Zain Primus,lay,21.0,won,0.47
+2026-11-19T19:00+00:00,random_back,Newcastle 18:40,Starmade,back,4.9,lost,-10.0
+2026-11-19T19:30+00:00,longshot_lay,Newcastle 19:10,Irish Incentive,lay,30.0,won,0.33
+2026-11-19T19:30+00:00,random_back,Newcastle 19:10,Liquid Cooled,back,4.4,won,32.3
+2026-11-19T20:00+00:00,longshot_lay,Newcastle 19:40,Rock Of England,lay,21.0,won,0.47
+2026-11-19T20:00+00:00,random_back,Newcastle 19:40,Rock Of England,back,20.0,lost,-10.0
