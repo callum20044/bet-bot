@@ -1,0 +1,776 @@
+settled,bot,race,horse,side,price,result,pnl_gbp
+2026-11-20T11:30+00:00,fav_back,Hove 11:18,6. Seomra Benji,back,2.76,won,16.72
+2026-11-20T11:30+00:00,random_back,Hove 11:18,2. Jacktavern Mojo,back,3.2,lost,-10.0
+2026-11-20T13:45+00:00,fav_back,Hove 13:33,3. Skippers Canyon,back,3.0,lost,-10.0
+2026-11-20T15:00+00:00,fav_back,Kinsley 14:48,3. Golan Hazel,back,3.8,lost,-10.0
+2026-11-20T15:00+00:00,random_back,Kinsley 14:48,5. Ferndale Becky,back,4.2,won,30.4
+2026-11-20T17:30+00:00,fav_back,Kinsley 17:18,5. Ger Danny,back,3.65,won,25.17
+2026-11-20T17:30+00:00,random_back,Kinsley 17:18,1. Grumpy Dizzy,back,3.7,lost,-10.0
+2026-11-20T18:00+00:00,fav_back,Towcester 17:49,1. Ballymac Nats,back,2.22,lost,-10.0
+2026-11-20T18:00+00:00,random_back,Towcester 17:49,1. Ballymac Nats,back,2.22,lost,-10.0
+2026-11-20T18:30+00:00,fav_back,Sheffield 18:18,6. Romeo Cobra,back,2.82,won,17.29
+2026-11-20T18:30+00:00,random_back,Sheffield 18:18,1. Braemar Millie,back,9.6,lost,-10.0
+2026-11-20T19:00+00:00,drifter_lay,Nottingham 18:48,6. Swift Tax,lay,5.9,won,1.94
+2026-11-20T19:00+00:00,random_back,Nottingham 18:48,3. Blue Danube,back,5.8,lost,-10.0
+2026-11-20T21:15+00:00,fav_back,Sunderland 21:03,4. Vernon Mist,back,2.26,lost,-10.0
+2026-11-20T21:15+00:00,random_back,Sunderland 21:03,2. Montana Secret,back,5.9,won,46.55
+2026-11-20T21:45+00:00,fav_back,Romford 21:33,1. Underground Navy,back,1.86,won,8.17
+2026-11-20T22:00+00:00,fav_back,Nottingham 21:48,2. Distant Pablo,back,3.8,lost,-10.0
+2026-11-20T22:00+00:00,random_back,Nottingham 21:48,1. Honeygar Flow,back,4.4,lost,-10.0
+2026-11-21T11:00+00:00,fav_back,Doncaster 10:48,2. Tullycanna Lass,back,2.68,lost,-10.0
+2026-11-21T11:00+00:00,random_back,Doncaster 10:48,1. Vinegarhill Kurn,back,4.0,lost,-10.0
+2026-11-21T11:15+00:00,fav_back,Doncaster 11:04,2. Gaytime Orla,back,2.32,lost,-10.0
+2026-11-21T11:15+00:00,random_back,Doncaster 11:04,2. Gaytime Orla,back,2.32,lost,-10.0
+2026-11-21T11:30+00:00,fav_back,Monmore 11:18,1. Aero Irruption,back,1.9,lost,-10.0
+2026-11-21T11:30+00:00,steamer_back,Monmore 11:18,1. Aero Irruption,back,1.9,lost,-10.0
+2026-11-21T12:15+00:00,fav_back,Romford 12:01,1. Scooby Dior,back,2.58,won,15.01
+2026-11-21T12:15+00:00,random_back,Romford 12:01,4. Tip Top Diva,back,4.9,lost,-10.0
+2026-11-21T13:45+00:00,fav_back,Monmore 13:33,1. Aero Bluebell,back,2.12,lost,-10.0
+2026-11-21T15:00+00:00,fav_back,Newcastle 14:48,6. Butterbridge Top,back,3.45,lost,-10.0
+2026-11-21T15:30+00:00,fav_back,Towcester 15:18,5. Flitwick Trigger,back,3.35,won,22.32
+2026-11-21T15:30+00:00,random_back,Towcester 15:18,2. Betweenthesticks,back,5.9,lost,-10.0
+2026-11-21T16:00+00:00,fav_back,Newcastle 15:48,3. Howay Angel,back,2.54,won,14.63
+2026-11-21T16:30+00:00,fav_back,Towcester 16:18,3. Lady Margaret,back,2.04,won,9.88
+2026-11-21T19:00+00:00,fav_back,Hove 18:46,5. Millers Gem,back,3.2,lost,-10.0
+2026-11-21T19:00+00:00,random_back,Hove 18:46,5. Millers Gem,back,3.2,lost,-10.0
+2026-11-21T19:45+00:00,fav_back,Monmore 19:34,1. Longacres Boss,back,2.22,lost,-10.0
+2026-11-21T19:45+00:00,random_back,Monmore 19:34,1. Longacres Boss,back,2.22,lost,-10.0
+2026-11-21T21:45+00:00,fav_back,Monmore 21:34,4. Finally Matched,back,3.4,lost,-10.0
+2026-11-21T21:45+00:00,drifter_lay,Monmore 21:34,1. Drombeg Flash,lay,4.3,lost,-10.0
+2026-11-21T21:45+00:00,random_back,Monmore 21:34,6. Face The Storm,back,4.2,lost,-10.0
+2026-11-22T15:00+00:00,fav_back,Sheffield 14:48,1. Southwind Storm,back,2.86,won,17.67
+2026-11-22T15:00+00:00,random_back,Sheffield 14:48,1. Southwind Storm,back,2.86,won,17.67
+2026-11-22T16:30+00:00,fav_back,Sheffield 16:03,1. Moss King,back,2.48,void,0.0
+2026-11-22T16:30+00:00,random_back,Sheffield 16:03,3. Fortanach John,back,5.1,void,0.0
+2026-11-22T16:45+00:00,fav_back,Hove 16:34,1. Romantic Oak,back,1.98,won,9.31
+2026-11-22T17:30+00:00,fav_back,Sheffield 17:18,3. Zenith Tanju,back,2.34,won,12.73
+2026-11-22T19:45+00:00,fav_back,Kinsley 19:33,4. Hazelgrove Raven,back,3.0,lost,-10.0
+2026-11-22T19:45+00:00,random_back,Kinsley 19:33,1. Highview Arrow,back,4.3,lost,-10.0
+2026-11-22T20:09+00:00,fav_back,Kinsley 20:07,1. Aurora Queen,back,3.1,won,19.95
+2026-11-22T20:09+00:00,random_back,Kinsley 20:07,3. Deacon Hope,back,5.4,lost,-10.0
+2026-11-22T20:27+00:00,fav_back,Kinsley 20:24,2. Bushpark Maggie,back,3.0,lost,-10.0
+2026-11-22T20:27+00:00,drifter_lay,Kinsley 20:24,3. Elite Lizzie,lay,7.6,won,1.44
+2026-11-22T20:27+00:00,random_back,Kinsley 20:24,5. Mandeville Mist,back,5.2,lost,-10.0
+2026-11-22T20:46+00:00,fav_back,Kinsley 20:41,6. Lynnway Again,back,2.94,lost,-10.0
+2026-11-22T20:46+00:00,random_back,Kinsley 20:41,5. Cactus Closedown,back,5.9,lost,-10.0
+2026-11-22T21:20+00:00,steamer_back,Kinsley 21:16,5. Deecee Phoenix,back,6.0,won,47.5
+2026-11-22T21:20+00:00,random_back,Kinsley 21:16,2. Setthealarm,back,4.8,lost,-10.0
+2026-11-23T10:36+00:00,fav_back,Harlow 10:32,3. Salems Ouzo,back,3.45,won,23.27
+2026-11-23T10:36+00:00,random_back,Harlow 10:32,4. Foxrock Bell,back,8.8,lost,-10.0
+2026-11-23T10:50+00:00,fav_back,Harlow 10:48,2. Fenview Luca,back,3.0,won,19.0
+2026-11-23T11:05+00:00,fav_back,Dunstall Park 11:01,6. Shanmoyle Pat,back,3.2,lost,-10.0
+2026-11-23T11:05+00:00,random_back,Dunstall Park 11:01,5. Rapido Beat,back,7.6,lost,-10.0
+2026-11-23T11:08+00:00,fav_back,Harlow 11:04,1. Burkos Destiny,back,3.3,won,21.85
+2026-11-23T11:08+00:00,random_back,Harlow 11:04,6. Classic Turbo,back,3.5,lost,-10.0
+2026-11-23T11:17+00:00,fav_back,Romford 11:09,1. Klassical Mia,back,1.93,won,8.83
+2026-11-23T11:17+00:00,longshot_lay,Romford 11:09,2. Romford Sheriff,lay,23.0,won,0.43
+2026-11-23T11:17+00:00,random_back,Romford 11:09,3. Altesse Orchid,back,7.6,lost,-10.0
+2026-11-23T11:36+00:00,fav_back,Harlow 11:21,5. Essjay Tornado,back,2.88,lost,-10.0
+2026-11-23T11:47+00:00,fav_back,Harlow 11:38,1. Fenview Tammy,back,3.35,lost,-10.0
+2026-11-23T11:47+00:00,random_back,Harlow 11:38,4. Honeygar Duke,back,8.4,lost,-10.0
+2026-11-23T12:00+00:00,fav_back,Dunstall Park 11:52,1. Porthall Finn,back,2.3,lost,-10.0
+2026-11-23T12:00+00:00,random_back,Dunstall Park 11:52,1. Porthall Finn,back,2.3,lost,-10.0
+2026-11-23T12:00+00:00,fav_back,Harlow 11:54,1. Headford Cooper,back,3.45,won,23.27
+2026-11-23T12:00+00:00,random_back,Harlow 11:54,1. Headford Cooper,back,3.45,won,23.27
+2026-11-23T12:15+00:00,fav_back,Dunstall Park 12:09,3. Brosna Lenson,back,3.35,lost,-10.0
+2026-11-23T12:15+00:00,drifter_lay,Dunstall Park 12:09,2. Kilwest Ruby,lay,7.2,lost,-10.0
+2026-11-23T12:15+00:00,random_back,Dunstall Park 12:09,3. Brosna Lenson,back,3.35,lost,-10.0
+2026-11-23T12:23+00:00,fav_back,Romford 12:18,1. Aero Sasha,back,2.74,lost,-10.0
+2026-11-23T12:23+00:00,random_back,Romford 12:18,4. Prime Top Notch,back,3.55,lost,-10.0
+2026-11-23T12:37+00:00,random_back,Romford 12:34,6. Sunshine Lass,back,4.8,won,36.1
+2026-11-23T12:45+00:00,fav_back,Dunstall Park 12:26,5. Task Maverick,back,2.68,won,15.96
+2026-11-23T12:45+00:00,random_back,Dunstall Park 12:26,5. Task Maverick,back,2.68,won,15.96
+2026-11-23T12:49+00:00,fav_back,Harlow 12:46,5. Westway Nelson,back,2.9,won,18.05
+2026-11-23T12:49+00:00,random_back,Harlow 12:46,5. Westway Nelson,back,2.9,won,18.05
+2026-11-23T13:00+00:00,fav_back,Dunstall Park 12:42,4. Racecourse Pat,back,3.3,lost,-10.0
+2026-11-23T13:00+00:00,random_back,Dunstall Park 12:42,6. Midget Lee,back,5.1,lost,-10.0
+2026-11-23T13:00+00:00,fav_back,Romford 12:51,2. War Hound,back,2.62,lost,-10.0
+2026-11-23T13:00+00:00,random_back,Romford 12:51,5. Highway Bullet,back,3.05,won,19.47
+2026-11-23T13:06+00:00,fav_back,Harlow 13:03,5. Doggy Parton,back,2.42,won,13.49
+2026-11-23T13:06+00:00,random_back,Harlow 13:03,2. Rathmeehan Suzy,back,7.2,lost,-10.0
+2026-11-23T13:15+00:00,fav_back,Romford 13:08,6. Houdini Lass,back,1.56,lost,-10.0
+2026-11-23T13:15+00:00,random_back,Romford 13:08,1. Pharis Cashout,back,14.0,lost,-10.0
+2026-11-23T13:22+00:00,fav_back,Harlow 13:19,6. Ballintine Ten,back,2.44,won,13.68
+2026-11-23T13:48+00:00,fav_back,Dunstall Park 13:33,1. Tantalising Joy,back,3.75,lost,-10.0
+2026-11-23T13:48+00:00,random_back,Dunstall Park 13:33,1. Tantalising Joy,back,3.75,lost,-10.0
+2026-11-23T14:00+00:00,fav_back,Harlow 13:54,4. Browns Barbie,back,2.96,lost,-10.0
+2026-11-23T14:05+00:00,fav_back,Dunstall Park 13:51,4. Popstar Rose,back,2.58,lost,-10.0
+2026-11-23T14:05+00:00,random_back,Dunstall Park 13:51,1. Canya Yesican,back,6.0,won,47.5
+2026-11-23T14:21+00:00,random_back,Dunstall Park 14:07,4. Swift Wander,back,4.2,void,0.0
+2026-11-23T14:28+00:00,fav_back,Monmore 14:23,6. Winterfield Rosa,back,2.74,lost,-10.0
+2026-11-23T14:28+00:00,random_back,Monmore 14:23,4. Afternoondelight,back,3.0,won,19.0
+2026-11-23T14:32+00:00,fav_back,Sunderland 14:29,4. Classical Hugo,back,2.28,lost,-10.0
+2026-11-23T14:32+00:00,random_back,Sunderland 14:29,1. Regent Curious,back,4.9,won,37.05
+2026-11-23T14:39+00:00,fav_back,Central Park 14:36,5. Crossfield Breda,back,1.86,lost,-10.0
+2026-11-23T14:39+00:00,random_back,Central Park 14:36,2. Hollyhill Shari,back,7.2,lost,-10.0
+2026-11-23T14:51+00:00,fav_back,Sunderland 14:48,4. Ballyquin Ash,back,2.76,lost,-10.0
+2026-11-23T14:51+00:00,random_back,Sunderland 14:48,2. Westforth Swift,back,7.2,lost,-10.0
+2026-11-23T15:04+00:00,fav_back,Monmore 15:01,6. Kurious George,back,2.76,won,16.72
+2026-11-23T15:04+00:00,random_back,Monmore 15:01,2. Stormy Bonito,back,4.5,lost,-10.0
+2026-11-23T15:15+00:00,fav_back,Doncaster 15:03,4. Beepers Maverick,back,1.86,lost,-10.0
+2026-11-23T15:15+00:00,random_back,Doncaster 15:03,1. Grouchos Ivy,back,4.1,won,29.45
+2026-11-23T15:15+00:00,fav_back,Sunderland 15:07,6. Wraysbury Rhyme,back,2.16,won,11.02
+2026-11-23T15:15+00:00,random_back,Sunderland 15:07,5. Mascot Delilah,back,15.0,lost,-10.0
+2026-11-23T15:22+00:00,fav_back,Monmore 15:19,3. Whelan,back,3.0,won,19.0
+2026-11-23T15:22+00:00,random_back,Monmore 15:19,4. Newinn Carole,back,3.65,lost,-10.0
+2026-11-23T15:30+00:00,fav_back,Doncaster 15:22,3. Jazza Lila,back,2.06,won,10.07
+2026-11-23T15:30+00:00,random_back,Doncaster 15:22,3. Jazza Lila,back,2.06,won,10.07
+2026-11-23T15:35+00:00,random_back,Central Park 15:32,4. Ivy Hill Ariel,back,6.8,lost,-10.0
+2026-11-23T15:45+00:00,fav_back,Monmore 15:38,1. Hawkfield Bionic,back,4.0,lost,-10.0
+2026-11-23T15:45+00:00,random_back,Monmore 15:38,6. Longacres Spider,back,8.0,lost,-10.0
+2026-11-23T15:54+00:00,fav_back,Central Park 15:51,4. Moaning Empress,back,3.85,lost,-10.0
+2026-11-23T15:54+00:00,steamer_back,Central Park 15:51,4. Moaning Empress,back,3.85,lost,-10.0
+2026-11-23T15:54+00:00,random_back,Central Park 15:51,5. Autumn Annesley,back,4.2,lost,-10.0
+2026-11-23T16:00+00:00,fav_back,Monmore 15:57,4. Aero Vigil,back,2.94,won,18.43
+2026-11-23T16:00+00:00,random_back,Monmore 15:57,2. Sugar Rose,back,7.0,lost,-10.0
+2026-11-23T16:06+00:00,fav_back,Sunderland 16:03,5. Ravens Girl,back,3.7,lost,-10.0
+2026-11-23T16:06+00:00,random_back,Sunderland 16:03,6. Happenedwas,back,8.2,lost,-10.0
+2026-11-23T16:15+00:00,fav_back,Central Park 16:09,5. Hardy Gringo,back,2.94,won,18.43
+2026-11-23T16:15+00:00,random_back,Central Park 16:09,4. Imokilly Cassie,back,10.5,lost,-10.0
+2026-11-23T16:20+00:00,fav_back,Monmore 16:16,3. Newinn Pauline,back,3.45,lost,-10.0
+2026-11-23T16:20+00:00,random_back,Monmore 16:16,5. Bealtaine,back,3.6,won,24.7
+2026-11-23T16:23+00:00,fav_back,Doncaster 16:18,3. Hollyhill Tiny,back,2.6,lost,-10.0
+2026-11-23T16:23+00:00,random_back,Doncaster 16:18,6. Hollyhill Ciara,back,4.8,won,36.1
+2026-11-23T16:50+00:00,fav_back,Central Park 16:47,3. Beach Body,back,2.14,won,10.83
+2026-11-23T17:00+00:00,fav_back,Monmore 16:53,3. No Step Back,back,3.0,lost,-10.0
+2026-11-23T17:00+00:00,random_back,Monmore 16:53,3. No Step Back,back,3.0,lost,-10.0
+2026-11-23T17:09+00:00,fav_back,Central Park 17:06,6. Stonepark Flower,back,2.9,lost,-10.0
+2026-11-23T17:09+00:00,random_back,Central Park 17:06,6. Stonepark Flower,back,2.9,lost,-10.0
+2026-11-23T17:15+00:00,fav_back,Monmore 17:12,4. Aero Mockery,back,2.52,lost,-10.0
+2026-11-23T17:15+00:00,random_back,Monmore 17:12,4. Aero Mockery,back,2.52,lost,-10.0
+2026-11-23T17:22+00:00,fav_back,Sunderland 17:18,5. Untold Kaspa,back,3.25,lost,-10.0
+2026-11-23T17:22+00:00,random_back,Sunderland 17:18,4. Linton Lucy,back,7.4,won,60.8
+2026-11-23T17:30+00:00,fav_back,Central Park 17:24,6. Windsor Beauty,back,3.0,won,19.0
+2026-11-23T17:30+00:00,drifter_lay,Central Park 17:24,1. Socrates Smiled,lay,6.6,won,1.7
+2026-11-23T17:30+00:00,random_back,Central Park 17:24,3. Hollyoak Siobhan,back,7.8,lost,-10.0
+2026-11-23T17:30+00:00,steamer_back,Central Park 17:24,6. Windsor Beauty,back,2.92,won,18.24
+2026-11-23T17:34+00:00,fav_back,Monmore 17:31,1. Born Goddess,back,3.0,won,19.0
+2026-11-23T17:34+00:00,random_back,Monmore 17:31,6. Angleseyparadise,back,5.2,lost,-10.0
+2026-11-23T17:39+00:00,fav_back,Sunderland 17:37,2. Timmys Duo,back,2.64,lost,-10.0
+2026-11-23T17:50+00:00,fav_back,Doncaster 17:46,5. Snowfall,back,2.18,lost,-10.0
+2026-11-23T17:50+00:00,drifter_lay,Doncaster 17:46,1. Easy Kite,lay,5.6,won,2.07
+2026-11-23T17:50+00:00,random_back,Doncaster 17:46,2. Hawthorn Speed,back,8.6,won,72.2
+2026-11-23T17:53+00:00,fav_back,Monmore 17:49,1. Romantic Love,back,3.7,won,25.65
+2026-11-23T17:53+00:00,random_back,Monmore 17:49,2. Aero Crumpet,back,6.2,lost,-10.0
+2026-11-23T18:01+00:00,fav_back,Sunderland 17:56,5. Fagans Diva,back,3.15,lost,-10.0
+2026-11-23T18:05+00:00,fav_back,Central Park 18:02,5. Half Jarred,back,2.9,lost,-10.0
+2026-11-23T18:05+00:00,drifter_lay,Central Park 18:02,6. Simon John,lay,8.2,won,1.32
+2026-11-23T18:05+00:00,random_back,Central Park 18:02,6. Simon John,back,7.4,lost,-10.0
+2026-11-23T18:15+00:00,fav_back,Towcester 18:08,4. Trapstyle Mayer,back,2.8,lost,-10.0
+2026-11-23T18:15+00:00,fav_back,Harlow 18:11,1. Yo Twilight,back,2.54,lost,-10.0
+2026-11-23T18:15+00:00,drifter_lay,Harlow 18:11,3. Badminton Beach,lay,8.6,won,1.25
+2026-11-23T18:15+00:00,random_back,Harlow 18:11,6. Jimbo Junior,back,2.98,lost,-10.0
+2026-11-23T18:30+00:00,fav_back,Towcester 18:26,4. Trapstyle Fury,back,2.7,lost,-10.0
+2026-11-23T18:35+00:00,fav_back,Yarmouth 18:31,4. Morning Delight,back,2.7,won,16.15
+2026-11-23T18:35+00:00,random_back,Yarmouth 18:31,3. Dellser Paidi,back,3.6,lost,-10.0
+2026-11-23T18:46+00:00,fav_back,Towcester 18:42,1. Blue Robin,back,2.7,lost,-10.0
+2026-11-23T18:46+00:00,random_back,Towcester 18:42,1. Blue Robin,back,2.7,lost,-10.0
+2026-11-23T18:51+00:00,fav_back,Yarmouth 18:48,4. Move Over Smokie,back,2.86,won,17.67
+2026-11-23T18:51+00:00,random_back,Yarmouth 18:48,1. Camden Oreo,back,4.2,lost,-10.0
+2026-11-23T19:08+00:00,fav_back,Harlow 19:04,1. Savana Bridget,back,2.06,lost,-10.0
+2026-11-23T19:08+00:00,random_back,Harlow 19:04,1. Savana Bridget,back,2.06,lost,-10.0
+2026-11-23T19:15+00:00,random_back,Yarmouth 19:06,6. Queen Lana,back,5.1,lost,-10.0
+2026-11-23T19:17+00:00,fav_back,Nottingham 19:11,6. Magical Supreme,back,1.45,won,4.27
+2026-11-23T19:30+00:00,fav_back,Yarmouth 19:22,2. Browns Swifties,back,1.73,lost,-10.0
+2026-11-23T19:30+00:00,random_back,Yarmouth 19:22,4. Bonzer Bono,back,6.2,won,49.4
+2026-11-23T19:30+00:00,fav_back,Harlow 19:24,3. Spade Work,back,3.2,lost,-10.0
+2026-11-23T19:30+00:00,random_back,Harlow 19:24,3. Spade Work,back,3.2,lost,-10.0
+2026-11-23T19:39+00:00,fav_back,Towcester 19:33,4. Trapstyle Grumpy,back,2.78,lost,-10.0
+2026-11-23T19:39+00:00,random_back,Towcester 19:33,6. Marians Hero,back,7.8,lost,-10.0
+2026-11-23T19:53+00:00,fav_back,Towcester 19:49,5. Fierceness,back,4.0,lost,-10.0
+2026-11-23T19:53+00:00,random_back,Towcester 19:49,2. Melbury Galaxy,back,5.4,lost,-10.0
+2026-11-23T20:05+00:00,fav_back,Nottingham 20:01,3. Shelt Hill Rosie,back,2.72,lost,-10.0
+2026-11-23T20:15+00:00,fav_back,Towcester 20:07,4. Curly Sean,back,3.3,lost,-10.0
+2026-11-23T20:30+00:00,fav_back,Nottingham 20:19,1. Annadown Warrior,back,1.79,lost,-10.0
+2026-11-23T20:30+00:00,random_back,Nottingham 20:19,3. Annadown Shadow,back,2.62,won,15.39
+2026-11-23T20:35+00:00,fav_back,Yarmouth 20:31,3. Daisys Blueboy,back,3.75,lost,-10.0
+2026-11-23T20:35+00:00,random_back,Yarmouth 20:31,6. Foxrock Sarrita,back,4.2,lost,-10.0
+2026-11-23T20:37+00:00,fav_back,Harlow 20:34,4. Brandywell King,back,3.6,lost,-10.0
+2026-11-23T20:37+00:00,drifter_lay,Harlow 20:34,5. Bouncy Jet,lay,6.4,lost,-10.0
+2026-11-23T20:37+00:00,random_back,Harlow 20:34,4. Brandywell King,back,3.6,lost,-10.0
+2026-11-23T20:45+00:00,fav_back,Nottingham 20:36,4. Underground Gold,back,1.34,won,3.23
+2026-11-23T20:45+00:00,random_back,Nottingham 20:36,6. Romeo Tomcat,back,13.5,lost,-10.0
+2026-11-23T20:45+00:00,fav_back,Towcester 20:41,6. Hiya Carneiro,back,3.1,lost,-10.0
+2026-11-23T20:53+00:00,fav_back,Yarmouth 20:47,2. In My Life,back,3.8,lost,-10.0
+2026-11-23T20:53+00:00,random_back,Yarmouth 20:47,2. In My Life,back,3.8,lost,-10.0
+2026-11-23T20:54+00:00,fav_back,Harlow 20:52,2. Islas Prince,back,2.86,lost,-10.0
+2026-11-23T20:54+00:00,random_back,Harlow 20:52,2. Islas Prince,back,2.86,lost,-10.0
+2026-11-23T21:00+00:00,fav_back,Nottingham 20:54,4. Strike It Skye,back,1.9,won,8.55
+2026-11-23T21:00+00:00,random_back,Nottingham 20:54,6. True Trend,back,12.5,lost,-10.0
+2026-11-23T21:09+00:00,fav_back,Yarmouth 21:04,4. Saleen Dubh,back,1.93,lost,-10.0
+2026-11-23T21:15+00:00,fav_back,Harlow 21:09,6. Townsend Margo,back,2.84,won,17.48
+2026-11-23T21:15+00:00,steamer_back,Harlow 21:09,6. Townsend Margo,back,2.84,won,17.48
+2026-11-23T21:15+00:00,random_back,Harlow 21:09,1. Savana Ripple,back,2.88,lost,-10.0
+2026-11-23T21:15+00:00,fav_back,Nottingham 21:11,4. Bellmore Whiskey,back,1.65,lost,-10.0
+2026-11-23T21:20+00:00,fav_back,Towcester 21:16,2. Trapstyle Bunny,back,1.96,lost,-10.0
+2026-11-23T21:20+00:00,random_back,Towcester 21:16,2. Trapstyle Bunny,back,1.96,lost,-10.0
+2026-11-23T21:30+00:00,fav_back,Yarmouth 21:23,2. Swift Jordana,back,1.98,won,9.31
+2026-11-23T21:30+00:00,random_back,Yarmouth 21:23,3. Cheery Girl,back,6.0,lost,-10.0
+2026-11-23T21:50+00:00,fav_back,Nottingham 21:46,3. Skeard Daisy May,back,2.0,lost,-10.0
+2026-11-23T21:50+00:00,steamer_back,Nottingham 21:46,3. Skeard Daisy May,back,2.0,lost,-10.0
+2026-11-24T11:15+00:00,drifter_lay,Sheffield 11:01,5. Avongate Gloss,lay,8.4,lost,-10.0
+2026-11-24T11:15+00:00,random_back,Sheffield 11:01,6. Tromora Milo,back,4.4,lost,-10.0
+2026-11-24T11:15+00:00,random_back,Newcastle 11:09,2. Rios Diva,back,5.0,lost,-10.0
+2026-11-24T11:22+00:00,fav_back,Sheffield 11:18,3. No Dreamers,back,2.22,won,11.59
+2026-11-24T11:22+00:00,random_back,Sheffield 11:18,5. Krak On Katie,back,5.9,lost,-10.0
+2026-11-24T11:54+00:00,fav_back,Sheffield 11:52,1. Do The Catch,back,3.5,lost,-10.0
+2026-11-24T12:22+00:00,random_back,Newcastle 12:18,1. Tinnock Sheba,back,8.8,lost,-10.0
+2026-11-24T12:38+00:00,random_back,Newcastle 12:34,2. Greenhill Jazz,back,4.3,lost,-10.0
+2026-11-24T13:00+00:00,fav_back,Newcastle 12:51,4. Text Noah,back,2.22,lost,-10.0
+2026-11-24T13:00+00:00,random_back,Newcastle 12:51,5. Shesatorment,back,6.2,lost,-10.0
+2026-11-24T13:15+00:00,fav_back,Newcastle 13:08,6. Croia Agus Gwen,back,3.35,lost,-10.0
+2026-11-24T13:15+00:00,random_back,Newcastle 13:08,2. Shadow Jasmine,back,5.2,lost,-10.0
+2026-11-24T13:30+00:00,fav_back,Newcastle 13:26,1. Howay The Lasses,back,2.36,lost,-10.0
+2026-11-24T13:30+00:00,random_back,Newcastle 13:26,5. Lightfoot Lass,back,14.5,lost,-10.0
+2026-11-24T13:46+00:00,fav_back,Newcastle 13:42,6. Ambers Hero,back,3.15,lost,-10.0
+2026-11-24T13:46+00:00,random_back,Newcastle 13:42,3. Alnwick Betty,back,5.1,won,38.95
+2026-11-24T14:15+00:00,fav_back,Valley 14:08,2. Ballinabola Phil,back,2.18,won,11.21
+2026-11-24T14:15+00:00,random_back,Valley 14:08,2. Ballinabola Phil,back,2.18,won,11.21
+2026-11-24T14:31+00:00,fav_back,Romford 14:23,2. Roxana,back,2.98,lost,-10.0
+2026-11-24T14:31+00:00,random_back,Romford 14:23,5. Trumps Again,back,15.0,lost,-10.0
+2026-11-24T14:36+00:00,fav_back,Monmore 14:31,2. Hollywell Cookie,back,2.64,lost,-10.0
+2026-11-24T14:46+00:00,fav_back,Romford 14:41,3. Swift Jasper,back,3.25,lost,-10.0
+2026-11-24T14:46+00:00,longshot_lay,Romford 14:41,1. Hasty Halley,lay,22.0,won,0.45
+2026-11-24T14:46+00:00,random_back,Romford 14:41,4. Zinedine Zedog,back,3.5,won,23.75
+2026-11-24T14:54+00:00,fav_back,Monmore 14:49,6. Droopys Index,back,2.86,lost,-10.0
+2026-11-24T14:54+00:00,random_back,Monmore 14:49,5. Suave Echo,back,6.4,lost,-10.0
+2026-11-24T15:06+00:00,fav_back,Valley 15:03,6. Rollerball,back,2.56,lost,-10.0
+2026-11-24T15:07+00:00,fav_back,Romford 15:01,4. Still Planning,back,3.45,lost,-10.0
+2026-11-24T15:15+00:00,fav_back,Monmore 15:09,6. Zenith Hero,back,3.95,lost,-10.0
+2026-11-24T15:15+00:00,random_back,Monmore 15:09,3. Common Canter,back,6.2,won,49.4
+2026-11-24T15:24+00:00,fav_back,Romford 15:19,2. Dots Petra,back,2.46,won,13.87
+2026-11-24T15:24+00:00,random_back,Romford 15:19,4. Underground Zeus,back,4.6,lost,-10.0
+2026-11-24T15:30+00:00,fav_back,Valley 15:22,1. Bluejig Duke,back,3.65,lost,-10.0
+2026-11-24T15:30+00:00,random_back,Valley 15:22,3. Badminton Mahler,back,3.7,won,25.65
+2026-11-24T15:31+00:00,fav_back,Monmore 15:27,1. Relentless I Am,back,3.05,lost,-10.0
+2026-11-24T15:31+00:00,random_back,Monmore 15:27,4. Cherry Bee,back,3.7,lost,-10.0
+2026-11-24T15:45+00:00,fav_back,Romford 15:38,1. Dellser Clara,back,2.38,won,13.11
+2026-11-24T15:45+00:00,random_back,Romford 15:38,2. Whizzy Dot,back,12.5,lost,-10.0
+2026-11-24T15:45+00:00,fav_back,Valley 15:41,5. Affleck Nashwan,back,2.26,won,11.97
+2026-11-24T15:45+00:00,random_back,Valley 15:41,5. Affleck Nashwan,back,2.26,won,11.97
+2026-11-24T15:50+00:00,fav_back,Monmore 15:47,1. Cashin Nell,back,2.22,lost,-10.0
+2026-11-24T15:50+00:00,random_back,Monmore 15:47,1. Cashin Nell,back,2.22,lost,-10.0
+2026-11-24T16:08+00:00,fav_back,Monmore 16:04,5. Tiree,back,3.6,lost,-10.0
+2026-11-24T16:08+00:00,random_back,Monmore 16:04,2. Bloos Boy Kerry,back,4.4,lost,-10.0
+2026-11-24T16:21+00:00,fav_back,Romford 16:16,4. Millview Hugo,back,3.15,lost,-10.0
+2026-11-24T16:21+00:00,random_back,Romford 16:16,2. Brandywell Queen,back,4.8,lost,-10.0
+2026-11-24T16:21+00:00,fav_back,Valley 16:18,5. Miltown Hope,back,2.88,lost,-10.0
+2026-11-24T16:30+00:00,fav_back,Monmore 16:24,5. Velvet Neymar,back,2.08,lost,-10.0
+2026-11-24T16:30+00:00,random_back,Monmore 16:24,6. Longacres Ariel,back,7.0,won,57.0
+2026-11-24T16:39+00:00,fav_back,Romford 16:34,1. Minnie Majestic,back,3.15,lost,-10.0
+2026-11-24T16:39+00:00,random_back,Romford 16:34,1. Minnie Majestic,back,3.15,lost,-10.0
+2026-11-24T16:45+00:00,fav_back,Monmore 16:42,6. Jacktavern Coco,back,3.15,lost,-10.0
+2026-11-24T17:00+00:00,fav_back,Romford 16:53,3. Kinielty Rosie,back,3.9,won,27.55
+2026-11-24T17:00+00:00,drifter_lay,Romford 16:53,4. Yahoo Aoife,lay,8.0,won,1.36
+2026-11-24T17:00+00:00,random_back,Romford 16:53,6. Kilara Bijoux,back,8.0,lost,-10.0
+2026-11-24T17:03+00:00,fav_back,Monmore 17:01,5. Westway Hitman,back,3.5,lost,-10.0
+2026-11-24T17:03+00:00,drifter_lay,Monmore 17:01,6. Longacres Jet,lay,5.3,won,2.21
+2026-11-24T17:03+00:00,random_back,Monmore 17:01,3. Good Maverick,back,5.5,won,42.75
+2026-11-24T17:30+00:00,fav_back,Monmore 17:19,1. Sallagh Tiger,back,3.0,lost,-10.0
+2026-11-24T17:30+00:00,steamer_back,Monmore 17:19,1. Sallagh Tiger,back,3.0,lost,-10.0
+2026-11-24T17:30+00:00,random_back,Monmore 17:19,1. Sallagh Tiger,back,3.0,lost,-10.0
+2026-11-24T17:35+00:00,fav_back,Romford 17:31,2. Jays Bruno,back,2.72,lost,-10.0
+2026-11-24T17:35+00:00,longshot_lay,Romford 17:31,1. Back To Front,lay,22.0,won,0.45
+2026-11-24T17:35+00:00,random_back,Romford 17:31,5. Kilbride Office,back,3.85,won,27.07
+2026-11-24T17:45+00:00,fav_back,Monmore 17:37,2. Tullymurry India,back,2.78,lost,-10.0
+2026-11-24T17:45+00:00,random_back,Monmore 17:37,1. Staffordstownash,back,5.6,lost,-10.0
+2026-11-24T17:54+00:00,fav_back,Romford 17:49,1. Velvet Murillo,back,3.05,lost,-10.0
+2026-11-24T18:15+00:00,fav_back,Towcester 18:08,2. Skilled Prince,back,3.4,lost,-10.0
+2026-11-24T18:15+00:00,random_back,Towcester 18:08,3. Peacock Express,back,4.4,lost,-10.0
+2026-11-24T18:17+00:00,fav_back,Star Pelaw 18:11,4. Donishall Ajay,back,1.91,won,8.64
+2026-11-24T18:30+00:00,fav_back,Towcester 18:26,1. Glengar Maggie,back,2.46,won,13.87
+2026-11-24T18:30+00:00,random_back,Towcester 18:26,6. Rapido Aria,back,8.4,lost,-10.0
+2026-11-24T18:34+00:00,fav_back,Central Park 18:31,5. Speedy Gojo Fast,back,1.75,won,7.12
+2026-11-24T18:45+00:00,fav_back,Sunderland 18:37,5. Amidus Call,back,2.84,won,17.48
+2026-11-24T18:51+00:00,fav_back,Star Pelaw 18:46,2. Romeo Torres,back,2.88,lost,-10.0
+2026-11-24T18:51+00:00,random_back,Star Pelaw 18:46,4. Society Scary,back,5.5,won,42.75
+2026-11-24T19:00+00:00,fav_back,Sunderland 18:53,3. Kilara Sabrina,back,3.9,lost,-10.0
+2026-11-24T19:00+00:00,random_back,Sunderland 18:53,2. Charlies Maddie,back,5.1,lost,-10.0
+2026-11-24T19:15+00:00,fav_back,Star Pelaw 19:04,3. Fruity Bullion,back,2.3,lost,-10.0
+2026-11-24T19:15+00:00,fav_back,Central Park 19:06,1. Danas Star,back,2.72,lost,-10.0
+2026-11-24T19:15+00:00,random_back,Central Park 19:06,6. Swift Dallas,back,4.2,lost,-10.0
+2026-11-24T19:15+00:00,random_back,Sunderland 19:11,1. Bawn Dawn,back,5.4,lost,-10.0
+2026-11-24T19:30+00:00,fav_back,Central Park 19:22,3. Slippy Aquilla,back,3.75,lost,-10.0
+2026-11-24T19:30+00:00,random_back,Central Park 19:22,3. Slippy Aquilla,back,3.75,lost,-10.0
+2026-11-24T19:30+00:00,fav_back,Star Pelaw 19:24,3. Glengiblinbadger,back,3.25,lost,-10.0
+2026-11-24T19:30+00:00,random_back,Star Pelaw 19:24,2. Fruity Replay,back,3.6,lost,-10.0
+2026-11-24T19:30+00:00,fav_back,Sunderland 19:27,3. Sunnyside Penny,back,1.72,lost,-10.0
+2026-11-24T19:37+00:00,fav_back,Towcester 19:33,1. Makeit Myella,back,2.94,lost,-10.0
+2026-11-24T19:37+00:00,random_back,Towcester 19:33,4. Greencroft Style,back,6.2,won,49.4
+2026-11-24T19:45+00:00,fav_back,Central Park 19:39,4. Bumble Freds,back,2.38,lost,-10.0
+2026-11-24T19:45+00:00,random_back,Central Park 19:39,1. Tommys Tibet,back,10.5,lost,-10.0
+2026-11-24T20:01+00:00,fav_back,Central Park 19:56,1. Frankton Flame,back,3.45,lost,-10.0
+2026-11-24T20:01+00:00,random_back,Central Park 19:56,5. Double Parked,back,4.1,won,29.45
+2026-11-24T20:30+00:00,fav_back,Towcester 20:24,2. Laughil Emma,back,2.88,lost,-10.0
+2026-11-24T20:30+00:00,random_back,Towcester 20:24,1. Swift Flourish,back,3.0,lost,-10.0
+2026-11-24T20:34+00:00,fav_back,Central Park 20:31,2. Tsamina Mina,back,2.66,lost,-10.0
+2026-11-24T20:45+00:00,random_back,Star Pelaw 20:34,2. Ma Darlin,back,4.9,lost,-10.0
+2026-11-24T20:45+00:00,fav_back,Sunderland 20:36,4. Pretending,back,3.65,won,25.17
+2026-11-24T20:45+00:00,random_back,Sunderland 20:36,2. Strike It Freya,back,4.6,lost,-10.0
+2026-11-24T20:45+00:00,drifter_lay,Sunderland 20:36,6. Hot Sully,lay,8.2,won,1.32
+2026-11-24T20:46+00:00,fav_back,Towcester 20:41,2. Coffee Time Guys,back,2.08,won,10.26
+2026-11-24T20:46+00:00,random_back,Towcester 20:41,6. Stasi,back,4.9,lost,-10.0
+2026-11-24T20:50+00:00,fav_back,Central Park 20:47,1. Ballydoyle Boo,back,2.6,won,15.2
+2026-11-24T20:50+00:00,random_back,Central Park 20:47,1. Ballydoyle Boo,back,2.6,won,15.2
+2026-11-24T21:00+00:00,fav_back,Star Pelaw 20:52,5. Glengiblin Bella,back,2.58,lost,-10.0
+2026-11-24T21:00+00:00,drifter_lay,Star Pelaw 20:52,1. Footfield Angel,lay,5.8,won,1.98
+2026-11-24T21:00+00:00,random_back,Star Pelaw 20:52,6. Conscience,back,7.4,lost,-10.0
+2026-11-24T21:00+00:00,fav_back,Sunderland 20:54,1. Essex Jewel,back,3.75,lost,-10.0
+2026-11-24T21:00+00:00,drifter_lay,Sunderland 20:54,3. Kerabellec Neill,lay,8.4,won,1.28
+2026-11-24T21:00+00:00,random_back,Sunderland 20:54,2. Charge It,back,8.6,lost,-10.0
+2026-11-24T21:08+00:00,fav_back,Central Park 21:04,4. Keefill Zeus,back,2.96,won,18.62
+2026-11-24T21:08+00:00,random_back,Central Park 21:04,6. Swift Michael,back,3.2,lost,-10.0
+2026-11-24T21:16+00:00,fav_back,Sunderland 21:11,2. Glideaway Ellie,back,3.95,lost,-10.0
+2026-11-24T21:16+00:00,drifter_lay,Sunderland 21:11,4. Bawn Whisper,lay,7.8,won,1.4
+2026-11-24T21:16+00:00,random_back,Sunderland 21:11,1. Balmoral Lucy,back,6.6,lost,-10.0
+2026-11-24T21:21+00:00,fav_back,Towcester 21:16,4. No Dont Call Me,back,2.4,lost,-10.0
+2026-11-24T21:21+00:00,random_back,Towcester 21:16,2. Slippy Debra,back,10.0,lost,-10.0
+2026-11-24T21:30+00:00,fav_back,Central Park 21:23,6. Swift What,back,2.6,lost,-10.0
+2026-11-24T21:30+00:00,steamer_back,Central Park 21:23,2. Scooby Baroness,back,3.0,lost,-10.0
+2026-11-24T21:30+00:00,drifter_lay,Central Park 21:23,5. Millroad Soda,lay,7.6,won,1.44
+2026-11-24T21:30+00:00,random_back,Central Park 21:23,3. Poppadom Tom,back,11.5,won,99.75
+2026-11-24T21:49+00:00,fav_back,Sunderland 21:46,3. Boozed Trouble,back,3.85,lost,-10.0
+2026-11-24T21:49+00:00,random_back,Sunderland 21:46,4. Hawkfield Torino,back,5.5,lost,-10.0
+2026-11-25T10:36+00:00,fav_back,Harlow 10:32,2. Soggy Runner,back,2.9,lost,-10.0
+2026-11-25T10:36+00:00,random_back,Harlow 10:32,4. Rathmeehan Judi,back,4.8,won,36.1
+2026-11-25T10:52+00:00,fav_back,Harlow 10:48,3. Essjay Ceearejay,back,3.6,won,24.7
+2026-11-25T10:52+00:00,random_back,Harlow 10:48,3. Essjay Ceearejay,back,3.6,won,24.7
+2026-11-25T11:06+00:00,fav_back,Monmore 11:03,5. Yama Sweetie,back,2.04,lost,-10.0
+2026-11-25T11:08+00:00,fav_back,Harlow 11:04,6. Running Slim,back,2.86,lost,-10.0
+2026-11-25T11:08+00:00,random_back,Harlow 11:04,2. Royston Razzle,back,13.0,lost,-10.0
+2026-11-25T11:15+00:00,fav_back,Nottingham 11:09,3. Thats No Joke,back,3.8,lost,-10.0
+2026-11-25T11:15+00:00,random_back,Nottingham 11:09,2. Legion Cash Out,back,4.3,lost,-10.0
+2026-11-25T11:30+00:00,fav_back,Nottingham 11:25,3. Rockhouse Woody,back,3.1,lost,-10.0
+2026-11-25T11:39+00:00,fav_back,Monmore 11:36,1. Glavin Wild,back,1.94,lost,-10.0
+2026-11-25T11:39+00:00,random_back,Monmore 11:36,1. Glavin Wild,back,1.94,lost,-10.0
+2026-11-25T12:01+00:00,fav_back,Harlow 11:38,4. Moaning Gamble,back,2.76,lost,-10.0
+2026-11-25T12:01+00:00,random_back,Harlow 11:38,2. Moaning Martini,back,5.7,lost,-10.0
+2026-11-25T12:15+00:00,fav_back,Monmore 12:09,1. Swift Fabric,back,2.58,won,15.01
+2026-11-25T12:15+00:00,random_back,Monmore 12:09,1. Swift Fabric,back,2.58,won,15.01
+2026-11-25T12:15+00:00,drifter_lay,Monmore 12:09,5. Downmexicoway,lay,3.55,won,3.73
+2026-11-25T12:22+00:00,fav_back,Kinsley 12:20,2. Jennywins,back,2.44,won,13.68
+2026-11-25T12:22+00:00,random_back,Kinsley 12:20,2. Jennywins,back,2.44,won,13.68
+2026-11-25T12:32+00:00,fav_back,Monmore 12:26,6. Aero Dulcie,back,1.62,won,5.89
+2026-11-25T12:36+00:00,fav_back,Nottingham 12:31,6. Honour Boomerang,back,3.8,lost,-10.0
+2026-11-25T12:36+00:00,steamer_back,Nottingham 12:31,4. Hollys Magic,back,3.9,lost,-10.0
+2026-11-25T12:36+00:00,random_back,Nottingham 12:31,6. Honour Boomerang,back,3.8,lost,-10.0
+2026-11-25T12:47+00:00,fav_back,Monmore 12:42,1. Sugar Sherbut,back,3.25,lost,-10.0
+2026-11-25T12:47+00:00,random_back,Monmore 12:42,5. Aero Penda,back,4.4,lost,-10.0
+2026-11-25T12:53+00:00,fav_back,Nottingham 12:48,1. Bonnie Sues Girl,back,3.65,lost,-10.0
+2026-11-25T12:53+00:00,random_back,Nottingham 12:48,4. Aremagicaremagic,back,5.3,lost,-10.0
+2026-11-25T13:00+00:00,fav_back,Kinsley 12:53,2. Markstreet Barry,back,2.74,lost,-10.0
+2026-11-25T13:00+00:00,random_back,Kinsley 12:53,5. Glenvale Dave,back,7.2,lost,-10.0
+2026-11-25T13:15+00:00,fav_back,Nottingham 13:06,4. Honour Bellie,back,2.16,won,11.02
+2026-11-25T13:19+00:00,fav_back,Monmore 13:16,5. Yama Queen,back,2.3,won,12.35
+2026-11-25T13:19+00:00,random_back,Monmore 13:16,5. Yama Queen,back,2.3,won,12.35
+2026-11-25T13:21+00:00,fav_back,Harlow 13:19,6. Cofam Tiger,back,1.73,lost,-10.0
+2026-11-25T13:21+00:00,steamer_back,Harlow 13:19,6. Cofam Tiger,back,1.73,lost,-10.0
+2026-11-25T13:36+00:00,fav_back,Monmore 13:31,1. Casino Brody,back,2.58,won,15.01
+2026-11-25T13:45+00:00,fav_back,Nottingham 13:36,4. After That,back,3.9,lost,-10.0
+2026-11-25T13:45+00:00,drifter_lay,Nottingham 13:36,3. Harwell Buster,lay,8.4,won,1.28
+2026-11-25T13:45+00:00,random_back,Nottingham 13:36,4. After That,back,3.9,lost,-10.0
+2026-11-25T14:00+00:00,fav_back,Valley 13:49,4. My Little Farmer,back,1.58,lost,-10.0
+2026-11-25T14:00+00:00,fav_back,Nottingham 13:52,2. Mossrich Sally,back,3.15,lost,-10.0
+2026-11-25T14:00+00:00,fav_back,Harlow 13:54,4. Catunda Harrison,back,3.85,lost,-10.0
+2026-11-25T14:00+00:00,drifter_lay,Harlow 13:54,2. Moaning Digger,lay,5.9,won,1.94
+2026-11-25T14:00+00:00,random_back,Harlow 13:54,3. Pearseys Dasher,back,4.7,lost,-10.0
+2026-11-25T14:08+00:00,fav_back,Monmore 14:04,4. Without Delay,back,2.38,won,13.11
+2026-11-25T14:08+00:00,random_back,Monmore 14:04,1. Freedom Spirit,back,4.0,lost,-10.0
+2026-11-25T14:15+00:00,fav_back,Valley 14:08,4. Hawkfield Echo,back,4.0,lost,-10.0
+2026-11-25T14:30+00:00,drifter_lay,Hove 14:23,6. Ballymac Kinga,lay,5.9,won,1.94
+2026-11-25T14:30+00:00,random_back,Hove 14:23,2. Ower Cracker,back,4.4,lost,-10.0
+2026-11-25T14:30+00:00,fav_back,Hove 14:23,2. Ower Cracker,back,3.95,lost,-10.0
+2026-11-25T14:31+00:00,fav_back,Valley 14:26,6. Crokers Pat,back,2.7,won,16.15
+2026-11-25T14:31+00:00,drifter_lay,Valley 14:26,4. Memories Clash,lay,8.4,won,1.28
+2026-11-25T14:31+00:00,random_back,Valley 14:26,3. Trionas Tangle,back,4.4,lost,-10.0
+2026-11-25T14:37+00:00,fav_back,Doncaster 14:33,2. Water Diviner,back,2.12,won,10.64
+2026-11-25T14:37+00:00,steamer_back,Doncaster 14:33,2. Water Diviner,back,2.12,won,10.64
+2026-11-25T14:37+00:00,random_back,Doncaster 14:33,2. Water Diviner,back,2.12,won,10.64
+2026-11-25T14:46+00:00,random_back,Hove 14:41,1. Droopys Sense,back,3.45,lost,-10.0
+2026-11-25T14:53+00:00,fav_back,Newcastle 14:48,4. Abit Of Mason,back,3.15,lost,-10.0
+2026-11-25T14:53+00:00,steamer_back,Newcastle 14:48,4. Abit Of Mason,back,3.15,lost,-10.0
+2026-11-25T14:53+00:00,random_back,Newcastle 14:48,5. Annadown Alice,back,7.2,won,58.9
+2026-11-25T14:59+00:00,fav_back,Sunderland 14:54,4. Pookies Ushuaia,back,3.45,lost,-10.0
+2026-11-25T14:59+00:00,random_back,Sunderland 14:54,3. Linton Ralph,back,4.1,lost,-10.0
+2026-11-25T15:05+00:00,fav_back,Hove 15:01,6. Seomra Benji,back,2.8,lost,-10.0
+2026-11-25T15:05+00:00,random_back,Hove 15:01,2. Tennessee Dolly,back,5.4,lost,-10.0
+2026-11-25T15:11+00:00,fav_back,Newcastle 15:07,5. Charlies Top Gun,back,3.75,won,26.12
+2026-11-25T15:23+00:00,fav_back,Hove 15:19,4. Small Boss,back,3.3,lost,-10.0
+2026-11-25T15:23+00:00,random_back,Hove 15:19,6. Flyers Geezer,back,4.4,lost,-10.0
+2026-11-25T15:30+00:00,fav_back,Valley 15:22,4. Baggios Gizmo,back,2.24,won,11.78
+2026-11-25T15:36+00:00,fav_back,Sunderland 15:32,2. Neon Whisper,back,3.6,lost,-10.0
+2026-11-25T15:36+00:00,random_back,Sunderland 15:32,4. Debbies Hope,back,10.0,lost,-10.0
+2026-11-25T15:45+00:00,fav_back,Hove 15:38,4. Ghost Of Winter,back,3.25,lost,-10.0
+2026-11-25T15:45+00:00,random_back,Hove 15:38,2. Yougo Charlie,back,9.4,lost,-10.0
+2026-11-25T16:08+00:00,fav_back,Newcastle 16:03,3. Ridgedale Choice,back,3.8,lost,-10.0
+2026-11-25T16:08+00:00,steamer_back,Newcastle 16:03,2. Springwell Ruby,back,3.9,lost,-10.0
+2026-11-25T16:08+00:00,random_back,Newcastle 16:03,1. Wraysbury Queen,back,7.2,won,58.9
+2026-11-25T16:30+00:00,fav_back,Doncaster 16:07,1. Abigails Sunny,back,2.8,lost,-10.0
+2026-11-25T16:30+00:00,drifter_lay,Doncaster 16:07,4. Easy Find,lay,4.2,won,2.97
+2026-11-25T16:30+00:00,random_back,Doncaster 16:07,4. Easy Find,back,3.95,lost,-10.0
+2026-11-25T16:37+00:00,fav_back,Hove 16:34,3. Hypnodisc,back,4.0,won,28.5
+2026-11-25T16:37+00:00,drifter_lay,Hove 16:34,1. Bridies Show,lay,4.4,won,2.79
+2026-11-25T16:37+00:00,random_back,Hove 16:34,2. Burrow Lightyear,back,5.8,lost,-10.0
+2026-11-25T16:45+00:00,fav_back,Valley 16:37,5. Dry Morning,back,3.3,lost,-10.0
+2026-11-25T16:45+00:00,random_back,Valley 16:37,5. Dry Morning,back,3.3,lost,-10.0
+2026-11-25T16:45+00:00,fav_back,Newcastle 16:41,1. Toddys Vision,back,1.92,won,8.74
+2026-11-25T16:45+00:00,random_back,Newcastle 16:41,6. Da Short Haul,back,5.3,lost,-10.0
+2026-11-25T16:51+00:00,fav_back,Sunderland 16:47,5. Boom Boom Kenny,back,3.4,won,22.8
+2026-11-25T16:51+00:00,random_back,Sunderland 16:47,4. Rosstemple Rose,back,4.5,lost,-10.0
+2026-11-25T17:00+00:00,fav_back,Hove 16:53,3. Proud Rori,back,3.05,lost,-10.0
+2026-11-25T17:00+00:00,drifter_lay,Hove 16:53,3. Proud Rori,lay,3.2,won,4.32
+2026-11-25T17:00+00:00,random_back,Hove 16:53,1. Gigis Parachute,back,10.5,lost,-10.0
+2026-11-25T17:08+00:00,fav_back,Doncaster 17:03,6. Easy Way,back,2.06,lost,-10.0
+2026-11-25T17:08+00:00,random_back,Doncaster 17:03,6. Easy Way,back,2.06,lost,-10.0
+2026-11-25T17:15+00:00,fav_back,Sunderland 17:06,5. Rising Delight,back,1.73,won,6.93
+2026-11-25T17:16+00:00,fav_back,Hove 17:12,3. Legacy,back,3.85,won,27.07
+2026-11-25T17:16+00:00,random_back,Hove 17:12,5. Doubtful Honey,back,7.8,lost,-10.0
+2026-11-25T17:30+00:00,drifter_lay,Sunderland 17:24,1. Moonveen Hijack,lay,5.9,won,1.94
+2026-11-25T17:30+00:00,random_back,Sunderland 17:24,2. Balmoral Ella,back,15.0,lost,-10.0
+2026-11-25T17:35+00:00,fav_back,Hove 17:31,1. Imagine If,back,2.58,lost,-10.0
+2026-11-25T17:35+00:00,random_back,Hove 17:31,3. Here We Are,back,7.6,lost,-10.0
+2026-11-25T18:01+00:00,fav_back,Newcastle 17:56,4. Rebel Euro,back,3.5,lost,-10.0
+2026-11-25T18:01+00:00,random_back,Newcastle 17:56,5. Grouchos Sinatra,back,4.0,lost,-10.0
+2026-11-25T18:06+00:00,fav_back,Sunderland 18:02,1. Kanturk Pride,back,3.45,lost,-10.0
+2026-11-25T18:15+00:00,fav_back,Harlow 18:11,1. Battle Pat,back,3.55,won,24.22
+2026-11-25T18:15+00:00,drifter_lay,Harlow 18:11,6. Double Errill,lay,7.2,won,1.53
+2026-11-25T18:15+00:00,random_back,Harlow 18:11,1. Battle Pat,back,3.55,won,24.22
+2026-11-25T18:31+00:00,fav_back,Romford 18:26,1. Burgess Sharon,back,2.76,lost,-10.0
+2026-11-25T18:31+00:00,random_back,Romford 18:26,4. Blackrose Venus,back,14.0,lost,-10.0
+2026-11-25T18:35+00:00,fav_back,Yarmouth 18:31,5. Fastnet Freeze,back,3.0,lost,-10.0
+2026-11-25T18:35+00:00,random_back,Yarmouth 18:31,1. Bird About Town,back,3.9,won,27.55
+2026-11-25T18:45+00:00,fav_back,Dunstall Park 18:37,1. Lynnia Da Devil,back,3.75,lost,-10.0
+2026-11-25T18:45+00:00,random_back,Dunstall Park 18:37,6. Millbank Got It,back,6.8,won,55.1
+2026-11-25T18:53+00:00,fav_back,Yarmouth 18:48,6. A Simple Favour,back,2.94,lost,-10.0
+2026-11-25T18:53+00:00,random_back,Yarmouth 18:48,3. Drive On Belle,back,17.0,lost,-10.0
+2026-11-25T19:00+00:00,fav_back,Dunstall Park 18:53,5. Grouchos Sparkle,back,1.29,won,2.76
+2026-11-25T19:00+00:00,longshot_lay,Dunstall Park 18:53,1. Clonkeen Terry,lay,23.0,won,0.43
+2026-11-25T19:09+00:00,fav_back,Yarmouth 19:06,4. Adamant Erin,back,2.36,lost,-10.0
+2026-11-25T19:20+00:00,fav_back,Romford 19:16,1. Patricias Gift,back,2.1,lost,-10.0
+2026-11-25T19:20+00:00,longshot_lay,Romford 19:16,5. Proud Warrior,lay,32.0,won,0.31
+2026-11-25T19:20+00:00,random_back,Romford 19:16,6. Droopys Chef,back,6.4,lost,-10.0
+2026-11-25T19:22+00:00,fav_back,Dunstall Park 19:11,4. Frankys Bullet,back,1.79,won,7.5
+2026-11-25T19:22+00:00,longshot_lay,Dunstall Park 19:11,6. Kilwest Beauty,lay,23.0,won,0.43
+2026-11-25T19:22+00:00,random_back,Dunstall Park 19:11,6. Kilwest Beauty,back,21.0,lost,-10.0
+2026-11-25T19:30+00:00,fav_back,Harlow 19:24,1. Dunbolg Sarah,back,2.52,won,14.44
+2026-11-25T19:30+00:00,random_back,Harlow 19:24,3. Townsend Daisy,back,7.4,lost,-10.0
+2026-11-25T19:45+00:00,fav_back,Romford 19:33,6. Bombay Buck,back,1.93,won,8.83
+2026-11-25T19:45+00:00,random_back,Romford 19:33,5. Essex Crazy,back,14.0,lost,-10.0
+2026-11-25T19:54+00:00,fav_back,Romford 19:49,6. Razldazl Layla,back,2.56,won,14.82
+2026-11-25T19:54+00:00,random_back,Romford 19:49,1. Bloos Mr Maguire,back,6.8,lost,-10.0
+2026-11-25T20:03+00:00,fav_back,Yarmouth 19:56,3. Move Over Julia,back,3.45,lost,-10.0
+2026-11-25T20:15+00:00,fav_back,Romford 20:07,4. Mahoonagh Hoffa,back,2.64,lost,-10.0
+2026-11-25T20:15+00:00,random_back,Romford 20:07,1. Bubbly Fury,back,4.3,won,31.35
+2026-11-25T20:19+00:00,fav_back,Harlow 20:16,3. Ballybrennan Tim,back,2.64,won,15.58
+2026-11-25T20:23+00:00,fav_back,Dunstall Park 20:19,1. Kick On Archie,back,1.4,won,3.8
+2026-11-25T20:23+00:00,random_back,Dunstall Park 20:19,3. Grafton Star,back,7.2,lost,-10.0
+2026-11-25T20:38+00:00,fav_back,Yarmouth 20:31,1. Murrow Toaster,back,3.25,won,21.38
+2026-11-25T20:38+00:00,random_back,Yarmouth 20:31,1. Murrow Toaster,back,3.25,won,21.38
+2026-11-25T20:45+00:00,fav_back,Dunstall Park 20:36,1. Newinn Souly,back,2.24,lost,-10.0
+2026-11-25T20:45+00:00,random_back,Dunstall Park 20:36,2. Skyfall Dingo,back,3.75,lost,-10.0
+2026-11-25T20:54+00:00,random_back,Yarmouth 20:47,3. Moneypoint Band,back,4.3,lost,-10.0
+2026-11-25T21:00+00:00,fav_back,Harlow 20:52,6. Breakaway Bell,back,3.2,lost,-10.0
+2026-11-25T21:00+00:00,fav_back,Dunstall Park 20:54,2. Ivy Hill Archie,back,2.52,won,14.44
+2026-11-25T21:00+00:00,random_back,Dunstall Park 20:54,2. Ivy Hill Archie,back,2.52,won,14.44
+2026-11-25T21:15+00:00,fav_back,Yarmouth 21:04,3. Good Pearl,back,2.6,lost,-10.0
+2026-11-25T21:15+00:00,drifter_lay,Yarmouth 21:04,1. Cape Bridge,lay,8.0,won,1.36
+2026-11-25T21:15+00:00,random_back,Yarmouth 21:04,4. Mallogs Freddie,back,8.4,won,70.3
+2026-11-25T21:15+00:00,fav_back,Harlow 21:09,4. Savana Monica,back,2.92,won,18.24
+2026-11-25T21:15+00:00,random_back,Harlow 21:09,3. Yo Savana,back,4.5,lost,-10.0
+2026-11-25T21:21+00:00,drifter_lay,Romford 21:16,2. Coolanga Diamond,lay,6.8,won,1.64
+2026-11-25T21:30+00:00,fav_back,Yarmouth 21:23,1. Loverly Jubley,back,2.44,won,13.68
+2026-11-25T21:30+00:00,random_back,Yarmouth 21:23,2. Sidestrand Trixi,back,15.0,lost,-10.0
+2026-11-25T21:37+00:00,fav_back,Romford 21:33,5. Clasheen Dior,back,1.5,won,4.75
+2026-11-25T21:37+00:00,random_back,Romford 21:33,1. Nylas Dancer,back,16.0,lost,-10.0
+2026-11-25T21:50+00:00,fav_back,Dunstall Park 21:46,5. Zip Away,back,3.05,won,19.47
+2026-11-25T21:50+00:00,random_back,Dunstall Park 21:46,4. Camp Seanie,back,3.4,lost,-10.0
+2026-11-26T11:07+00:00,fav_back,Sheffield 11:03,5. Seamrog,back,3.6,lost,-10.0
+2026-11-26T11:07+00:00,random_back,Sheffield 11:03,1. Keplar Banshee,back,5.4,lost,-10.0
+2026-11-26T11:07+00:00,drifter_lay,Sheffield 11:03,1. Keplar Banshee,lay,6.4,won,1.76
+2026-11-26T11:15+00:00,fav_back,Nottingham 11:09,4. Roanna Grout,back,3.1,lost,-10.0
+2026-11-26T11:15+00:00,random_back,Nottingham 11:09,3. Saleen Swan,back,5.3,lost,-10.0
+2026-11-26T11:30+00:00,fav_back,Nottingham 11:25,2. Karaoke Kokey,back,2.78,lost,-10.0
+2026-11-26T11:30+00:00,random_back,Nottingham 11:25,6. Macash Rose,back,15.5,lost,-10.0
+2026-11-26T11:45+00:00,fav_back,Sheffield 11:36,4. Jacobs Charm,back,1.57,won,5.42
+2026-11-26T11:45+00:00,longshot_lay,Sheffield 11:36,6. Drumdoit Belle,lay,29.0,won,0.34
+2026-11-26T11:45+00:00,random_back,Sheffield 11:36,1. Fagans Peggy,back,10.5,lost,-10.0
+2026-11-26T11:46+00:00,fav_back,Nottingham 11:41,2. Westfield Forno,back,3.3,lost,-10.0
+2026-11-26T11:46+00:00,random_back,Nottingham 11:41,6. Loxleys Wildcat,back,6.8,lost,-10.0
+2026-11-26T12:00+00:00,fav_back,Sheffield 11:52,3. Hollyhill Ace,back,2.52,won,14.44
+2026-11-26T12:06+00:00,fav_back,Kinsley 12:03,6. Swift Perry,back,2.88,lost,-10.0
+2026-11-26T12:06+00:00,drifter_lay,Kinsley 12:03,2. Killieford Hope,lay,8.0,won,1.36
+2026-11-26T12:06+00:00,random_back,Kinsley 12:03,1. Killieford Romeo,back,6.8,lost,-10.0
+2026-11-26T12:15+00:00,fav_back,Kinsley 11:46,3. Hazelgrove Pixie,back,3.5,lost,-10.0
+2026-11-26T12:15+00:00,random_back,Kinsley 11:46,6. Swift Kat,back,8.4,lost,-10.0
+2026-11-26T12:15+00:00,fav_back,Sheffield 12:09,4. Jaykay Seven,back,3.45,lost,-10.0
+2026-11-26T12:15+00:00,steamer_back,Sheffield 12:09,6. Blake Delight,back,6.4,lost,-10.0
+2026-11-26T12:15+00:00,random_back,Sheffield 12:09,3. Assarula Judy,back,5.6,lost,-10.0
+2026-11-26T12:24+00:00,fav_back,Kinsley 12:20,4. Clongeen General,back,2.88,lost,-10.0
+2026-11-26T12:31+00:00,fav_back,Sheffield 12:26,3. Canavour Con,back,3.95,won,28.02
+2026-11-26T12:31+00:00,random_back,Sheffield 12:26,3. Canavour Con,back,3.95,won,28.02
+2026-11-26T12:36+00:00,fav_back,Nottingham 12:31,1. Honour Tracy,back,3.75,won,26.12
+2026-11-26T12:36+00:00,random_back,Nottingham 12:31,2. Swift Zebu,back,5.9,lost,-10.0
+2026-11-26T12:45+00:00,fav_back,Kinsley 12:37,5. Swift Paulina,back,4.0,lost,-10.0
+2026-11-26T12:45+00:00,random_back,Kinsley 12:37,1. Blue Star,back,8.2,lost,-10.0
+2026-11-26T12:46+00:00,fav_back,Sheffield 12:42,1. Fugazi,back,2.98,lost,-10.0
+2026-11-26T12:46+00:00,drifter_lay,Sheffield 12:42,5. Neon Whoopie,lay,7.6,won,1.44
+2026-11-26T12:46+00:00,random_back,Sheffield 12:42,3. Anglesey Shadow,back,3.9,won,27.55
+2026-11-26T13:00+00:00,fav_back,Nottingham 12:48,1. Baby Bono,back,2.24,lost,-10.0
+2026-11-26T13:00+00:00,random_back,Nottingham 12:48,5. Newland Bear,back,8.8,lost,-10.0
+2026-11-26T13:00+00:00,random_back,Kinsley 12:53,5. Aghaburren Fuse,back,12.5,lost,-10.0
+2026-11-26T13:15+00:00,fav_back,Nottingham 13:06,4. Skyfall Orna,back,3.3,lost,-10.0
+2026-11-26T13:19+00:00,fav_back,Sheffield 13:16,4. Razldazl Seger,back,3.5,lost,-10.0
+2026-11-26T13:19+00:00,random_back,Sheffield 13:16,5. Imonlythinking,back,3.75,lost,-10.0
+2026-11-26T13:30+00:00,fav_back,Nottingham 13:21,6. Rialto Ben,back,3.05,won,19.47
+2026-11-26T13:30+00:00,random_back,Nottingham 13:21,2. Honour Precious,back,4.2,lost,-10.0
+2026-11-26T13:35+00:00,fav_back,Sheffield 13:31,4. Keady Touch,back,1.66,lost,-10.0
+2026-11-26T13:35+00:00,steamer_back,Sheffield 13:31,4. Keady Touch,back,1.66,lost,-10.0
+2026-11-26T13:35+00:00,random_back,Sheffield 13:31,4. Keady Touch,back,1.66,lost,-10.0
+2026-11-26T13:39+00:00,fav_back,Nottingham 13:36,2. Deelish Dixie,back,3.75,won,26.12
+2026-11-26T13:39+00:00,random_back,Nottingham 13:36,6. Honeyhill Lottie,back,5.4,lost,-10.0
+2026-11-26T14:00+00:00,fav_back,Nottingham 13:52,2. Ruths Lass,back,2.48,lost,-10.0
+2026-11-26T14:00+00:00,random_back,Nottingham 13:52,1. Nolas Conack,back,3.45,lost,-10.0
+2026-11-26T14:07+00:00,fav_back,Sheffield 14:04,3. Dromrich Penny,back,3.8,lost,-10.0
+2026-11-26T14:07+00:00,drifter_lay,Sheffield 14:04,6. Nathans Jet,lay,5.8,won,1.98
+2026-11-26T14:15+00:00,fav_back,Nottingham 14:09,5. Annadown Belle,back,3.05,lost,-10.0
+2026-11-26T14:15+00:00,steamer_back,Nottingham 14:09,5. Annadown Belle,back,3.05,lost,-10.0
+2026-11-26T14:15+00:00,random_back,Nottingham 14:09,2. Olwinn Ginge,back,4.8,lost,-10.0
+2026-11-26T14:30+00:00,fav_back,Central Park 14:23,2. Autumn Elizabeth,back,2.26,lost,-10.0
+2026-11-26T14:36+00:00,fav_back,Valley 14:33,6. Droopys Fearless,back,1.27,won,2.56
+2026-11-26T14:39+00:00,fav_back,Towcester 14:36,4. Eze,back,2.96,lost,-10.0
+2026-11-26T14:39+00:00,random_back,Towcester 14:36,5. Catunda Stella,back,5.2,won,39.9
+2026-11-26T14:53+00:00,fav_back,Dunstall Park 14:48,5. Ohtheresally,back,2.3,lost,-10.0
+2026-11-26T15:04+00:00,fav_back,Central Park 15:01,2. Barnfield Bonbon,back,3.0,lost,-10.0
+2026-11-26T15:04+00:00,random_back,Central Park 15:01,6. Pluckanes Bell,back,7.8,lost,-10.0
+2026-11-26T15:15+00:00,fav_back,Dunstall Park 15:07,2. Rushmoor Mac,back,1.98,lost,-10.0
+2026-11-26T15:15+00:00,random_back,Dunstall Park 15:07,5. Dutch Caboom,back,5.3,lost,-10.0
+2026-11-26T15:16+00:00,fav_back,Valley 15:11,2. Riverside Ada,back,2.38,lost,-10.0
+2026-11-26T15:16+00:00,random_back,Valley 15:11,2. Riverside Ada,back,2.38,lost,-10.0
+2026-11-26T15:24+00:00,fav_back,Central Park 15:19,6. King Pavarotti,back,2.5,won,14.25
+2026-11-26T15:24+00:00,random_back,Central Park 15:19,2. Westwood Betty,back,3.95,lost,-10.0
+2026-11-26T15:31+00:00,fav_back,Dunstall Park 15:26,5. Jab And Run,back,2.6,lost,-10.0
+2026-11-26T15:31+00:00,random_back,Dunstall Park 15:26,5. Jab And Run,back,2.6,lost,-10.0
+2026-11-26T15:32+00:00,fav_back,Valley 15:29,5. Ashway June,back,1.23,lost,-10.0
+2026-11-26T15:36+00:00,fav_back,Towcester 15:32,6. Makeit Dj,back,3.9,lost,-10.0
+2026-11-26T15:42+00:00,fav_back,Central Park 15:38,3. Deelish Millie,back,3.1,lost,-10.0
+2026-11-26T15:42+00:00,random_back,Central Park 15:38,3. Deelish Millie,back,3.1,lost,-10.0
+2026-11-26T15:49+00:00,fav_back,Dunstall Park 15:44,3. Sister Grace,back,2.48,lost,-10.0
+2026-11-26T15:49+00:00,random_back,Dunstall Park 15:44,3. Sister Grace,back,2.48,lost,-10.0
+2026-11-26T15:52+00:00,fav_back,Valley 15:49,2. Magical Hawk,back,1.82,won,7.79
+2026-11-26T15:52+00:00,random_back,Valley 15:49,3. Romeo Victor,back,3.0,lost,-10.0
+2026-11-26T16:00+00:00,fav_back,Towcester 15:51,2. Fabulous Kaydee,back,2.4,lost,-10.0
+2026-11-26T16:00+00:00,random_back,Towcester 15:51,3. Choices Mile,back,3.85,lost,-10.0
+2026-11-26T16:02+00:00,fav_back,Central Park 15:57,2. Best Miney,back,3.6,won,24.7
+2026-11-26T16:07+00:00,fav_back,Dunstall Park 16:03,4. Woolleys Wonder,back,3.55,lost,-10.0
+2026-11-26T16:07+00:00,random_back,Dunstall Park 16:03,5. Roseville Rex,back,7.6,lost,-10.0
+2026-11-26T16:15+00:00,fav_back,Towcester 16:09,3. Portis Nel,back,2.68,lost,-10.0
+2026-11-26T16:15+00:00,steamer_back,Towcester 16:09,3. Portis Nel,back,2.42,lost,-10.0
+2026-11-26T16:15+00:00,random_back,Towcester 16:09,5. Vinegarhill Mist,back,19.0,lost,-10.0
+2026-11-26T16:20+00:00,fav_back,Central Park 16:16,5. Santas Ferrari,back,4.0,lost,-10.0
+2026-11-26T16:20+00:00,drifter_lay,Central Park 16:16,5. Santas Ferrari,lay,4.2,won,2.97
+2026-11-26T16:20+00:00,random_back,Central Park 16:16,6. Hollyoak Speedy,back,5.5,lost,-10.0
+2026-11-26T16:30+00:00,fav_back,Dunstall Park 16:22,2. Mohican Cookie,back,3.8,lost,-10.0
+2026-11-26T16:30+00:00,drifter_lay,Dunstall Park 16:22,4. Roanna Panther,lay,8.0,won,1.36
+2026-11-26T16:30+00:00,random_back,Dunstall Park 16:22,2. Mohican Cookie,back,3.8,lost,-10.0
+2026-11-26T16:32+00:00,fav_back,Valley 16:26,6. Swift Kimberely,back,2.4,won,13.3
+2026-11-26T16:32+00:00,steamer_back,Valley 16:26,6. Swift Kimberely,back,2.4,won,13.3
+2026-11-26T16:32+00:00,random_back,Valley 16:26,1. Random Vicky,back,4.8,lost,-10.0
+2026-11-26T16:32+00:00,drifter_lay,Valley 16:26,1. Random Vicky,lay,6.0,won,1.9
+2026-11-26T16:37+00:00,fav_back,Central Park 16:34,1. Bonza Bill,back,2.88,won,17.86
+2026-11-26T16:37+00:00,random_back,Central Park 16:34,4. Coillbhui Glas,back,5.6,lost,-10.0
+2026-11-26T16:45+00:00,fav_back,Dunstall Park 16:41,3. Elemjay Lass,back,3.65,lost,-10.0
+2026-11-26T16:45+00:00,random_back,Dunstall Park 16:41,3. Elemjay Lass,back,3.65,lost,-10.0
+2026-11-26T16:51+00:00,fav_back,Towcester 16:47,6. Dreamin Violetta,back,3.55,won,24.22
+2026-11-26T16:51+00:00,random_back,Towcester 16:47,6. Dreamin Violetta,back,3.55,won,24.22
+2026-11-26T17:00+00:00,fav_back,Central Park 16:53,1. Hollyoak Taylor,back,2.76,won,16.72
+2026-11-26T17:00+00:00,random_back,Central Park 16:53,5. Havana Skater,back,9.2,lost,-10.0
+2026-11-26T17:07+00:00,fav_back,Valley 17:03,4. Sawpit Souffle,back,2.34,lost,-10.0
+2026-11-26T17:07+00:00,random_back,Valley 17:03,5. Good Streak,back,15.5,lost,-10.0
+2026-11-26T17:15+00:00,fav_back,Towcester 17:06,4. Marshall Sam,back,3.3,lost,-10.0
+2026-11-26T17:16+00:00,fav_back,Central Park 17:12,1. Imokilly Arminta,back,3.3,lost,-10.0
+2026-11-26T17:22+00:00,fav_back,Dunstall Park 17:18,4. Raha Bua,back,2.6,won,15.2
+2026-11-26T17:22+00:00,random_back,Dunstall Park 17:18,3. Work Mate,back,6.8,lost,-10.0
+2026-11-26T17:30+00:00,fav_back,Valley 17:21,6. Hawkfield Irish,back,1.83,lost,-10.0
+2026-11-26T17:30+00:00,fav_back,Towcester 17:24,3. Night Raider,back,1.71,won,6.74
+2026-11-26T17:30+00:00,random_back,Towcester 17:24,6. Decent Jeff,back,15.0,lost,-10.0
+2026-11-26T17:35+00:00,fav_back,Central Park 17:31,2. Front Shani,back,2.6,lost,-10.0
+2026-11-26T17:35+00:00,random_back,Central Park 17:31,4. Gob Smacked,back,3.0,won,19.0
+2026-11-26T17:45+00:00,fav_back,Dunstall Park 17:37,3. Porthall Kona,back,2.86,lost,-10.0
+2026-11-26T17:45+00:00,random_back,Dunstall Park 17:37,5. Roseville Daisy,back,9.4,lost,-10.0
+2026-11-26T17:53+00:00,fav_back,Valley 17:39,4. Gavins Cake,back,3.05,won,19.47
+2026-11-26T17:53+00:00,random_back,Valley 17:39,6. Swift Kadesha,back,3.5,lost,-10.0
+2026-11-26T17:53+00:00,fav_back,Central Park 17:49,2. Harlequin Flick,back,3.9,lost,-10.0
+2026-11-26T17:53+00:00,random_back,Central Park 17:49,2. Harlequin Flick,back,3.9,lost,-10.0
+2026-11-26T18:00+00:00,fav_back,Dunstall Park 17:56,2. Listen Angie,back,2.92,lost,-10.0
+2026-11-26T18:00+00:00,random_back,Dunstall Park 17:56,1. Holeinmybucket,back,11.5,lost,-10.0
+2026-11-26T18:06+00:00,fav_back,Towcester 18:02,4. Adamant Finn,back,3.05,lost,-10.0
+2026-11-26T18:06+00:00,random_back,Towcester 18:02,5. Benjamin Barclay,back,5.0,won,38.0
+2026-11-26T18:15+00:00,fav_back,Hove 18:08,3. Farout Cian,back,3.0,lost,-10.0
+2026-11-26T18:15+00:00,random_back,Hove 18:08,5. Gert Lush,back,3.55,won,24.22
+2026-11-26T18:30+00:00,fav_back,Hove 18:26,3. Westwood Shay,back,3.45,lost,-10.0
+2026-11-26T18:30+00:00,random_back,Hove 18:26,2. Westwood Bill,back,3.7,lost,-10.0
+2026-11-26T18:39+00:00,fav_back,Monmore 18:31,1. Slippy Conor,back,2.16,won,11.02
+2026-11-26T18:39+00:00,random_back,Monmore 18:31,1. Slippy Conor,back,2.16,won,11.02
+2026-11-26T18:45+00:00,fav_back,Newcastle 18:37,6. Droopys Blondie,back,3.9,won,27.55
+2026-11-26T18:45+00:00,random_back,Newcastle 18:37,5. Greenwell Genuis,back,13.5,lost,-10.0
+2026-11-26T18:54+00:00,fav_back,Monmore 18:48,3. Datona Vamoose,back,3.55,lost,-10.0
+2026-11-26T18:54+00:00,random_back,Monmore 18:48,3. Datona Vamoose,back,3.55,lost,-10.0
+2026-11-26T19:00+00:00,fav_back,Newcastle 18:53,6. Blacklisted,back,1.71,lost,-10.0
+2026-11-26T19:00+00:00,random_back,Newcastle 18:53,6. Blacklisted,back,1.71,lost,-10.0
+2026-11-26T19:15+00:00,fav_back,Monmore 19:06,4. Derrymoyle Blue,back,3.0,lost,-10.0
+2026-11-26T19:15+00:00,random_back,Monmore 19:06,5. Bloos Bro Bugsy,back,3.3,won,21.85
+2026-11-26T19:15+00:00,fav_back,Newcastle 19:11,2. Toddys Time,back,1.6,won,5.7
+2026-11-26T19:22+00:00,fav_back,Hove 19:16,1. Hopes Candy,back,2.56,lost,-10.0
+2026-11-26T19:22+00:00,random_back,Hove 19:16,2. Millers Sapphire,back,6.0,lost,-10.0
+2026-11-26T19:30+00:00,fav_back,Monmore 19:22,3. Flyhigh Bel Air,back,3.25,lost,-10.0
+2026-11-26T19:37+00:00,fav_back,Hove 19:33,1. Cloud Blue,back,2.56,lost,-10.0
+2026-11-26T19:37+00:00,random_back,Hove 19:33,2. Gingers Paddy,back,3.55,lost,-10.0
+2026-11-26T19:46+00:00,fav_back,Monmore 19:39,6. Newinn Magico,back,3.15,lost,-10.0
+2026-11-26T19:46+00:00,random_back,Monmore 19:39,6. Newinn Magico,back,3.15,lost,-10.0
+2026-11-26T19:53+00:00,fav_back,Hove 19:49,4. Glideaway Joey,back,2.66,lost,-10.0
+2026-11-26T19:53+00:00,random_back,Hove 19:49,6. Short Blue,back,11.0,lost,-10.0
+2026-11-26T20:01+00:00,fav_back,Monmore 19:56,6. Ballymac Bardo,back,2.4,lost,-10.0
+2026-11-26T20:01+00:00,random_back,Monmore 19:56,6. Ballymac Bardo,back,2.4,lost,-10.0
+2026-11-26T20:05+00:00,fav_back,Newcastle 20:01,6. Skye The Boss,back,2.54,lost,-10.0
+2026-11-26T20:05+00:00,random_back,Newcastle 20:01,1. Timones Star,back,10.5,lost,-10.0
+2026-11-26T20:15+00:00,fav_back,Hove 20:07,2. Millbank Buster,back,2.58,lost,-10.0
+2026-11-26T20:15+00:00,random_back,Hove 20:07,6. Sunnyside Ted,back,4.4,lost,-10.0
+2026-11-26T20:23+00:00,fav_back,Newcastle 20:19,3. Naochra,back,2.1,won,10.45
+2026-11-26T20:30+00:00,fav_back,Hove 20:24,1. Knockane Star,back,3.5,lost,-10.0
+2026-11-26T20:30+00:00,random_back,Hove 20:24,5. Roses Dapper,back,5.0,lost,-10.0
+2026-11-26T20:37+00:00,drifter_lay,Monmore 20:31,4. Shado Mars,lay,6.6,won,1.7
+2026-11-26T20:37+00:00,random_back,Monmore 20:31,2. Longacres Cash,back,5.1,lost,-10.0
+2026-11-26T20:45+00:00,fav_back,Newcastle 20:36,2. Grouchos Chief,back,2.58,lost,-10.0
+2026-11-26T20:45+00:00,random_back,Newcastle 20:36,1. Droopys Punch,back,14.5,lost,-10.0
+2026-11-26T20:45+00:00,fav_back,Hove 20:41,1. Lose Control,back,2.84,won,17.48
+2026-11-26T20:45+00:00,drifter_lay,Hove 20:41,3. Sharp Monty,lay,6.6,won,1.7
+2026-11-26T20:45+00:00,random_back,Hove 20:41,6. Mr Dreamaker,back,6.8,lost,-10.0
+2026-11-26T21:00+00:00,fav_back,Monmore 20:47,2. Tommys Target,back,3.05,lost,-10.0
+2026-11-26T21:00+00:00,random_back,Monmore 20:47,2. Tommys Target,back,3.05,lost,-10.0
+2026-11-26T21:00+00:00,fav_back,Newcastle 20:54,3. A Bit Of Trudy,back,3.1,lost,-10.0
+2026-11-26T21:00+00:00,random_back,Newcastle 20:54,5. Southwind Joy,back,6.0,lost,-10.0
+2026-11-26T21:09+00:00,fav_back,Monmore 21:04,1. Skylars Chloe,back,2.86,won,17.67
+2026-11-26T21:09+00:00,random_back,Monmore 21:04,1. Skylars Chloe,back,2.86,won,17.67
+2026-11-26T21:15+00:00,drifter_lay,Newcastle 21:11,2. Blackhouse Lewi,lay,6.8,won,1.64
+2026-11-26T21:15+00:00,random_back,Newcastle 21:11,4. Nitro Nylo,back,4.9,lost,-10.0
+2026-11-26T21:20+00:00,fav_back,Hove 21:16,2. Ela Sniper,back,3.0,lost,-10.0
+2026-11-26T21:30+00:00,fav_back,Monmore 21:23,5. Longacres,back,2.68,won,15.96
+2026-11-26T21:30+00:00,random_back,Monmore 21:23,5. Longacres,back,2.68,won,15.96
+2026-11-26T21:50+00:00,fav_back,Newcastle 21:46,3. Pardo,back,3.5,lost,-10.0
+2026-11-26T21:50+00:00,random_back,Newcastle 21:46,6. Swift Leon,back,4.0,lost,-10.0
+2026-11-27T10:35+00:00,random_back,Harlow 10:32,2. Gothic Lucretia,back,3.9,lost,-10.0
+2026-11-27T10:52+00:00,random_back,Harlow 10:48,2. Rathmeehan Suzy,back,7.6,lost,-10.0
+2026-11-27T11:05+00:00,random_back,Hove 11:01,3. Exmoor Georgie,back,11.5,lost,-10.0
+2026-11-27T11:06+00:00,random_back,Harlow 11:04,3. Stuckonthepuzzle,back,2.1,lost,-10.0
+2026-11-27T11:21+00:00,random_back,Hove 11:18,2. Mertonaby Ben,back,2.46,won,13.87
+2026-11-27T11:30+00:00,random_back,Harlow 11:21,4. Savana Marylou,back,8.6,won,72.2
+2026-11-27T11:30+00:00,random_back,Central Park 11:27,2. Catch My Girl,back,6.0,lost,-10.0
+2026-11-27T11:38+00:00,random_back,Hove 11:34,3. Easy Tizzy,back,2.06,lost,-10.0
+2026-11-27T11:45+00:00,random_back,Harlow 11:38,6. Smiling Ollie,back,3.6,lost,-10.0
+2026-11-27T12:00+00:00,random_back,Hove 11:52,6. Boom Boom Bullet,back,3.55,lost,-10.0
+2026-11-27T12:04+00:00,random_back,Harlow 11:54,6. Moaning Mojito,back,2.52,won,14.44
+2026-11-27T12:05+00:00,steamer_back,Central Park 12:01,5. Aghaburren Pete,back,3.05,lost,-10.0
+2026-11-27T12:05+00:00,drifter_lay,Central Park 12:01,6. Notorious Sue,lay,6.2,lost,-10.0
+2026-11-27T12:05+00:00,random_back,Central Park 12:01,3. Pearces Willow,back,5.3,lost,-10.0
+2026-11-27T12:21+00:00,random_back,Central Park 12:18,2. Drumdoit Dorgu,back,4.1,won,29.45
+2026-11-27T12:30+00:00,drifter_lay,Hove 12:26,1. Leras Gem,lay,8.0,won,1.36
+2026-11-27T12:30+00:00,random_back,Hove 12:26,3. Droopys Delux,back,2.28,won,12.16
+2026-11-27T12:37+00:00,random_back,Central Park 12:34,3. Hollyoak Prince,back,3.1,lost,-10.0
+2026-11-27T12:47+00:00,random_back,Hove 12:42,1. Clairekeith Jago,back,2.88,won,17.86
+2026-11-27T12:49+00:00,drifter_lay,Harlow 12:46,2. Foxrock Buddy,lay,7.4,won,1.48
+2026-11-27T12:49+00:00,random_back,Harlow 12:46,2. Foxrock Buddy,back,6.8,lost,-10.0
+2026-11-27T12:54+00:00,random_back,Central Park 12:51,3. Mydras Supreme,back,7.2,lost,-10.0
+2026-11-27T13:05+00:00,steamer_back,Harlow 13:03,3. Old Bed Forrest,back,7.4,lost,-10.0
+2026-11-27T13:21+00:00,drifter_lay,Hove 13:17,4. Seomra Pipp,lay,7.8,won,1.4
+2026-11-27T13:23+00:00,random_back,Harlow 13:19,3. Hollywood Jive,back,2.64,won,15.58
+2026-11-27T13:45+00:00,random_back,Harlow 13:37,3. Nipper,back,12.0,won,104.5
+2026-11-27T14:00+00:00,drifter_lay,Hove 13:51,1. My Mate Ronnie,lay,8.2,won,1.32
+2026-11-27T14:00+00:00,random_back,Hove 13:51,2. Letter Eileen,back,4.7,lost,-10.0
+2026-11-27T14:15+00:00,random_back,Hove 14:07,5. Punkrock Mercury,back,7.2,won,58.9
+2026-11-27T14:30+00:00,random_back,Towcester 14:23,4. Coolemore Poppy,back,4.2,lost,-10.0
+2026-11-27T14:45+00:00,random_back,Towcester 14:41,4. Vinegarhill Luna,back,4.0,won,28.5
+2026-11-27T15:05+00:00,drifter_lay,Towcester 15:01,4. Ya Rite,lay,6.0,won,1.9
+2026-11-27T15:05+00:00,random_back,Towcester 15:01,4. Ya Rite,back,5.7,lost,-10.0
+2026-11-27T15:15+00:00,random_back,Star Pelaw 15:03,5. Bitzer Maloney,back,2.4,lost,-10.0
+2026-11-27T15:15+00:00,random_back,Kinsley 15:07,2. Queen Nina,back,5.9,lost,-10.0
+2026-11-27T15:22+00:00,random_back,Towcester 15:19,4. Ambys Princess,back,3.1,lost,-10.0
+2026-11-27T15:37+00:00,steamer_back,Newcastle 15:32,1. Never Too Late,back,3.4,won,22.8
+2026-11-27T15:48+00:00,random_back,Towcester 15:38,1. Dromtrasna Swift,back,4.4,lost,-10.0
+2026-11-27T16:00+00:00,random_back,Newcastle 15:51,6. Coppice Kaiser,back,3.35,lost,-10.0
+2026-11-27T16:01+00:00,random_back,Towcester 15:57,3. Fabulous Image,back,5.3,lost,-10.0
+2026-11-27T16:07+00:00,random_back,Kinsley 16:03,2. Caulry Ella,back,7.2,lost,-10.0
+2026-11-27T16:15+00:00,random_back,Newcastle 16:09,1. Days Lashing,back,4.5,lost,-10.0
+2026-11-27T16:19+00:00,random_back,Towcester 16:16,6. Coolavanny Steve,back,4.5,lost,-10.0
+2026-11-27T16:30+00:00,random_back,Kinsley 16:22,1. Westfield Wispa,back,7.4,lost,-10.0
+2026-11-27T16:45+00:00,random_back,Kinsley 16:41,5. Coola Vega,back,6.4,lost,-10.0
+2026-11-27T17:03+00:00,drifter_lay,Kinsley 16:59,6. Step The Beat,lay,8.0,won,1.36
+2026-11-27T17:03+00:00,random_back,Kinsley 16:59,1. Aurora Queen,back,4.5,lost,-10.0
+2026-11-27T17:10+00:00,random_back,Newcastle 17:06,1. Puckane Light,back,7.4,lost,-10.0
+2026-11-27T17:15+00:00,random_back,Towcester 17:12,1. Mustang Razor,back,4.2,won,30.4
+2026-11-27T17:30+00:00,random_back,Newcastle 17:24,6. Swift Enjoy,back,5.6,lost,-10.0
+2026-11-27T17:53+00:00,random_back,Towcester 17:49,3. Holmleigh Julie,back,5.4,lost,-10.0
+2026-11-27T18:07+00:00,random_back,Newcastle 18:02,1. Private Express,back,7.0,lost,-10.0
+2026-11-27T18:15+00:00,steamer_back,Nottingham 18:08,3. Soapbox Keli,back,3.15,lost,-10.0
+2026-11-27T18:15+00:00,random_back,Nottingham 18:08,3. Soapbox Keli,back,3.15,lost,-10.0
+2026-11-27T18:30+00:00,random_back,Sunderland 18:23,5. Zari Cora,back,4.7,lost,-10.0
+2026-11-27T18:38+00:00,random_back,Romford 18:33,2. Essjay Mercury,back,4.2,lost,-10.0
+2026-11-27T18:50+00:00,random_back,Sheffield 18:18,3. Mymoneyson,back,10.5,lost,-10.0
+2026-11-27T18:50+00:00,random_back,Nottingham 18:48,4. Churchill Queen,back,5.2,lost,-10.0
+2026-11-27T19:00+00:00,random_back,Romford 18:53,4. Ballymac Abia,back,4.5,lost,-10.0
+2026-11-27T19:06+00:00,steamer_back,Harlow 19:04,5. Foxrock Bell,back,2.16,lost,-10.0
+2026-11-27T19:06+00:00,random_back,Harlow 19:04,3. Tagalong Zuma,back,9.2,lost,-10.0
+2026-11-27T19:08+00:00,random_back,Sunderland 19:03,3. Lex Luther,back,3.45,lost,-10.0
+2026-11-27T19:08+00:00,steamer_back,Sunderland 19:03,6. Grouchos Luigi,back,1.97,lost,-10.0
+2026-11-27T19:30+00:00,random_back,Sheffield 19:18,1. Miller Ned,back,1.72,won,6.84
+2026-11-27T19:30+00:00,random_back,Harlow 19:24,1. Colliers Lucky,back,3.35,lost,-10.0
+2026-11-27T19:38+00:00,random_back,Romford 19:33,6. Kinstons Angel,back,4.7,lost,-10.0
+2026-11-27T19:45+00:00,random_back,Sheffield 19:38,3. Rapido Ana,back,5.2,lost,-10.0
+2026-11-27T19:53+00:00,random_back,Nottingham 19:48,3. Outsidemaryspub,back,5.4,won,41.8
+2026-11-27T20:00+00:00,random_back,Romford 19:53,6. Rapido Rosin,back,12.0,lost,-10.0
+2026-11-27T20:06+00:00,drifter_lay,Sunderland 20:03,1. Fagans Rachel,lay,8.2,won,1.32
+2026-11-27T20:06+00:00,random_back,Sunderland 20:03,4. Sober Ace,back,4.9,lost,-10.0
+2026-11-27T20:15+00:00,random_back,Nottingham 20:08,6. Ballyhimikin Lee,back,4.1,won,29.45
+2026-11-27T20:18+00:00,random_back,Harlow 20:16,6. Yo Rons Wrecker,back,3.2,won,20.9
+2026-11-27T20:23+00:00,random_back,Sheffield 20:18,1. Tip Top Peaky,back,5.7,lost,-10.0
+2026-11-27T20:30+00:00,random_back,Sunderland 20:23,6. Emers Biddy,back,3.75,won,26.12
+2026-11-27T20:37+00:00,random_back,Romford 20:33,3. Slick Sabre,back,8.4,won,70.3
+2026-11-27T20:54+00:00,random_back,Nottingham 20:48,2. Sky Blue Jeff,back,7.0,lost,-10.0
+2026-11-27T21:00+00:00,random_back,Harlow 20:52,6. Mulrankin Raven,back,6.6,lost,-10.0
+2026-11-27T21:00+00:00,longshot_lay,Romford 20:53,6. Front Polo,lay,23.0,won,0.43
+2026-11-27T21:00+00:00,random_back,Romford 20:53,6. Front Polo,back,22.0,lost,-10.0
+2026-11-27T21:06+00:00,random_back,Sunderland 21:03,4. Parkfield Bella,back,6.2,lost,-10.0
+2026-11-27T21:15+00:00,random_back,Nottingham 21:08,6. Kanturk Kin,back,5.1,lost,-10.0
+2026-11-27T21:15+00:00,random_back,Harlow 21:09,4. Robbies King,back,4.7,lost,-10.0
+2026-11-27T21:21+00:00,random_back,Sheffield 21:18,6. Acomb Mo,back,5.8,won,45.6
+2026-11-27T21:21+00:00,longshot_lay,Sheffield 21:18,3. Bonnies Luna,lay,22.0,won,0.45
+2026-11-27T21:30+00:00,longshot_lay,Sunderland 21:23,6. False Witness,lay,22.0,won,0.45
+2026-11-27T21:30+00:00,random_back,Sunderland 21:23,6. False Witness,back,20.0,lost,-10.0
+2026-11-27T21:38+00:00,drifter_lay,Romford 21:33,4. Underground Adz,lay,5.8,lost,-10.0
+2026-11-27T21:38+00:00,random_back,Romford 21:33,3. Inclement Moon,back,10.0,lost,-10.0
+2026-11-27T21:45+00:00,random_back,Sheffield 21:38,2. Drumdoit Gizmo,back,9.4,lost,-10.0
+2026-11-27T21:52+00:00,random_back,Nottingham 21:48,4. Sonic Reindeer,back,7.2,lost,-10.0
+2026-11-27T22:07+00:00,random_back,Sunderland 22:03,5. Frankies Lion,back,6.6,lost,-10.0
+2026-11-28T10:52+00:00,random_back,Doncaster 10:48,1. Put Things Right,back,7.4,lost,-10.0
+2026-11-28T11:05+00:00,random_back,Monmore 11:01,6. Longacres Spider,back,3.8,won,26.6
+2026-11-28T11:15+00:00,random_back,Romford 11:09,3. Endova Swift,back,3.35,lost,-10.0
+2026-11-28T11:30+00:00,steamer_back,Doncaster 11:21,4. Sandwood Annie,back,4.4,lost,-10.0
+2026-11-28T11:30+00:00,random_back,Doncaster 11:21,2. Canageo,back,2.8,lost,-10.0
+2026-11-28T11:39+00:00,random_back,Monmore 11:34,3. Winterfield Boom,back,3.85,lost,-10.0
+2026-11-28T11:45+00:00,random_back,Doncaster 11:38,6. Miller Spirit,back,3.7,won,25.65
+2026-11-28T12:00+00:00,random_back,Monmore 11:52,6. Winterfield Star,back,9.6,lost,-10.0
+2026-11-28T12:06+00:00,random_back,Romford 12:01,2. Ballinabola Ruth,back,5.6,lost,-10.0
+2026-11-28T12:15+00:00,drifter_lay,Monmore 12:09,2. Makeit A Breeze,lay,5.0,won,2.38
+2026-11-28T12:15+00:00,random_back,Monmore 12:09,3. Painters Rory,back,4.8,lost,-10.0
+2026-11-28T12:17+00:00,random_back,Doncaster 12:12,4. Cockneyalfitness,back,4.2,lost,-10.0
+2026-11-28T12:30+00:00,random_back,Monmore 12:26,2. Aero Biscuit,back,7.0,lost,-10.0
+2026-11-28T12:37+00:00,random_back,Romford 12:34,1. Lego,back,3.1,won,19.95
+2026-11-28T12:46+00:00,random_back,Monmore 12:42,3. Island Ivy,back,2.7,won,16.15
+2026-11-28T13:00+00:00,random_back,Romford 12:51,2. Hollywood Pretty,back,2.02,won,9.69
+2026-11-28T13:21+00:00,random_back,Monmore 13:17,3. Kilara Jag,back,1.55,won,5.22
+2026-11-28T13:32+00:00,random_back,Romford 13:26,6. Fastlane Frankie,back,9.8,lost,-10.0
+2026-11-28T13:37+00:00,drifter_lay,Monmore 13:33,3. Tell Me Nova,lay,8.4,won,1.28
+2026-11-28T13:37+00:00,random_back,Monmore 13:33,3. Tell Me Nova,back,7.8,lost,-10.0
+2026-11-28T14:15+00:00,random_back,Monmore 14:07,1. Longacres Boss,back,1.67,lost,-10.0
+2026-11-28T14:21+00:00,steamer_back,Towcester 14:18,4. Frankton Dan,back,1.61,won,5.8
+2026-11-28T14:21+00:00,random_back,Towcester 14:18,5. Lamorna Rudie,back,7.2,lost,-10.0
+2026-11-28T14:45+00:00,random_back,Towcester 14:38,2. Bridgestreet Ali,back,2.88,lost,-10.0
