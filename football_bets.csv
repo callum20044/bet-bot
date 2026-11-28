@@ -1,0 +1,123 @@
+settled,bot,match,pick,side,price,result,pnl_gbp
+2026-11-21T14:30+00:00,value_back,"Man City v Fulham (English Premier League, Sat 21 Nov 12:30)",Fulham,back,8.2,lost,-10.0
+2026-11-21T17:00+00:00,value_back,"Tottenham v Ipswich (English Premier League, Sat 21 Nov 15:00)",Ipswich,back,6.4,lost,-10.0
+2026-11-21T19:30+00:00,value_back,"Newcastle v Arsenal (English Premier League, Sat 21 Nov 17:30)",Newcastle,back,6.4,lost,-10.0
+2026-11-22T13:30+00:00,underdog_lay,"Juventus v Venezia (Serie A, Sun 22 Nov 11:30)",The Draw,lay,5.8,won,1.98
+2026-11-22T13:30+00:00,random_back,"Juventus v Venezia (Serie A, Sun 22 Nov 11:30)",Venezia,back,9.4,lost,-10.0
+2026-11-22T14:15+00:00,underdog_lay,"Burnley v Blackburn (Championship, Sun 22 Nov 12:00)",Blackburn,lay,4.2,won,2.97
+2026-11-22T14:15+00:00,random_back,"Burnley v Blackburn (Championship, Sun 22 Nov 12:00)",Burnley,back,1.97,lost,-10.0
+2026-11-22T14:30+00:00,underdog_lay,"Cottbus v Hertha Berlin (Bundesliga, Sun 22 Nov 12:30)",The Draw,lay,5.9,won,1.94
+2026-11-22T14:30+00:00,random_back,"Cottbus v Hertha Berlin (Bundesliga, Sun 22 Nov 12:30)",The Draw,back,4.5,lost,-10.0
+2026-11-22T14:30+00:00,underdog_lay,"Kaiserslautern v Dynamo Dresden (Bundesliga, Sun 22 Nov 12:30)",Dynamo Dresden,lay,3.45,won,3.88
+2026-11-22T14:30+00:00,random_back,"Kaiserslautern v Dynamo Dresden (Bundesliga, Sun 22 Nov 12:30)",The Draw,back,3.6,won,24.7
+2026-11-22T14:30+00:00,underdog_lay,"Karlsruhe v VfL Osnabruck (Bundesliga, Sun 22 Nov 12:30)",The Draw,lay,4.1,lost,-10.0
+2026-11-22T14:30+00:00,random_back,"Karlsruhe v VfL Osnabruck (Bundesliga, Sun 22 Nov 12:30)",VFL Osnabruck,back,2.74,lost,-10.0
+2026-11-22T15:15+00:00,random_back,"Barcelona v Villarreal (La Liga, Sun 22 Nov 13:00)",Barcelona,back,1.21,won,1.99
+2026-11-22T16:00+00:00,underdog_lay,"Paris FC v Angers (Ligue 1, Sun 22 Nov 14:00)",The Draw,lay,6.2,won,1.83
+2026-11-22T16:00+00:00,random_back,"Paris FC v Angers (Ligue 1, Sun 22 Nov 14:00)",Angers,back,10.5,lost,-10.0
+2026-11-22T16:00+00:00,underdog_lay,"Bologna v Udinese (Serie A, Sun 22 Nov 14:00)",The Draw,lay,4.0,lost,-10.0
+2026-11-22T16:00+00:00,random_back,"Bologna v Udinese (Serie A, Sun 22 Nov 14:00)",The Draw,back,3.95,won,28.02
+2026-11-22T16:00+00:00,underdog_lay,"Sassuolo v Genoa (Serie A, Sun 22 Nov 14:00)",The Draw,lay,3.55,won,3.73
+2026-11-22T16:00+00:00,random_back,"Sassuolo v Genoa (Serie A, Sun 22 Nov 14:00)",Genoa,back,2.62,won,15.39
+2026-11-22T16:15+00:00,underdog_lay,"Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",The Draw,lay,4.8,won,2.5
+2026-11-22T16:15+00:00,random_back,"Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",Brighton,back,1.54,lost,-10.0
+2026-11-22T16:15+00:00,value_back,"Hull v Brighton (English Premier League, Sun 22 Nov 14:00)",Hull,back,7.0,won,57.0
+2026-11-22T16:30+00:00,underdog_lay,"Augsburg v Mainz (Bundesliga, Sun 22 Nov 14:30)",The Draw,lay,4.1,won,3.06
+2026-11-22T16:30+00:00,random_back,"Augsburg v Mainz (Bundesliga, Sun 22 Nov 14:30)",The Draw,back,4.0,lost,-10.0
+2026-11-22T17:15+00:00,underdog_lay,"Racing Santander v Real Sociedad (La Liga, Sun 22 Nov 15:15)",Racing Santander,lay,3.45,lost,-10.0
+2026-11-22T17:15+00:00,random_back,"Racing Santander v Real Sociedad (La Liga, Sun 22 Nov 15:15)",The Draw,back,4.3,lost,-10.0
+2026-11-22T18:15+00:00,underdog_lay,"Lorient v Rennes (Ligue 1, Sun 22 Nov 16:15)",The Draw,lay,3.65,lost,-10.0
+2026-11-22T18:15+00:00,random_back,"Lorient v Rennes (Ligue 1, Sun 22 Nov 16:15)",The Draw,back,3.5,won,23.75
+2026-11-22T18:30+00:00,underdog_lay,"Liverpool v Man Utd (English Premier League, Sun 22 Nov 16:30)",The Draw,lay,4.4,won,2.79
+2026-11-22T18:30+00:00,random_back,"Liverpool v Man Utd (English Premier League, Sun 22 Nov 16:30)",Liverpool,back,1.82,won,7.79
+2026-11-22T18:40+00:00,underdog_lay,"Werder Bremen v Hamburger SV (Bundesliga, Sun 22 Nov 16:30)",The Draw,lay,4.6,won,2.64
+2026-11-22T18:40+00:00,random_back,"Werder Bremen v Hamburger SV (Bundesliga, Sun 22 Nov 16:30)",The Draw,back,4.4,lost,-10.0
+2026-11-22T19:00+00:00,underdog_lay,"AC Milan v Frosinone (Serie A, Sun 22 Nov 17:00)",The Draw,lay,5.2,won,2.26
+2026-11-22T19:00+00:00,random_back,"AC Milan v Frosinone (Serie A, Sun 22 Nov 17:00)",The Draw,back,5.0,lost,-10.0
+2026-11-22T19:30+00:00,underdog_lay,"Osasuna v Malaga (La Liga, Sun 22 Nov 17:30)",The Draw,lay,3.85,won,3.33
+2026-11-22T19:30+00:00,random_back,"Osasuna v Malaga (La Liga, Sun 22 Nov 17:30)",Malaga,back,4.6,lost,-10.0
+2026-11-22T21:45+00:00,underdog_lay,"Marseille v Le Mans (Ligue 1, Sun 22 Nov 19:45)",The Draw,lay,5.3,won,2.21
+2026-11-22T21:45+00:00,random_back,"Marseille v Le Mans (Ligue 1, Sun 22 Nov 19:45)",Marseille,back,1.49,lost,-10.0
+2026-11-22T21:45+00:00,underdog_lay,"Atalanta v Inter (Serie A, Sun 22 Nov 19:45)",The Draw,lay,5.0,lost,-10.0
+2026-11-22T21:45+00:00,random_back,"Atalanta v Inter (Serie A, Sun 22 Nov 19:45)",Inter,back,1.63,lost,-10.0
+2026-11-22T22:00+00:00,underdog_lay,"Getafe v Atletico Madrid (La Liga, Sun 22 Nov 20:00)",The Draw,lay,4.3,won,2.88
+2026-11-22T22:00+00:00,random_back,"Getafe v Atletico Madrid (La Liga, Sun 22 Nov 20:00)",The Draw,back,4.1,lost,-10.0
+2026-11-23T21:45+00:00,underdog_lay,"AC Monza v Fiorentina (Serie A, Mon 23 Nov 19:45)",AC Monza,lay,3.95,lost,-10.0
+2026-11-23T21:45+00:00,random_back,"AC Monza v Fiorentina (Serie A, Mon 23 Nov 19:45)",AC Monza,back,3.75,won,26.12
+2026-11-23T22:00+00:00,underdog_lay,"Levante v Elche (La Liga, Mon 23 Nov 20:00)",Elche,lay,3.45,won,3.88
+2026-11-23T22:00+00:00,random_back,"Levante v Elche (La Liga, Mon 23 Nov 20:00)",Levante,back,2.22,lost,-10.0
+2026-11-23T22:15+00:00,underdog_lay,"Brentford v Everton (English Premier League, Mon 23 Nov 20:00)",Everton,lay,3.6,won,3.65
+2026-11-23T22:15+00:00,random_back,"Brentford v Everton (English Premier League, Mon 23 Nov 20:00)",Everton,back,3.5,lost,-10.0
+2026-11-24T19:45+00:00,underdog_lay,"Galatasaray v Aston Villa (Champions League, Tue 24 Nov 17:45)",The Draw,lay,4.4,won,2.79
+2026-11-24T19:45+00:00,random_back,"Galatasaray v Aston Villa (Champions League, Tue 24 Nov 17:45)",Galatasaray,back,2.6,won,15.2
+2026-11-24T19:45+00:00,underdog_lay,"Bodo Glimt v Lask Linz (Champions League, Tue 24 Nov 17:45)",The Draw,lay,5.8,won,1.98
+2026-11-24T19:45+00:00,random_back,"Bodo Glimt v Lask Linz (Champions League, Tue 24 Nov 17:45)",LASK Linz,back,5.3,lost,-10.0
+2026-11-24T21:39+00:00,random_back,"Hibernian v Dundee (Scottish Prem, Tue 24 Nov 19:45)",The Draw,back,1.02,lost,-10.0
+2026-11-24T21:39+00:00,random_back,"Norwich v QPR (Championship, Tue 24 Nov 19:45)",Norwich,back,1.04,lost,-10.0
+2026-11-24T21:49+00:00,random_back,"Cardiff v Preston (Championship, Tue 24 Nov 19:45)",Preston,back,1.04,won,0.38
+2026-11-24T21:49+00:00,random_back,"Sheff Utd v Southampton (Championship, Tue 24 Nov 19:45)",Sheff Utd,back,1.04,lost,-10.0
+2026-11-24T21:49+00:00,underdog_lay,"Portsmouth v West Ham (Championship, Tue 24 Nov 19:45)",The Draw,lay,4.5,won,2.71
+2026-11-24T21:49+00:00,random_back,"Portsmouth v West Ham (Championship, Tue 24 Nov 19:45)",The Draw,back,3.55,lost,-10.0
+2026-11-24T21:49+00:00,random_back,"Middlesbrough v Swansea (Championship, Tue 24 Nov 19:45)",Middlesbrough,back,1.04,won,0.38
+2026-11-24T22:00+00:00,random_back,"Rangers v Aberdeen (Scottish Prem, Tue 24 Nov 20:00)",Aberdeen,back,8.8,lost,-10.0
+2026-11-24T22:00+00:00,underdog_lay,"Arsenal v Dortmund (Champions League, Tue 24 Nov 20:00)",The Draw,lay,5.9,lost,-10.0
+2026-11-24T22:00+00:00,random_back,"Arsenal v Dortmund (Champions League, Tue 24 Nov 20:00)",Arsenal,back,1.4,lost,-10.0
+2026-11-24T22:00+00:00,random_back,"Man City v Napoli (Champions League, Tue 24 Nov 20:00)",Napoli,back,10.5,lost,-10.0
+2026-11-24T22:00+00:00,underdog_lay,"Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",The Draw,lay,6.4,won,1.76
+2026-11-24T22:00+00:00,random_back,"Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",AEK Athens,back,9.8,lost,-10.0
+2026-11-24T22:00+00:00,random_back,"Real Madrid v PSV (Champions League, Tue 24 Nov 20:00)",Real Madrid,back,1.2,won,1.9
+2026-11-24T22:00+00:00,value_back,"Real Madrid v PSV (Champions League, Tue 24 Nov 20:00)",PSV,back,13.0,lost,-10.0
+2026-11-24T22:00+00:00,underdog_lay,"RB Leipzig v Lens (Champions League, Tue 24 Nov 20:00)",The Draw,lay,5.9,won,1.94
+2026-11-24T22:00+00:00,random_back,"RB Leipzig v Lens (Champions League, Tue 24 Nov 20:00)",Lens,back,6.2,lost,-10.0
+2026-11-24T22:00+00:00,random_back,"Slovan Bratislava v Betis (Champions League, Tue 24 Nov 20:00)",Slovan Bratislava,back,11.0,lost,-10.0
+2026-11-24T22:00+00:00,value_back,"Como v AEK Athens (Champions League, Tue 24 Nov 20:00)",The Draw,back,5.7,lost,-10.0
+2026-11-24T22:00+00:00,random_back,"Wolves v Derby (Championship, Tue 24 Nov 20:00)",The Draw,back,5.4,lost,-10.0
+2026-11-24T22:00+00:00,value_back,"Man City v Napoli (Champions League, Tue 24 Nov 20:00)",Napoli,back,11.0,lost,-10.0
+2026-11-24T22:15+00:00,underdog_lay,"Feyenoord v Porto (Champions League, Tue 24 Nov 20:00)",The Draw,lay,4.1,won,3.06
+2026-11-24T22:15+00:00,random_back,"Feyenoord v Porto (Champions League, Tue 24 Nov 20:00)",Feyenoord,back,2.7,lost,-10.0
+2026-11-25T19:45+00:00,random_back,"FC Sabah v Barcelona (Champions League, Wed 25 Nov 17:45)",Barcelona,back,1.11,won,1.05
+2026-11-25T19:45+00:00,underdog_lay,"Slavia Prague v Villarreal (Champions League, Wed 25 Nov 17:45)",The Draw,lay,4.2,won,2.97
+2026-11-25T19:45+00:00,random_back,"Slavia Prague v Villarreal (Champions League, Wed 25 Nov 17:45)",The Draw,back,3.9,lost,-10.0
+2026-11-25T19:45+00:00,value_back,"FC Sabah v Barcelona (Champions League, Wed 25 Nov 17:45)",FC Sabah,back,22.0,lost,-10.0
+2026-11-25T21:45+00:00,random_back,"Burnley v Birmingham (Championship, Wed 25 Nov 19:45)",Burnley,back,1.04,lost,-10.0
+2026-11-25T21:45+00:00,random_back,"Watford v Blackburn (Championship, Wed 25 Nov 19:45)",The Draw,back,1.13,lost,-10.0
+2026-11-25T21:45+00:00,random_back,"Bolton v West Brom (Championship, Wed 25 Nov 19:45)",West Brom,back,1.04,won,0.38
+2026-11-25T22:00+00:00,random_back,"Atletico Madrid v Viking (Champions League, Wed 25 Nov 20:00)",Viking,back,22.0,lost,-10.0
+2026-11-25T22:00+00:00,underdog_lay,"Paris St-G v Roma (Champions League, Wed 25 Nov 20:00)",The Draw,lay,6.4,lost,-10.0
+2026-11-25T22:00+00:00,random_back,"Paris St-G v Roma (Champions League, Wed 25 Nov 20:00)",Paris St-G,back,1.38,lost,-10.0
+2026-11-25T22:00+00:00,underdog_lay,"Club Brugge v Liverpool (Champions League, Wed 25 Nov 20:00)",Club Brugge,lay,4.8,won,2.5
+2026-11-25T22:00+00:00,random_back,"Club Brugge v Liverpool (Champions League, Wed 25 Nov 20:00)",The Draw,back,4.7,lost,-10.0
+2026-11-25T22:00+00:00,random_back,"Lille v Bayern Munich (Champions League, Wed 25 Nov 20:00)",Lille,back,8.6,won,72.2
+2026-11-25T22:00+00:00,underdog_lay,"Inter v Stuttgart (Champions League, Wed 25 Nov 20:00)",The Draw,lay,6.4,won,1.76
+2026-11-25T22:00+00:00,random_back,"Inter v Stuttgart (Champions League, Wed 25 Nov 20:00)",Stuttgart,back,6.2,lost,-10.0
+2026-11-25T22:00+00:00,underdog_lay,"Sporting Lisbon v Man Utd (Champions League, Wed 25 Nov 20:00)",The Draw,lay,4.1,lost,-10.0
+2026-11-25T22:00+00:00,random_back,"Sporting Lisbon v Man Utd (Champions League, Wed 25 Nov 20:00)",Sporting Lisbon,back,2.66,lost,-10.0
+2026-11-25T22:00+00:00,underdog_lay,"Shakhtar v Fenerbahce (Champions League, Wed 25 Nov 20:00)",The Draw,lay,3.95,won,3.22
+2026-11-25T22:00+00:00,random_back,"Shakhtar v Fenerbahce (Champions League, Wed 25 Nov 20:00)",The Draw,back,3.55,lost,-10.0
+2026-11-25T22:00+00:00,value_back,"Lille v Bayern Munich (Champions League, Wed 25 Nov 20:00)",Lille,back,8.6,won,72.2
+2026-11-25T22:00+00:00,random_back,"Stoke v Millwall (Championship, Wed 25 Nov 20:00)",The Draw,back,1.71,lost,-10.0
+2026-11-25T22:00+00:00,value_back,"Atletico Madrid v Viking (Champions League, Wed 25 Nov 20:00)",Viking,back,27.0,lost,-10.0
+2026-11-27T19:30+00:00,underdog_lay,"FC Heidenheim v Nurnberg (Bundesliga, Fri 27 Nov 17:30)",Nurnberg,lay,3.7,won,3.52
+2026-11-27T19:30+00:00,random_back,"FC Heidenheim v Nurnberg (Bundesliga, Fri 27 Nov 17:30)",The Draw,back,3.95,lost,-10.0
+2026-11-27T19:30+00:00,random_back,"Bochum v SV Darmstadt (Bundesliga, Fri 27 Nov 17:30)",SV Darmstadt,back,1.04,lost,-10.0
+2026-11-27T21:30+00:00,underdog_lay,"Werder Bremen v Mgladbach (Bundesliga, Fri 27 Nov 19:30)",Mgladbach,lay,4.7,won,2.57
+2026-11-27T21:30+00:00,random_back,"Werder Bremen v Mgladbach (Bundesliga, Fri 27 Nov 19:30)",The Draw,back,4.4,won,32.3
+2026-11-27T21:45+00:00,underdog_lay,"Venezia v Bologna (Serie A, Fri 27 Nov 19:45)",The Draw,lay,3.9,lost,-10.0
+2026-11-27T21:45+00:00,random_back,"Venezia v Bologna (Serie A, Fri 27 Nov 19:45)",The Draw,back,3.6,won,24.7
+2026-11-27T21:45+00:00,underdog_lay,"Brest v Paris FC (Ligue 1, Fri 27 Nov 19:45)",Brest,lay,3.4,lost,-10.0
+2026-11-27T21:45+00:00,random_back,"Brest v Paris FC (Ligue 1, Fri 27 Nov 19:45)",Paris FC,back,2.28,lost,-10.0
+2026-11-27T22:00+00:00,underdog_lay,"Levante v Racing Santander (La Liga, Fri 27 Nov 20:00)",Racing Santander,lay,3.55,lost,-10.0
+2026-11-27T22:00+00:00,random_back,"Levante v Racing Santander (La Liga, Fri 27 Nov 20:00)",Racing Santander,back,3.25,won,21.38
+2026-11-27T22:00+00:00,underdog_lay,"Nottm Forest v Chelsea (English Premier League, Fri 27 Nov 20:00)",The Draw,lay,3.6,won,3.65
+2026-11-27T22:00+00:00,random_back,"Nottm Forest v Chelsea (English Premier League, Fri 27 Nov 20:00)",Nottm Forest,back,2.82,won,17.29
+2026-11-27T22:00+00:00,random_back,"Southampton v Middlesbrough (Championship, Fri 27 Nov 20:00)",Middlesbrough,back,1.04,lost,-10.0
+2026-11-28T14:00+00:00,underdog_lay,"Hertha Berlin v Karlsruhe (Bundesliga, Sat 28 Nov 12:00)",The Draw,lay,6.6,won,1.7
+2026-11-28T14:00+00:00,random_back,"Hertha Berlin v Karlsruhe (Bundesliga, Sat 28 Nov 12:00)",Hertha Berlin,back,1.17,won,1.61
+2026-11-28T14:00+00:00,random_back,"Holstein Kiel v Kaiserslautern (Bundesliga, Sat 28 Nov 12:00)",Holstein Kiel,back,1.04,won,0.38
+2026-11-28T14:00+00:00,random_back,"Dynamo Dresden v St Pauli (Bundesliga, Sat 28 Nov 12:00)",The Draw,back,1.01,lost,-10.0
+2026-11-28T14:30+00:00,random_back,"Blackburn v Charlton (Championship, Sat 28 Nov 12:30)",The Draw,back,1.11,lost,-10.0
+2026-11-28T14:30+00:00,underdog_lay,"Lincoln v Wolves (Championship, Sat 28 Nov 12:30)",The Draw,lay,5.6,lost,-10.0
+2026-11-28T14:30+00:00,random_back,"Lincoln v Wolves (Championship, Sat 28 Nov 12:30)",Lincoln,back,4.9,lost,-10.0
+2026-11-28T14:45+00:00,random_back,"Preston v Norwich (Championship, Sat 28 Nov 12:30)",Norwich,back,1.11,lost,-10.0
+2026-11-28T15:15+00:00,underdog_lay,"Betis v Rayo Vallecano (La Liga, Sat 28 Nov 13:00)",The Draw,lay,5.1,won,2.32
+2026-11-28T15:15+00:00,random_back,"Betis v Rayo Vallecano (La Liga, Sat 28 Nov 13:00)",The Draw,back,4.6,lost,-10.0
